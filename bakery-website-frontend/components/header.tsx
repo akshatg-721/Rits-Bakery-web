@@ -30,7 +30,7 @@ export function Header() {
           <a href="/contact" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition">
             Contact us
           </a>
-          <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition">
+          <a href="/our-story" className="text-sm font-medium text-gray-700 hover:text-gray-900 transition">
             Our Story
           </a>
         </nav>
