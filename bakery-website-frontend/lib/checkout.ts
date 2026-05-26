@@ -1,9 +1,5 @@
 import type { CartItem } from '@/lib/cart-context'
-
-export const siteConfig = {
-  name: 'The Rits Baker',
-  whatsappNumber: '+91-9896695955',
-}
+import { siteConfig } from '@/lib/data'
 
 export function checkoutWithWhatsApp(cartItems: CartItem[]) {
   const phoneNumber = siteConfig.whatsappNumber.replace(/\D/g, '')
