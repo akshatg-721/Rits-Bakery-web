@@ -12,35 +12,37 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
-    <div className="group">
+    <article className="group flex h-full flex-col rounded-lg border border-stone-200/70 bg-white/35 p-4 transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(28,25,23,0.08)]">
       {/* Image Placeholder */}
-      <div className="mb-6 bg-gray-200 aspect-square rounded-lg overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center">
-          <span className="text-gray-400 text-sm">Product Image</span>
+      <div className="aspect-square overflow-hidden rounded-md bg-stone-200">
+        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-stone-100 to-stone-300">
+          <span className="text-sm text-stone-400">Product Image</span>
         </div>
       </div>
 
       {/* Product Name */}
-      <h3 className="text-lg font-serif italic text-gray-800 mb-2">
+      <h3 className="mt-6 min-h-14 font-serif text-xl italic leading-7 text-stone-900">
         {product.name}
       </h3>
 
       {/* Price */}
-      <p className="text-base font-medium text-gray-700">{product.displayPrice}</p>
+      <p className="mt-3 text-base font-semibold text-stone-800">
+        {product.displayPrice}
+      </p>
 
       {product.description && (
-        <p className="mt-2 min-h-10 text-sm leading-5 text-gray-600">
+        <p className="mt-2 min-h-14 text-sm leading-6 text-stone-500">
           {product.description}
         </p>
       )}
 
       <Button
-        className="mt-5 w-full bg-gray-900 text-white hover:bg-gray-800"
+        className="mt-auto w-full rounded-none bg-stone-900 text-white hover:bg-stone-800"
         onClick={() => onAddToCart(product)}
       >
         <ShoppingBag className="size-4" />
         Add to Cart
       </Button>
-    </div>
+    </article>
   )
 }

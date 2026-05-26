@@ -8,11 +8,11 @@ export function checkoutWithWhatsApp(cartItems: CartItem[]) {
   let total = 0
 
   cartItems.forEach((item) => {
-    message += `- ${item.name} (x${item.quantity}) - ₹${item.price * item.quantity}%0A`
+    message += `- ${item.name} (x${item.quantity}) - ฿${item.price * item.quantity}%0A`
     total += item.price * item.quantity
   })
 
-  message += `%0A*Total: ₹${total}*%0A%0APlease confirm my order.`
+  message += `%0A*Total: ฿${total}*%0A%0APlease confirm my order.`
 
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
 }
