@@ -1,12 +1,16 @@
 'use client'
 
+import { ShoppingBag } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import type { CartProduct } from '@/lib/cart-context'
+
 interface ProductCardProps {
-  name: string
-  price: string
-  image?: string
+  product: CartProduct
+  onAddToCart: (product: CartProduct) => void
 }
 
-export function ProductCard({ name, price }: ProductCardProps) {
+export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
     <div className="group">
       {/* Image Placeholder */}
@@ -18,13 +22,25 @@ export function ProductCard({ name, price }: ProductCardProps) {
 
       {/* Product Name */}
       <h3 className="text-lg font-serif italic text-gray-800 mb-2">
-        {name}
+        {product.name}
       </h3>
 
       {/* Price */}
-      <p className="text-base font-medium text-gray-700">
-        {price}
-      </p>
+      <p className="text-base font-medium text-gray-700">{product.displayPrice}</p>
+
+      {product.description && (
+        <p className="mt-2 min-h-10 text-sm leading-5 text-gray-600">
+          {product.description}
+        </p>
+      )}
+
+      <Button
+        className="mt-5 w-full bg-gray-900 text-white hover:bg-gray-800"
+        onClick={() => onAddToCart(product)}
+      >
+        <ShoppingBag className="size-4" />
+        Add to Cart
+      </Button>
     </div>
   )
 }

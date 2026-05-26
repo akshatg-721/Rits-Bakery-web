@@ -1,16 +1,29 @@
 'use client'
 
 import { ProductCard } from './product-card'
+import { useCart, type CartProduct } from '@/lib/cart-context'
+
+const menuItems: CartProduct[] = [
+  {
+    id: '1',
+    name: 'Signature Fudge Brownie',
+    price: 150,
+    displayPrice: '₹150',
+    description: 'Rich, gooey, and made with dark Belgian chocolate.',
+    image: '/brownie.jpg',
+  },
+  {
+    id: '2',
+    name: 'Classic Butter Croissant',
+    price: 120,
+    displayPrice: '₹120',
+    description: 'Flaky, buttery, and freshly baked every morning.',
+    image: '/croissant.jpg',
+  },
+]
 
 export function ShopSection() {
-  const products = [
-    { name: 'Fudge Brownie', price: '$6.50' },
-    { name: 'Croissant Butter', price: '$4.25' },
-    { name: 'Chocolate Tart', price: '$7.00' },
-    { name: 'Raspberry Macaron', price: '$3.50' },
-    { name: 'Soufflé Vanilla', price: '$5.75' },
-    { name: 'Pistachio Éclair', price: '$5.25' },
-  ]
+  const { addItem } = useCart()
 
   return (
     <section className="py-16 px-8">
@@ -21,12 +34,12 @@ export function ShopSection() {
         </h2>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-3 gap-12">
-          {products.map((product) => (
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+          {menuItems.map((product) => (
             <ProductCard
-              key={product.name}
-              name={product.name}
-              price={product.price}
+              key={product.id}
+              product={product}
+              onAddToCart={addItem}
             />
           ))}
         </div>
