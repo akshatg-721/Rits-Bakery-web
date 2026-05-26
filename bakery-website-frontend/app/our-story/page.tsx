@@ -15,7 +15,7 @@ export default function OurStoryPage() {
 
           <p>
             What started as a deep passion for the art of baking has grown into
-            a warm, artisanal kitchen right here in Bangkok, where we now serve
+            a warm, artisanal kitchen right here in Rohtak, where we now serve
             premium handcrafted desserts with a homemade heart.
           </p>
 

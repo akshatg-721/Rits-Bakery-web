@@ -26,7 +26,7 @@ export function ShopSection() {
   const { addItem } = useCart()
 
   return (
-    <section className="py-16 px-8">
+    <section id="menu" className="py-16 px-8">
       <div className="max-w-7xl mx-auto">
         {/* Section Title */}
         <h2 className="text-4xl font-serif text-gray-900 mb-12 text-center">
