@@ -14,6 +14,7 @@ interface MenuProduct {
   category: string
   price: string
   description?: string
+  image: string
   isTopSeller: boolean
 }
 
@@ -31,6 +32,7 @@ const products: MenuProduct[] = [
     name: 'Authentic Thai Banana Loaf',
     category: 'Signature Loaves',
     price: '฿190',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -38,6 +40,7 @@ const products: MenuProduct[] = [
     name: 'Orange/Carrot Loaf',
     category: 'Signature Loaves',
     price: '฿220',
+    image: '/images/carrot_loaf.jpeg',
     isTopSeller: false,
   },
   {
@@ -45,6 +48,7 @@ const products: MenuProduct[] = [
     name: 'Vanilla Butter Loaf Cake',
     category: 'Signature Loaves',
     price: '฿250',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -52,6 +56,7 @@ const products: MenuProduct[] = [
     name: 'Date & Walnut Cake',
     category: 'Signature Loaves',
     price: '฿290',
+    image: '/images/dates_walnut_cake.jpeg',
     isTopSeller: false,
   },
   {
@@ -59,6 +64,7 @@ const products: MenuProduct[] = [
     name: 'Rich Chocolate Loaf',
     category: 'Signature Loaves',
     price: '฿290',
+    image: '/logo.png',
     isTopSeller: true,
   },
   {
@@ -66,6 +72,7 @@ const products: MenuProduct[] = [
     name: 'Coconut Cookies',
     category: 'Cookies',
     price: '฿195',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -73,6 +80,7 @@ const products: MenuProduct[] = [
     name: 'Classical Nankhatai',
     category: 'Cookies',
     price: '฿195',
+    image: '/images/raggi_cookies.jpeg',
     isTopSeller: true,
   },
   {
@@ -80,6 +88,7 @@ const products: MenuProduct[] = [
     name: 'Osamania Biscuits',
     category: 'Cookies',
     price: '฿250',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -87,6 +96,7 @@ const products: MenuProduct[] = [
     name: 'Almond/Oats/Choco Chip Cookies',
     category: 'Cookies',
     price: '฿240',
+    image: '/images/double_choco_cookies.jpeg',
     isTopSeller: false,
   },
   {
@@ -94,6 +104,7 @@ const products: MenuProduct[] = [
     name: 'Cheesy Cashews (125g)',
     category: 'Savories & Gifting',
     price: '฿240',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -101,6 +112,7 @@ const products: MenuProduct[] = [
     name: '7 Seed Mukhwas (125g)',
     category: 'Savories & Gifting',
     price: '฿160',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -108,6 +120,7 @@ const products: MenuProduct[] = [
     name: 'Muffins (Pack of 6) (Pizza/Spinach Cheese Corn)',
     category: 'Savories & Gifting',
     price: '฿195',
+    image: '/images/pizza_muffins.jpeg',
     isTopSeller: true,
   },
   {
@@ -115,6 +128,7 @@ const products: MenuProduct[] = [
     name: 'Premium Cheesecakes',
     category: 'Desserts',
     price: '฿690/lb',
+    image: '/images/red_valvet_cake.jpeg',
     isTopSeller: true,
   },
   {
@@ -122,6 +136,7 @@ const products: MenuProduct[] = [
     name: 'Fudge Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿245',
+    image: '/images/mocha_brownie.jpeg',
     isTopSeller: false,
   },
   {
@@ -129,6 +144,7 @@ const products: MenuProduct[] = [
     name: 'Nuts/Biscoff Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿350',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -136,6 +152,7 @@ const products: MenuProduct[] = [
     name: 'Nutella/Oreo Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿290',
+    image: '/logo.png',
     isTopSeller: true,
   },
   {
@@ -143,6 +160,7 @@ const products: MenuProduct[] = [
     name: 'Kunafa Dates (Pack of 6)',
     category: 'Desserts',
     price: '฿300',
+    image: '/images/khunafa_dates.jpeg',
     isTopSeller: true,
   },
   {
@@ -150,6 +168,7 @@ const products: MenuProduct[] = [
     name: 'Assorted Biscoff Truffles (Pack of 12)',
     category: 'Desserts',
     price: '฿400',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -157,6 +176,7 @@ const products: MenuProduct[] = [
     name: 'Baklava',
     category: 'Desserts',
     price: '฿590/lb',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -164,6 +184,7 @@ const products: MenuProduct[] = [
     name: 'Basbousa',
     category: 'Desserts',
     price: '฿550/lb',
+    image: '/logo.png',
     isTopSeller: false,
   },
   {
@@ -171,6 +192,7 @@ const products: MenuProduct[] = [
     name: 'Dubai Chocolates (10 pieces)',
     category: 'Desserts',
     price: '฿690',
+    image: '/images/kunafa_dubai_choclate_bars.jpeg',
     isTopSeller: false,
   },
   {
@@ -178,6 +200,7 @@ const products: MenuProduct[] = [
     name: 'Traditional Mawa Cake',
     category: 'Desserts',
     price: '฿390/lb',
+    image: '/images/traditional_mawa_cake.jpeg',
     isTopSeller: false,
   },
 ]
@@ -258,9 +281,13 @@ export function ShopSection() {
             >
               <div className="aspect-square overflow-hidden rounded-md bg-gray-100">
                 <img
-                  src="/logo.png"
-                  alt=""
-                  className="h-full w-full object-contain p-10 opacity-70"
+                  src={product.image}
+                  alt={product.name}
+                  className={`h-full w-full ${
+                    product.image === '/logo.png'
+                      ? 'object-contain p-10 opacity-70'
+                      : 'object-cover'
+                  }`}
                 />
               </div>
 
@@ -295,7 +322,7 @@ export function ShopSection() {
                     price: getNumericPrice(product.price),
                     displayPrice: product.price,
                     description: product.description,
-                    image: '/logo.png',
+                    image: product.image,
                   })
                   setCartOpen(true)
                 }}
