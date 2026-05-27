@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, ShoppingBag } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
 
 /* ─── Product data type ─── */
@@ -23,7 +23,7 @@ interface Category {
 const img = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=600&q=80`
 
-/* ─── All menu data organized by premium categories ─── */
+/* ─── All menu data organized by category ─── */
 const menuCategories: Category[] = [
   {
     title: 'Signature Loaves',
@@ -259,7 +259,7 @@ const menuCategories: Category[] = [
   },
 ]
 
-export default function MenuPage() {
+export function MenuSection() {
   const { addItem, setCartOpen } = useCart()
 
   const handleAddToCart = (product: Product) => {
@@ -274,29 +274,29 @@ export default function MenuPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8]">
-      {/* ── Category Sections ── */}
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <section id="menu" className="bg-[#FAFAF8] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl py-16 sm:py-24">
         {menuCategories.map((category, catIdx) => (
-          <section
+          <div
             key={category.slug}
             id={category.slug}
             className={catIdx > 0 ? 'mt-20 sm:mt-28' : ''}
+            /* Offset scroll target so heading isn't hidden behind sticky header */
             style={{ scrollMarginTop: '6rem' }}
           >
-            {/* Category heading */}
+            {/* ── Category Heading ── */}
             <div className="mb-10 sm:mb-14">
-              <h2 className="font-serif text-3xl text-[#1a1a1a] sm:text-4xl">
+              <h3 className="font-serif text-3xl text-[#1a1a1a] sm:text-4xl">
                 {category.title}
-              </h2>
+              </h3>
               <div className="mt-3 h-px w-16 bg-[#006241]/40" />
             </div>
 
-            {/* Product Grid */}
+            {/* ── Product Grid ── */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-4">
               {category.products.map((product) => (
                 <article key={product.id} className="group cursor-pointer">
-                  {/* ── Image Container with hover reveals ── */}
+                  {/* Image Container with hover reveals */}
                   <div
                     className="relative overflow-hidden rounded-sm bg-gray-100"
                     onClick={() => handleAddToCart(product)}
@@ -346,14 +346,14 @@ export default function MenuPage() {
                     )}
                   </div>
 
-                  {/* ── Text beneath image ── */}
+                  {/* Text beneath image */}
                   <div className="mt-4 flex flex-col items-center text-center">
                     <span className="mb-1 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
                       Eggless
                     </span>
-                    <h3 className="text-sm font-medium leading-snug text-gray-900 sm:text-[15px]">
+                    <h4 className="text-sm font-medium leading-snug text-gray-900 sm:text-[15px]">
                       {product.name}
-                    </h3>
+                    </h4>
                     <p className="mt-1 text-sm text-gray-500">
                       {product.price}
                     </p>
@@ -361,10 +361,8 @@ export default function MenuPage() {
                 </article>
               ))}
             </div>
-          </section>
+          </div>
         ))}
-
-
 
         {/* Footer note */}
         <p className="mx-auto mt-20 max-w-2xl text-center text-xs leading-6 text-gray-400 sm:text-sm">
@@ -374,6 +372,6 @@ export default function MenuPage() {
           Open Every Day · Delivery Only · Pre-order 24hrs before.
         </p>
       </div>
-    </main>
+    </section>
   )
 }

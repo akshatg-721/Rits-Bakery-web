@@ -1,5 +1,6 @@
 import { Curations } from '@/components/curations'
 import { HeroSlider } from '@/components/hero-slider'
+import { MenuSection } from '@/components/menu-section'
 import { NewsletterBar } from '@/components/newsletter-bar'
 
 export default function Page() {
@@ -8,10 +9,13 @@ export default function Page() {
       {/* 1. Full-bleed hero image slider */}
       <HeroSlider />
 
-      {/* 2. Circular category curations */}
+      {/* 2. Circular category curations (anchored to menu sections) */}
       <Curations />
 
-      {/* 3. Minimalist newsletter + social bar */}
+      {/* 3. Unified continuous-scroll menu */}
+      <MenuSection />
+
+      {/* 4. Minimalist newsletter + social bar */}
       <NewsletterBar />
     </main>
   )

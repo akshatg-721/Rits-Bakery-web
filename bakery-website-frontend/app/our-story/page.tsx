@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { MessageCircle, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Our Story | The Rits Baker",
@@ -9,15 +8,18 @@ export const metadata: Metadata = {
 
 export default function OurStoryPage() {
   return (
-    <main className="min-h-screen bg-[#F9F9F9] font-sans text-[#111111]">
-      <div className="mx-auto max-w-3xl px-6 py-20">
-        {/* Page Heading */}
-        <h1 className="mb-12 text-center text-4xl font-bold tracking-tight">
+    <main className="min-h-screen bg-[#FAFAF8] px-6 py-24 sm:px-8 sm:py-32">
+      <article className="mx-auto max-w-2xl">
+        {/* ── Page Heading ── */}
+        <h1 className="text-center font-serif text-5xl italic text-[#111111] sm:text-6xl">
           Our Story
         </h1>
 
-        {/* Story Content */}
-        <section className="space-y-6 text-center text-lg leading-relaxed">
+        {/* ── Thin decorative rule ── */}
+        <div className="mx-auto mt-10 mb-16 h-px w-16 bg-[#111111]/20" />
+
+        {/* ── Story Body ── */}
+        <div className="space-y-7 text-center text-base leading-loose text-[#444444] sm:text-lg sm:leading-loose">
           <p>
             At The Rits Baker, we believe great baking begins with love, quality
             ingredients, and beautiful flavors.
@@ -36,7 +38,7 @@ export default function OurStoryPage() {
             truly love.
           </p>
 
-          <p className="font-semibold">
+          <p className="font-medium text-[#111111]">
             Our goal is simple: To make food that feels like home.
           </p>
 
@@ -45,46 +47,43 @@ export default function OurStoryPage() {
             quiet sweet moment, we&apos;re happy to have you here.
           </p>
 
-          <p className="mt-10 italic">
+          <p className="mt-12 font-serif text-lg italic text-[#111111]">
             With warmth,
             <br />
             The Team at The Rits Baker BKK
           </p>
-        </section>
+        </div>
 
-        {/* Get in Touch Card */}
-        <section className="mt-16 rounded-md border border-gray-200 bg-white p-8 text-center">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight">
+        {/* ── Minimalist Contact Sign-off ── */}
+        <div className="mt-24 text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#555555]">
             Get in Touch
-          </h2>
+          </p>
 
-          <div className="space-y-5">
-            {/* Email */}
-            <div className="flex items-center justify-center gap-2 text-[#111111]">
-              <Mail className="h-5 w-5" />
+          <div className="mx-auto mt-8 h-px w-8 bg-[#111111]/15" />
+
+          <div className="mt-8 space-y-4">
+            <div>
               <a
-                href="mailto:Theritsbaker@gmail.com"
-                className="underline underline-offset-4 transition-colors hover:text-[#006241]"
+                href="mailto:theritsbaker@gmail.com"
+                className="text-sm text-[#111111] decoration-[#111111]/30 decoration-1 underline-offset-4 transition-colors hover:underline hover:decoration-[#111111]"
               >
-                Theritsbaker@gmail.com
+                theritsbaker@gmail.com
               </a>
             </div>
-
-            {/* WhatsApp */}
-            <div className="flex items-center justify-center">
+            <div>
               <a
                 href="https://wa.me/66972932849"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#006241] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                className="text-sm text-[#111111] decoration-[#111111]/30 decoration-1 underline-offset-4 transition-colors hover:underline hover:decoration-[#111111]"
               >
-                <MessageCircle className="h-5 w-5" />
                 +66-972932849
               </a>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </article>
     </main>
   );
 }

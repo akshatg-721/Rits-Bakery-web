@@ -4,38 +4,32 @@ const curations = [
   {
     label: 'Signature Loaves',
     image: '/images/curation_loaves.png',
-    href: '/#menu',
-    filter: 'Signature Loaves',
+    href: '#signature-loaves',
   },
   {
     label: 'Artisanal Brownies',
     image: '/images/curation_brownies.png',
-    href: '/#menu',
-    filter: 'Desserts',
+    href: '#artisanal-brownies',
   },
   {
     label: 'Tea-Time Classics',
     image: '/images/curation_teatime.png',
-    href: '/#menu',
-    filter: 'Desserts',
+    href: '#tea-time-classics',
   },
   {
     label: 'Cookies & Biscuits',
     image: '/images/curation_cookies.png',
-    href: '/#menu',
-    filter: 'Cookies',
+    href: '#cookies-biscuits',
   },
   {
     label: 'Middle Eastern Indulgence',
     image: '/images/curation_middleeastern.png',
-    href: '/#menu',
-    filter: 'Desserts',
+    href: '#middle-eastern',
   },
   {
     label: 'Savory Bites',
     image: '/images/curation_savory.png',
-    href: '/#menu',
-    filter: 'Savories & Gifting',
+    href: '#savory-bites',
   },
 ]
 

@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable}`} style={{ backgroundColor: '#F9F9F9' }}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable} scroll-smooth`} style={{ backgroundColor: '#F9F9F9' }}>
       <body className="font-sans antialiased bg-[#F9F9F9] text-[#111111]">
         <CartProvider>
           <Header />
