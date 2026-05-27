@@ -1,13 +1,18 @@
-import { HeroSection } from '@/components/hero-section'
-import { ShopSection } from '@/components/shop-section'
-import { Testimonials } from '@/components/testimonials'
+import { Curations } from '@/components/curations'
+import { HeroSlider } from '@/components/hero-slider'
+import { NewsletterBar } from '@/components/newsletter-bar'
 
 export default function Page() {
   return (
     <main className="min-h-screen bg-[#F9F9F9]">
-      <HeroSection />
-      <ShopSection />
-      <Testimonials />
+      {/* 1. Full-bleed hero image slider */}
+      <HeroSlider />
+
+      {/* 2. Circular category curations */}
+      <Curations />
+
+      {/* 3. Minimalist newsletter + social bar */}
+      <NewsletterBar />
     </main>
   )
 }

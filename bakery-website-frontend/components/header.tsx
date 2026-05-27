@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Menu, Search, ShoppingBag } from 'lucide-react'
 
 import { CartDrawer } from '@/components/cart-drawer'
@@ -18,13 +20,23 @@ import { useCart } from '@/lib/cart-context'
 
 const navLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Menu', href: '/#menu' },
+  { label: 'Menu', href: '/menu' },
   { label: 'About Us', href: '/our-story' },
   { label: 'Contact', href: '/contact' },
 ]
 
 export function Header() {
   const { totalItems, setCartOpen } = useCart()
+  const [searchQuery, setSearchQuery] = useState('')
+  const router = useRouter()
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/#menu?q=${encodeURIComponent(searchQuery.trim())}`)
+      setSearchQuery('')
+    }
+  }
 
   return (
     <>
@@ -87,7 +99,7 @@ export function Header() {
               <div className="mt-auto border-t border-gray-100 p-5">
                 <SheetClose asChild>
                   <Link
-                    href="/#menu"
+                    href="/menu"
                     className="flex w-full items-center justify-center rounded-xl bg-[#006241] py-3.5 text-base font-semibold text-white transition hover:bg-[#004F35] active:scale-[0.98]"
                   >
                     View Menu
@@ -121,7 +133,7 @@ export function Header() {
               className="text-[#111111]"
               asChild
             >
-              <Link href="/#menu">
+              <Link href="/menu">
                 <Search className="size-5" />
               </Link>
             </Button>
@@ -170,13 +182,18 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Order Now CTA */}
-            <Link
-              href="/#menu"
-              className="inline-flex items-center gap-1.5 rounded-md bg-[#006241] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#004F35] active:scale-[0.98]"
-            >
-              Order Now
-            </Link>
+            {/* Search Bar */}
+            <form onSubmit={handleSearch} className="relative">
+              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
+              <input
+                id="desktop-search-input"
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search treats..."
+                className="h-9 w-48 rounded-full border border-gray-200 bg-white pl-9 pr-4 text-sm text-[#111111] placeholder:text-gray-400 transition-all duration-200 focus:w-64 focus:border-[#006241]/40 focus:outline-none focus:ring-2 focus:ring-[#006241]/10"
+              />
+            </form>
 
             {/* Cart Icon */}
             <Button

@@ -1,10 +1,8 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Search, ShoppingBag, Star } from 'lucide-react'
+import { Search } from 'lucide-react'
 
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useCart } from '@/lib/cart-context'
 
@@ -33,7 +31,7 @@ const products: MenuProduct[] = [
     name: 'Authentic Thai Banana Loaf',
     category: 'Signature Loaves',
     price: '฿190',
-    image: '/logo.png',
+    image: '/images/carrot_loaf.jpeg',
     isTopSeller: false,
     tags: ['Best Seller'],
   },
@@ -50,7 +48,7 @@ const products: MenuProduct[] = [
     name: 'Vanilla Butter Loaf Cake',
     category: 'Signature Loaves',
     price: '฿250',
-    image: '/logo.png',
+    image: '/images/traditional_mawa_cake.jpeg',
     isTopSeller: false,
   },
   {
@@ -67,7 +65,7 @@ const products: MenuProduct[] = [
     name: 'Rich Chocolate Loaf',
     category: 'Signature Loaves',
     price: '฿290',
-    image: '/logo.png',
+    image: '/images/mocha_brownie.jpeg',
     isTopSeller: true,
   },
   {
@@ -75,7 +73,7 @@ const products: MenuProduct[] = [
     name: 'Coconut Cookies',
     category: 'Cookies',
     price: '฿195',
-    image: '/logo.png',
+    image: '/images/raggi_cookies.jpeg',
     isTopSeller: false,
   },
   {
@@ -91,7 +89,7 @@ const products: MenuProduct[] = [
     name: 'Osamania Biscuits',
     category: 'Cookies',
     price: '฿250',
-    image: '/logo.png',
+    image: '/images/double_choco_cookies.jpeg',
     isTopSeller: false,
   },
   {
@@ -107,7 +105,7 @@ const products: MenuProduct[] = [
     name: 'Cheesy Cashews (125g)',
     category: 'Savories & Gifting',
     price: '฿240',
-    image: '/logo.png',
+    image: '/images/pizza_muffins.jpeg',
     isTopSeller: false,
   },
   {
@@ -115,12 +113,12 @@ const products: MenuProduct[] = [
     name: '7 Seed Mukhwas (125g)',
     category: 'Savories & Gifting',
     price: '฿160',
-    image: '/logo.png',
+    image: '/images/pizza_muffins.jpeg',
     isTopSeller: false,
   },
   {
     id: 'muffins-pack-of-6',
-    name: 'Muffins (Pack of 6) (Pizza/Spinach Cheese Corn)',
+    name: 'Muffins (Pack of 6)',
     category: 'Savories & Gifting',
     price: '฿195',
     image: '/images/pizza_muffins.jpeg',
@@ -148,7 +146,7 @@ const products: MenuProduct[] = [
     name: 'Nuts/Biscoff Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿350',
-    image: '/logo.png',
+    image: '/images/mocha_brownie.jpeg',
     isTopSeller: false,
   },
   {
@@ -156,7 +154,7 @@ const products: MenuProduct[] = [
     name: 'Nutella/Oreo Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿290',
-    image: '/logo.png',
+    image: '/images/mocha_brownie.jpeg',
     isTopSeller: true,
   },
   {
@@ -172,7 +170,7 @@ const products: MenuProduct[] = [
     name: 'Assorted Biscoff Truffles (Pack of 12)',
     category: 'Desserts',
     price: '฿400',
-    image: '/logo.png',
+    image: '/images/kunafa_dubai_choclate_bars.jpeg',
     isTopSeller: false,
   },
   {
@@ -180,7 +178,7 @@ const products: MenuProduct[] = [
     name: 'Baklava',
     category: 'Desserts',
     price: '฿590/lb',
-    image: '/logo.png',
+    image: '/images/khunafa_dates.jpeg',
     isTopSeller: false,
     tags: ['Contains Nuts'],
   },
@@ -189,7 +187,7 @@ const products: MenuProduct[] = [
     name: 'Basbousa',
     category: 'Desserts',
     price: '฿550/lb',
-    image: '/logo.png',
+    image: '/images/traditional_mawa_cake.jpeg',
     isTopSeller: false,
   },
   {
@@ -278,82 +276,47 @@ export function ShopSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
+        {/* Editorial Product Grid */}
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-3 lg:grid-cols-4">
           {filteredProducts.map((product) => (
             <article
               key={product.id}
-              className="group flex h-full flex-col rounded-md border border-gray-200 bg-white p-3 transition duration-300 hover:-translate-y-1 hover:shadow-md sm:p-4"
+              className="group cursor-pointer"
+              onClick={() => {
+                addItem({
+                  id: product.id,
+                  name: product.name,
+                  price: getNumericPrice(product.price),
+                  displayPrice: product.price,
+                  description: product.description,
+                  image: product.image,
+                })
+                setCartOpen(true)
+              }}
             >
-              <div className="aspect-square overflow-hidden rounded-md bg-gray-100">
+              {/* Flush, full-width image */}
+              <div className="aspect-square overflow-hidden rounded-sm bg-gray-100">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className={`h-full w-full ${
-                    product.image === '/logo.png'
-                      ? 'object-contain p-10 opacity-70'
-                      : 'object-cover'
-                  }`}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 
-              <div className="mt-3 flex items-start justify-between gap-1 sm:mt-5 sm:gap-3">
-                <h3 className="text-xs font-semibold leading-snug text-[#111111] sm:text-base">
+              {/* Centered editorial text */}
+              <div className="mt-4 text-center">
+                {product.isTopSeller && (
+                  <span className="mb-1.5 inline-block text-[10px] font-semibold uppercase tracking-widest text-[#006241]">
+                    Top Seller
+                  </span>
+                )}
+                <h3 className="font-serif text-sm leading-snug text-[#1a1a1a] sm:text-base">
                   {product.name}
                 </h3>
-                {product.isTopSeller && (
-                  <Badge className="hidden shrink-0 border-[#006241]/30 bg-[#006241]/10 text-[#006241] sm:flex">
-                    <Star className="fill-[#006241] text-[#006241]" />
-                    Top Seller
-                  </Badge>
-                )}
-              </div>
-
-              {/* Description — hidden on mobile for 2-col density, visible on sm+ */}
-              <p className="mt-1 hidden line-clamp-2 min-h-[2.75rem] text-sm leading-[1.375rem] text-gray-500 sm:mt-2 sm:block">
-                {product.description ?? 'Freshly baked with premium ingredients and homemade love.'}
-              </p>
-
-              <div className="mt-2 flex items-center justify-between gap-1 sm:mt-3 sm:gap-2">
-                <p className="text-sm font-semibold text-[#111111] sm:text-base">
+                <p className="mt-1 text-sm text-gray-500">
                   {product.price}
                 </p>
-                {product.tags && product.tags.length > 0 && (
-                  <div className="flex flex-wrap justify-end gap-1">
-                    {product.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-medium sm:px-2.5 sm:text-xs ${
-                          tag === 'Best Seller'
-                            ? 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20'
-                            : tag === 'Contains Nuts'
-                            ? 'bg-[#e8f5ee] text-[#006241] ring-1 ring-inset ring-[#006241]/20'
-                            : 'bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-500/20'
-                        }`}
-                      >
-                        {tag === 'Best Seller' ? '🏆 ' : tag === 'Contains Nuts' ? '🌰 ' : ''}{tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
-
-              <Button
-                className="mt-auto w-full rounded-md bg-[#006241] py-2 text-xs font-semibold text-white hover:bg-[#004F35] sm:py-2.5 sm:text-sm"
-                onClick={() => {
-                  addItem({
-                    id: product.id,
-                    name: product.name,
-                    price: getNumericPrice(product.price),
-                    displayPrice: product.price,
-                    description: product.description,
-                    image: product.image,
-                  })
-                  setCartOpen(true)
-                }}
-              >
-                <ShoppingBag className="size-4" />
-                Add to Order
-              </Button>
             </article>
           ))}
         </div>
