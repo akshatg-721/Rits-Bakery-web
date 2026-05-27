@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { SocialHub } from '@/components/social-hub'
 import { CartProvider } from '@/lib/cart-context'
 import './globals.css'
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         <CartProvider>
           <Header />
           {children}
+          <SocialHub />
           <Footer />
         </CartProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
