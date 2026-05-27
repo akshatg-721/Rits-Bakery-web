@@ -4,33 +4,86 @@ import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
   return (
-    <section className="bg-white px-6 py-20 sm:px-8 sm:py-24 lg:py-28">
-      <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-        <h1 className="max-w-3xl font-serif text-4xl leading-tight text-[#111111] sm:text-5xl lg:text-6xl">
-          Handcrafted Pastries &amp; Cakes in Bangkok
-        </h1>
+    <section className="w-full bg-[#F9F9F9]">
+      <div className="grid min-h-[88vh] grid-cols-1 lg:grid-cols-2">
 
-        <p className="mt-6 max-w-2xl text-base leading-8 text-gray-600 sm:text-lg">
-          Premium ingredients, beautiful flavors, and desserts made with a
-          homemade heart.
-        </p>
+        {/* ── Left Column: Brand Narrative ── */}
+        <div className="flex flex-col justify-center p-10 sm:p-16 lg:p-20 xl:p-28">
 
-        <div className="mt-10 flex w-full flex-col items-center justify-center gap-4 sm:w-auto sm:flex-row">
-          <Button
-            asChild
-            className="h-12 w-full rounded-md bg-[#006241] px-8 text-white hover:bg-[#004F35] sm:w-auto"
-          >
-            <Link href="/#menu">Browse Menu</Link>
-          </Button>
+          {/* Eyebrow label */}
+          <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#006241]">
+            Handcrafted · Eggless · Bangkok
+          </p>
 
-          <Button
-            asChild
-            className="h-12 w-full rounded-md border-[#006241] bg-transparent px-8 text-[#006241] hover:bg-[#006241] hover:text-white sm:w-auto"
-            variant="outline"
-          >
-            <Link href="/our-story">Our Story</Link>
-          </Button>
+          {/* H1 Headline */}
+          <h1 className="font-serif text-5xl font-semibold leading-[1.08] tracking-tight text-[#111111] sm:text-6xl lg:text-7xl xl:text-[80px]">
+            Food That Feels Like Home.
+          </h1>
+
+          {/* Subheadline */}
+          <p className="mt-6 max-w-md text-base leading-7 text-[#555555] sm:text-lg sm:leading-8">
+            Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves baked with love in Bangkok.
+          </p>
+
+          {/* Badges */}
+          <div className="mt-6 flex flex-wrap gap-2">
+            {['100% Eggless', 'Pre-order 24 hrs', 'Delivery Only'].map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-[#006241]/25 bg-[#006241]/8 px-3.5 py-1 text-xs font-medium text-[#006241]"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button
+              asChild
+              className="h-12 rounded-md bg-[#006241] px-8 text-sm font-semibold text-white shadow-sm transition hover:bg-[#004F35] hover:shadow-md active:scale-[0.98]"
+            >
+              <Link href="/#menu">View Menu</Link>
+            </Button>
+
+            <Link
+              href="/our-story"
+              className="inline-flex h-12 items-center justify-center px-6 text-sm font-semibold text-[#006241] transition hover:underline hover:underline-offset-4"
+            >
+              Our Story →
+            </Link>
+          </div>
+
+          {/* Social proof strip */}
+          <div className="mt-12 flex items-center gap-4 border-t border-gray-200 pt-8">
+            <div className="flex -space-x-2">
+              {/* Avatar placeholders using initials */}
+              {['R', 'P', 'A'].map((initial) => (
+                <div
+                  key={initial}
+                  className="flex size-8 items-center justify-center rounded-full border-2 border-white bg-[#006241]/15 text-xs font-semibold text-[#006241]"
+                >
+                  {initial}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-[#555555]">
+              <span className="font-semibold text-[#111111]">200+</span> happy orders this month
+            </p>
+          </div>
         </div>
+
+        {/* ── Right Column: Hero Image ── */}
+        <div className="relative min-h-[50vh] overflow-hidden lg:min-h-full">
+          <img
+            src="/images/hero-bg.jpg"
+            alt="Handcrafted brownies, loaf cakes, and kunafa pastries by The Rits Baker"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          {/* Subtle gradient overlay at the bottom for polish */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/10 to-transparent" />
+        </div>
+
       </div>
     </section>
   )

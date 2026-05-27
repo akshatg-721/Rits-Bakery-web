@@ -28,8 +28,16 @@ export function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+      {/* ── Announcement Bar ── */}
+      <div className="w-full bg-[#006241] py-2 px-4 text-center">
+        <p className="text-[11px] font-medium tracking-wider text-white/90 uppercase">
+          🛵 Delivery only&nbsp;•&nbsp;Pre-order 24 hrs in advance&nbsp;•&nbsp;Bangkok
+        </p>
+      </div>
+
+      {/* ── Main Header ── */}
+      <header className="sticky top-0 z-40 border-b border-gray-200 bg-[#F9F9F9]/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
           <Link href="/" aria-label="The Rits Baker home" className="shrink-0">
             <img
               src="/images/logo.png"
@@ -50,7 +58,15 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
+            {/* ── Order Now CTA ── */}
+            <Link
+              href="/#menu"
+              className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-[#006241] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#004F35] active:scale-[0.98]"
+            >
+              Order Now
+            </Link>
+
             {/* ── Cart Icon ── */}
             <Button
               id="header-cart-trigger"
@@ -99,6 +115,14 @@ export function Header() {
                       </Link>
                     </SheetClose>
                   ))}
+                  <SheetClose asChild>
+                    <Link
+                      href="/#menu"
+                      className="mt-6 flex items-center justify-center rounded-md bg-[#006241] py-3 text-base font-semibold text-white transition hover:bg-[#004F35]"
+                    >
+                      Order Now
+                    </Link>
+                  </SheetClose>
                 </nav>
               </SheetContent>
             </Sheet>

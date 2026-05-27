@@ -296,22 +296,21 @@ export function ShopSection() {
                   {product.name}
                 </h3>
                 {product.isTopSeller && (
-                  <Badge className="border-[#006241]/30 bg-[#006241]/10 text-[#006241]">
+                  <Badge className="shrink-0 border-[#006241]/30 bg-[#006241]/10 text-[#006241]">
                     <Star className="fill-[#006241] text-[#006241]" />
                     Top Seller
                   </Badge>
                 )}
               </div>
 
-              <p className="mt-2 text-base font-semibold text-[#111111]">
-                {product.price}
+              {/* Description — always rendered for consistent card height */}
+              <p className="mt-2 line-clamp-2 min-h-[2.75rem] text-sm leading-[1.375rem] text-gray-500">
+                {product.description ?? 'Freshly baked with premium ingredients and homemade love.'}
               </p>
 
-              {product.description && (
-                <p className="mt-2 text-sm leading-6 text-gray-500">
-                  {product.description}
-                </p>
-              )}
+              <p className="mt-3 text-base font-semibold text-[#111111]">
+                {product.price}
+              </p>
 
               <Button
                 className="mt-auto w-full rounded-md bg-[#006241] text-white hover:bg-[#004F35]"

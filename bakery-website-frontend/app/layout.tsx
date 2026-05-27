@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
+import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
@@ -7,14 +7,17 @@ import { SocialHub } from '@/components/social-hub'
 import { CartProvider } from '@/lib/cart-context'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
-const _playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: '--font-serif' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+});
 
 export const metadata: Metadata = {
-  title: 'The Rits Baker | Premium French Bakery',
-  description: 'Experience the finest artisanal baked goods inspired by French tradition',
-  generator: 'v0.app',
+  title: 'The Rits Baker | Handcrafted Eggless Bakery in Bangkok',
+  description: 'Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves baked with love in Bangkok. Delivery only — pre-order 24 hrs in advance.',
   icons: {
     icon: [
       {
@@ -40,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={_playfairDisplay.variable} style={{ backgroundColor: '#F9F9F9' }}>
+    <html lang="en" className={`${inter.variable} ${cormorant.variable}`} style={{ backgroundColor: '#F9F9F9' }}>
       <body className="font-sans antialiased bg-[#F9F9F9] text-[#111111]">
         <CartProvider>
           <Header />
