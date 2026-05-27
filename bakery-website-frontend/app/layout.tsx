@@ -39,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={_playfairDisplay.variable} style={{ backgroundColor: '#FDF2F4' }}>
-      <body className="font-sans antialiased bg-[#FDF2F4]">
+    <html lang="en" className={_playfairDisplay.variable} style={{ backgroundColor: '#F9F9F9' }}>
+      <body className="font-sans antialiased bg-[#F9F9F9] text-[#111111]">
         <CartProvider>
           <Header />
           {children}
