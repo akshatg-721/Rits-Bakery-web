@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Menu, ShoppingBag } from 'lucide-react'
+import { Menu, Search, ShoppingBag } from 'lucide-react'
 
 import { CartDrawer } from '@/components/cart-drawer'
 import { Button } from '@/components/ui/button'
@@ -29,15 +29,126 @@ export function Header() {
   return (
     <>
       {/* ── Announcement Bar ── */}
-      <div className="w-full bg-[#006241] py-2 px-4 text-center">
-        <p className="text-[11px] font-medium tracking-wider text-white/90 uppercase">
+      <div className="w-full bg-[#006241] px-4 py-2 text-center">
+        <p className="text-[11px] font-medium uppercase tracking-wider text-white/90">
           🛵 Delivery only&nbsp;•&nbsp;Pre-order 24 hrs in advance&nbsp;•&nbsp;Bangkok
         </p>
       </div>
 
       {/* ── Main Header ── */}
       <header className="sticky top-0 z-40 border-b border-gray-200 bg-[#F9F9F9]/95 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8">
+
+        {/* ════════════════════════════════════════
+            MOBILE HEADER  (hidden on md+)
+            Layout: [Hamburger] [Logo centered] [Search + Cart]
+        ════════════════════════════════════════ */}
+        <div className="flex items-center px-3 py-2.5 md:hidden">
+
+          {/* Left — Hamburger slide-out sheet */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                id="mobile-nav-trigger"
+                aria-label="Open navigation menu"
+                size="icon"
+                variant="ghost"
+                className="shrink-0 text-[#111111]"
+              >
+                <Menu className="size-6" />
+              </Button>
+            </SheetTrigger>
+
+            <SheetContent side="left" className="flex w-72 flex-col bg-white p-0">
+              {/* Drawer header */}
+              <SheetHeader className="border-b border-gray-100 px-6 py-5">
+                <SheetTitle className="font-serif text-2xl italic text-[#111111]">
+                  The Rits Baker
+                </SheetTitle>
+                <SheetDescription className="text-sm text-gray-500">
+                  Freshly baked, handcrafted, made with love.
+                </SheetDescription>
+              </SheetHeader>
+
+              {/* Nav links */}
+              <nav className="flex flex-col px-4 py-2" aria-label="Mobile navigation">
+                {navLinks.map((link) => (
+                  <SheetClose asChild key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center border-b border-gray-100 py-4 text-lg font-medium text-[#111111] transition hover:text-[#006241]"
+                    >
+                      {link.label}
+                    </Link>
+                  </SheetClose>
+                ))}
+              </nav>
+
+              {/* Order CTA at bottom of drawer */}
+              <div className="mt-auto border-t border-gray-100 p-5">
+                <SheetClose asChild>
+                  <Link
+                    href="/#menu"
+                    className="flex w-full items-center justify-center rounded-xl bg-[#006241] py-3.5 text-base font-semibold text-white transition hover:bg-[#004F35] active:scale-[0.98]"
+                  >
+                    View Menu
+                  </Link>
+                </SheetClose>
+                <p className="mt-3 text-center text-xs text-gray-400">
+                  Pre-order via WhatsApp · Delivery only
+                </p>
+              </div>
+            </SheetContent>
+          </Sheet>
+
+          {/* Center — Logo (absolute center of header bar) */}
+          <div className="flex flex-1 justify-center">
+            <Link href="/" aria-label="The Rits Baker home">
+              <img
+                src="/images/logo.png"
+                alt="The Rits Baker"
+                className="h-auto w-20"
+              />
+            </Link>
+          </div>
+
+          {/* Right — Search + Cart */}
+          <div className="flex shrink-0 items-center gap-0.5">
+            <Button
+              id="mobile-search-trigger"
+              aria-label="Search"
+              size="icon"
+              variant="ghost"
+              className="text-[#111111]"
+              asChild
+            >
+              <Link href="/#menu">
+                <Search className="size-5" />
+              </Link>
+            </Button>
+
+            <Button
+              id="mobile-cart-trigger"
+              aria-label="Open shopping cart"
+              variant="ghost"
+              size="icon"
+              className="relative text-[#111111]"
+              onClick={() => setCartOpen(true)}
+            >
+              <ShoppingBag className="size-5" />
+              {totalItems > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex size-5 items-center justify-center rounded-full bg-[#006241] text-[10px] font-bold leading-none text-white">
+                  {totalItems > 99 ? '99+' : totalItems}
+                </span>
+              )}
+            </Button>
+          </div>
+        </div>
+
+        {/* ════════════════════════════════════════
+            DESKTOP HEADER  (hidden below md)
+            Layout: [Logo] [Nav] [Order Now + Cart]
+        ════════════════════════════════════════ */}
+        <div className="mx-auto hidden max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8 md:flex">
           <Link href="/" aria-label="The Rits Baker home" className="shrink-0">
             <img
               src="/images/logo.png"
@@ -46,7 +157,7 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="flex items-center gap-8" aria-label="Desktop navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -59,15 +170,15 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* ── Order Now CTA ── */}
+            {/* Order Now CTA */}
             <Link
               href="/#menu"
-              className="hidden md:inline-flex items-center gap-1.5 rounded-md bg-[#006241] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#004F35] active:scale-[0.98]"
+              className="inline-flex items-center gap-1.5 rounded-md bg-[#006241] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#004F35] active:scale-[0.98]"
             >
               Order Now
             </Link>
 
-            {/* ── Cart Icon ── */}
+            {/* Cart Icon */}
             <Button
               id="header-cart-trigger"
               aria-label="Open shopping cart"
@@ -83,49 +194,6 @@ export function Header() {
                 </span>
               )}
             </Button>
-
-            {/* ── Mobile Nav Sheet ── */}
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  aria-label="Open navigation menu"
-                  className="md:hidden"
-                  size="icon"
-                  variant="ghost"
-                >
-                  <Menu className="size-6 text-[#111111]" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent className="w-80 bg-white">
-                <SheetHeader className="text-left">
-                  <SheetTitle className="font-serif text-2xl text-[#111111]">The Rits Baker</SheetTitle>
-                  <SheetDescription>
-                    Freshly baked, handcrafted, and made with a homemade heart.
-                  </SheetDescription>
-                </SheetHeader>
-
-                <nav className="mt-8 flex flex-col px-4">
-                  {navLinks.map((link) => (
-                    <SheetClose asChild key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="border-b border-gray-200 py-4 text-base font-medium text-[#111111] transition hover:text-[#006241]"
-                      >
-                        {link.label}
-                      </Link>
-                    </SheetClose>
-                  ))}
-                  <SheetClose asChild>
-                    <Link
-                      href="/#menu"
-                      className="mt-6 flex items-center justify-center rounded-md bg-[#006241] py-3 text-base font-semibold text-white transition hover:bg-[#004F35]"
-                    >
-                      Order Now
-                    </Link>
-                  </SheetClose>
-                </nav>
-              </SheetContent>
-            </Sheet>
           </div>
         </div>
       </header>

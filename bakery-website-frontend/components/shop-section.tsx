@@ -278,11 +278,11 @@ export function ShopSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-4">
           {filteredProducts.map((product) => (
             <article
               key={product.id}
-              className="group flex h-full flex-col rounded-md border border-gray-200 bg-white p-4 transition duration-300 hover:-translate-y-1 hover:shadow-md"
+              className="group flex h-full flex-col rounded-md border border-gray-200 bg-white p-3 transition duration-300 hover:-translate-y-1 hover:shadow-md sm:p-4"
             >
               <div className="aspect-square overflow-hidden rounded-md bg-gray-100">
                 <img
@@ -296,25 +296,25 @@ export function ShopSection() {
                 />
               </div>
 
-              <div className="mt-5 flex items-start justify-between gap-3">
-                <h3 className="text-base font-semibold leading-snug text-[#111111]">
+              <div className="mt-3 flex items-start justify-between gap-1 sm:mt-5 sm:gap-3">
+                <h3 className="text-xs font-semibold leading-snug text-[#111111] sm:text-base">
                   {product.name}
                 </h3>
                 {product.isTopSeller && (
-                  <Badge className="shrink-0 border-[#006241]/30 bg-[#006241]/10 text-[#006241]">
+                  <Badge className="hidden shrink-0 border-[#006241]/30 bg-[#006241]/10 text-[#006241] sm:flex">
                     <Star className="fill-[#006241] text-[#006241]" />
                     Top Seller
                   </Badge>
                 )}
               </div>
 
-              {/* Description — always rendered for consistent card height */}
-              <p className="mt-2 line-clamp-2 min-h-[2.75rem] text-sm leading-[1.375rem] text-gray-500">
+              {/* Description — hidden on mobile for 2-col density, visible on sm+ */}
+              <p className="mt-1 hidden line-clamp-2 min-h-[2.75rem] text-sm leading-[1.375rem] text-gray-500 sm:mt-2 sm:block">
                 {product.description ?? 'Freshly baked with premium ingredients and homemade love.'}
               </p>
 
-              <div className="mt-3 flex items-center justify-between gap-2">
-                <p className="text-base font-semibold text-[#111111]">
+              <div className="mt-2 flex items-center justify-between gap-1 sm:mt-3 sm:gap-2">
+                <p className="text-sm font-semibold text-[#111111] sm:text-base">
                   {product.price}
                 </p>
                 {product.tags && product.tags.length > 0 && (
@@ -322,7 +322,7 @@ export function ShopSection() {
                     {product.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        className={`inline-flex items-center rounded-full px-1.5 py-0.5 text-[10px] font-medium sm:px-2.5 sm:text-xs ${
                           tag === 'Best Seller'
                             ? 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20'
                             : tag === 'Contains Nuts'
@@ -338,7 +338,7 @@ export function ShopSection() {
               </div>
 
               <Button
-                className="mt-auto w-full rounded-md bg-[#006241] text-white hover:bg-[#004F35]"
+                className="mt-auto w-full rounded-md bg-[#006241] py-2 text-xs font-semibold text-white hover:bg-[#004F35] sm:py-2.5 sm:text-sm"
                 onClick={() => {
                   addItem({
                     id: product.id,
