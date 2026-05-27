@@ -12,7 +12,7 @@ const FACEBOOK_PAGE_URL = 'https://www.facebook.com/theritsbaker'
 
 export function SocialHub() {
   return (
-    <section className="border-t border-gray-200 bg-[#F9F9F9] px-6 py-16 sm:px-8">
+    <section className="border-t border-gray-200 bg-[#F9F9F9] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
         <div className="mb-12 text-center">
@@ -29,7 +29,7 @@ export function SocialHub() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* ── Column 1: Facebook Feed ── */}
           <div className="flex flex-col">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#006241]">
+            <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-[#006241] lg:text-left">
               Latest on Facebook
             </h3>
             <div className="flex-1 overflow-hidden rounded-md border border-gray-200 bg-white">
@@ -47,7 +47,7 @@ export function SocialHub() {
 
           {/* ── Column 2: Instagram Showcase ── */}
           <div className="flex flex-col">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#006241]">
+            <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-[#006241] lg:text-left">
               Follow @TheRitsBaker
             </h3>
             <div className="flex flex-1 flex-col rounded-md border border-gray-200 bg-white p-4">
@@ -100,7 +100,7 @@ export function SocialHub() {
 
           {/* ── Column 3: Scan to Order ── */}
           <div className="flex flex-col">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-widest text-[#006241]">
+            <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-[#006241] lg:text-left">
               Scan to Order
             </h3>
             <div className="flex flex-1 flex-col rounded-md border border-gray-200 bg-white p-4">

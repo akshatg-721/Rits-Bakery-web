@@ -8,7 +8,7 @@ export function HeroSection() {
       <div className="grid min-h-[88vh] grid-cols-1 lg:grid-cols-2">
 
         {/* ── Left Column: Brand Narrative ── */}
-        <div className="flex flex-col justify-center p-10 sm:p-16 lg:p-20 xl:p-28">
+        <div className="flex flex-col justify-center p-6 sm:p-12 lg:p-20 xl:p-28">
 
           {/* Eyebrow label */}
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#006241]">
@@ -16,7 +16,7 @@ export function HeroSection() {
           </p>
 
           {/* H1 Headline */}
-          <h1 className="font-serif text-5xl font-semibold leading-[1.08] tracking-tight text-[#111111] sm:text-6xl lg:text-7xl xl:text-[80px]">
+          <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-[#111111] sm:text-5xl lg:text-6xl xl:text-7xl">
             Food That Feels Like Home.
           </h1>
 
@@ -55,7 +55,7 @@ export function HeroSection() {
           </div>
 
           {/* Social proof strip */}
-          <div className="mt-12 flex items-center gap-4 border-t border-gray-200 pt-8">
+          <div className="mt-8 flex items-center gap-4 border-t border-gray-200 pt-6 lg:mt-12 lg:pt-8">
             <div className="flex -space-x-2">
               {/* Avatar placeholders using initials */}
               {['R', 'P', 'A'].map((initial) => (
@@ -74,7 +74,7 @@ export function HeroSection() {
         </div>
 
         {/* ── Right Column: Hero Image ── */}
-        <div className="relative min-h-[50vh] overflow-hidden lg:min-h-full">
+        <div className="relative min-h-[300px] overflow-hidden sm:min-h-[400px] lg:min-h-full">
           <img
             src="/images/hero-bg.jpg"
             alt="Handcrafted brownies, loaf cakes, and kunafa pastries by The Rits Baker"

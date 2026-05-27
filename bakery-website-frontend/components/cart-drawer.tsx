@@ -165,7 +165,7 @@ export function CartDrawer() {
                 id="cart-checkout-button"
                 className="h-12 w-full rounded-md bg-[#006241] text-base font-semibold text-white transition-all hover:bg-[#004F35] hover:shadow-lg active:scale-[0.98]"
               >
-                Proceed to Checkout
+                Send Order via WhatsApp 💬
               </Button>
               <p className="text-center text-xs text-gray-400">
                 Shipping &amp; taxes calculated at checkout

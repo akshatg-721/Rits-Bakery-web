@@ -9,7 +9,7 @@ const quickLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#1E3932] px-6 py-14 text-stone-100 sm:px-8">
+    <footer className="bg-[#1E3932] px-4 py-10 text-stone-100 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto grid max-w-7xl gap-10 text-center md:grid-cols-3 md:text-left">
         <div className="mx-auto max-w-sm md:mx-0">
           <Link href="/" className="font-serif text-3xl italic text-white">

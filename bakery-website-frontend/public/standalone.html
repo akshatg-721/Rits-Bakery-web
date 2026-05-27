@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Rits Baker | Handcrafted Eggless Bakery · Bangkok</title>
+  <meta name="description" content="Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves baked with love in Bangkok. Delivery only — pre-order 24 hrs in advance." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #FDF6EC;
+      --cream-dark:  #F5E8D4;
+      --walnut:      #3D1F0D;
+      --walnut-mid:  #6B3A1F;
+      --gold:        #C8831A;
+      --gold-light:  #E8A84A;
+      --gold-pale:   #F5DBA8;
+      --white:       #FFFFFF;
+      --gray-50:     #FAF8F5;
+      --gray-200:    #E8E0D5;
+      --gray-400:    #A8957E;
+      --gray-600:    #7A6654;
+      --text:        #2A1505;
+      --radius-sm:   6px;
+      --radius-md:   12px;
+      --radius-lg:   20px;
+      --shadow-sm:   0 1px 3px rgba(61,31,13,0.08), 0 1px 2px rgba(61,31,13,0.06);
+      --shadow-md:   0 4px 16px rgba(61,31,13,0.12), 0 2px 6px rgba(61,31,13,0.08);
+      --shadow-lg:   0 12px 40px rgba(61,31,13,0.18), 0 4px 12px rgba(61,31,13,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      line-height: 1.1;
+    }
+
+    img { display: block; max-width: 100%; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ══════════════════════════════════════════
+       ANNOUNCEMENT BAR
+    ══════════════════════════════════════════ */
+    .announcement-bar {
+      background: var(--walnut);
+      color: rgba(255,255,255,0.88);
+      text-align: center;
+      padding: 9px 16px;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       STICKY NAVIGATION
+    ══════════════════════════════════════════ */
+    .nav-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253,246,236,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow 0.2s ease;
+    }
+
+    .nav-wrapper.scrolled {
+      box-shadow: 0 2px 20px rgba(61,31,13,0.1);
+    }
+
+    nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--walnut);
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--gray-600);
+      transition: color 0.15s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0; right: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover { color: var(--walnut); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      background: var(--walnut);
+      color: var(--cream) !important;
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      transition: background 0.15s, transform 0.1s !important;
+    }
+
+    .nav-cta:hover { background: var(--walnut-mid) !important; }
+    .nav-cta:active { transform: scale(0.97); }
+    .nav-cta::after { display: none !important; }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--walnut);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--cream);
+      border-top: 1px solid var(--gray-200);
+      padding: 12px 24px 20px;
+      gap: 4px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      padding: 12px 0;
+      font-size: 15px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--text);
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    .mobile-menu .nav-cta {
+      margin-top: 8px;
+      padding: 12px 20px;
+      text-align: center;
+      display: block;
+      background: var(--walnut);
+      color: var(--cream);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 40%, rgba(200,131,26,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 20% 80%, rgba(61,31,13,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 100% 100% at 50% 0%, rgba(245,219,168,0.5) 0%, transparent 70%),
+        linear-gradient(145deg, #FDF6EC 0%, #F5E8D4 40%, #EDD8B8 70%, #E3C99E 100%);
+    }
+
+    /* Decorative circles */
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,131,26,0.12) 0%, transparent 70%);
+      top: -150px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(61,31,13,0.07) 0%, transparent 70%);
+      bottom: -100px; left: -80px;
+      pointer-events: none;
+    }
+
+    /* Scattered dot pattern */
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(200,131,26,0.15) 1px, transparent 1px),
+        radial-gradient(circle, rgba(61,31,13,0.06) 1px, transparent 1px);
+      background-size: 40px 40px, 80px 80px;
+      background-position: 0 0, 20px 20px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-left { }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .hero-h1 {
+      font-size: clamp(44px, 5.5vw, 76px);
+      font-weight: 600;
+      color: var(--walnut);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .hero-h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      max-width: 460px;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .hero-tag {
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(200,131,26,0.35);
+      background: rgba(200,131,26,0.08);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--walnut);
+      color: var(--cream);
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      box-shadow: 0 4px 16px rgba(61,31,13,0.25);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--walnut-mid);
+      box-shadow: 0 6px 20px rgba(61,31,13,0.3);
+    }
+
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--walnut);
+      padding: 13px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1.5px solid var(--walnut);
+      transition: background 0.15s, transform 0.1s;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover { background: rgba(61,31,13,0.06); }
+    .btn-secondary:active { transform: scale(0.97); }
+
+    .hero-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-avatars {
+      display: flex;
+    }
+
+    .hero-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2.5px solid var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      margin-left: -10px;
+      background: linear-gradient(135deg, var(--walnut-mid), var(--walnut));
+    }
+
+    .hero-avatars .hero-avatar:first-child { margin-left: 0; }
+
+    .hero-proof-text {
+      font-size: 13px;
+      color: var(--gray-600);
+    }
+
+    .hero-proof-text strong {
+      color: var(--walnut);
+      font-weight: 700;
+    }
+
+    /* Hero right — visual collage */
+    .hero-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-card-inner {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero-card-1 {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+    }
+
+    .hero-card-1 .hero-card-inner { aspect-ratio: unset; min-height: 280px; }
+
+    .hero-card-icon { font-size: 36px; margin-bottom: 10px; }
+    .hero-card-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: -0.01em;
+    }
+    .hero-card-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .hero-stat-badge {
+      position: absolute;
+      top: 14px; right: 14px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 100px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION WRAPPERS
+    ══════════════════════════════════════════ */
+    section { padding: 80px 24px; }
+
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 600;
+      color: var(--walnut);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--gray-600);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ══════════════════════════════════════════
+       CATEGORY TABS
+    ══════════════════════════════════════════ */
+    .categories {
+      background: var(--cream);
+      padding: 0 24px 80px;
+    }
+
+    .categories-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--gold);
+      color: var(--walnut);
+    }
+
+    .tab-btn.active {
+      background: var(--walnut);
+      border-color: var(--walnut);
+      color: var(--cream);
+    }
+
+    /* Search bar */
+    .search-wrap {
+      max-width: 520px;
+      margin: 0 auto 36px;
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px 12px 44px;
+      border-radius: 100px;
+      border: 1.5px solid var(--gray-200);
+      background: var(--white);
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .search-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,131,26,0.12);
+    }
+
+    .search-input::placeholder { color: var(--gray-400); }
+
+    /* ══════════════════════════════════════════
+       PRODUCT GRID
+    ══════════════════════════════════════════ */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-img-wrap {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+
+    .product-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-img-wrap img {
+      transform: scale(1.04);
+    }
+
+    /* Gradient placeholder for missing images */
+    .product-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-placeholder::before {
+      content: '';
+      position: absolute;
+      width: 200%; height: 200%;
+      top: -50%; left: -50%;
+      background: inherit;
+      animation: shimmer 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes shimmer {
+      0% { transform: scale(1) rotate(0deg); }
+      100% { transform: scale(1.1) rotate(3deg); }
+    }
+
+    .product-placeholder-emoji {
+      font-size: 40px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    }
+
+    .product-placeholder-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.95);
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .top-seller-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 8px rgba(200,131,26,0.35);
+      z-index: 2;
+    }
+
+    .product-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-category {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--walnut);
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+
+    .product-desc {
+      font-size: 12.5px;
+      color: var(--gray-600);
+      line-height: 1.55;
+      margin-bottom: 12px;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.5em;
+    }
+
+    .product-price {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--walnut);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      padding: 11px 16px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: var(--white);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+
+    .btn-whatsapp:hover { opacity: 0.92; }
+    .btn-whatsapp:active { transform: scale(0.97); }
+
+    .btn-whatsapp svg { flex-shrink: 0; }
+
+    .no-results {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--gray-600);
+      font-size: 15px;
+    }
+
+    /* ══════════════════════════════════════════
+       TRUST STRIP
+    ══════════════════════════════════════════ */
+    .trust-strip {
+      background: var(--walnut);
+      padding: 36px 24px;
+    }
+
+    .trust-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .trust-item { }
+
+    .trust-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .trust-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+
+    .trust-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════════ */
+    .testimonials {
+      background: var(--cream-dark);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      color: var(--gold-pale);
+      position: absolute;
+      top: -8px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+
+    .star { color: var(--gold); font-size: 16px; }
+
+    .testimonial-quote {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin-bottom: 20px;
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--walnut);
+    }
+
+    .testimonial-loc {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+
+    /* ══════════════════════════════════════════
+       INSTAGRAM GRID
+    ══════════════════════════════════════════ */
+    .instagram-section {
+      background: var(--cream);
+    }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+
+    .ig-tile {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .ig-tile-inner {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .ig-tile:hover .ig-tile-inner {
+      transform: scale(1.05);
+    }
+
+    .ig-tile-emoji { font-size: 28px; }
+
+    .ig-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(61,31,13,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.25s ease;
+    }
+
+    .ig-tile:hover .ig-overlay {
+      background: rgba(61,31,13,0.35);
+    }
+
+    .ig-overlay-icon {
+      opacity: 0;
+      color: white;
+      font-size: 22px;
+      transition: opacity 0.2s;
+    }
+
+    .ig-tile:hover .ig-overlay-icon { opacity: 1; }
+
+    .ig-follow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 36px auto 0;
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--walnut);
+      background: transparent;
+      color: var(--walnut);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      font-family: 'Inter', sans-serif;
+      text-decoration: none;
+    }
+
+    .ig-follow-btn:hover {
+      background: var(--walnut);
+      color: var(--cream);
+    }
+
+    .ig-cta-wrap { text-align: center; }
+
+    /* ══════════════════════════════════════════
+       ORDER SECTION
+    ══════════════════════════════════════════ */
+    .order-cta-section {
+      background: linear-gradient(135deg, var(--walnut) 0%, #5C2D12 50%, var(--walnut-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .order-cta-section::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,131,26,0.2) 0%, transparent 70%);
+      top: -150px; right: -100px;
+    }
+
+    .order-cta-section::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(253,246,236,0.06) 0%, transparent 70%);
+      bottom: -80px; left: -60px;
+    }
+
+    .order-cta-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .order-cta-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: 100px;
+      background: rgba(200,131,26,0.25);
+      border: 1px solid rgba(200,131,26,0.4);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+
+    .order-cta-title {
+      font-size: clamp(32px, 4vw, 50px);
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .order-cta-sub {
+      font-size: 15px;
+      color: rgba(253,246,236,0.7);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .order-cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--walnut);
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      box-shadow: 0 4px 16px rgba(200,131,26,0.35);
+      text-decoration: none;
+    }
+
+    .btn-gold:hover { opacity: 0.9; }
+    .btn-gold:active { transform: scale(0.97); }
+
+    .btn-outline-cream {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--cream);
+      padding: 13px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1.5px solid rgba(253,246,236,0.4);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      text-decoration: none;
+    }
+
+    .btn-outline-cream:hover {
+      background: rgba(253,246,236,0.1);
+      border-color: rgba(253,246,236,0.7);
+    }
+
+    .btn-outline-cream:active { transform: scale(0.97); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: #1E0E04;
+      color: rgba(253,246,236,0.8);
+      padding: 64px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(253,246,236,0.1);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand-desc {
+      font-size: 13px;
+      line-height: 1.7;
+      color: rgba(253,246,236,0.55);
+      max-width: 260px;
+      margin-bottom: 24px;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-social-link {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(253,246,236,0.08);
+      border: 1px solid rgba(253,246,236,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: background 0.15s, transform 0.1s;
+      color: rgba(253,246,236,0.7);
+      text-decoration: none;
+    }
+
+    .footer-social-link:hover {
+      background: rgba(253,246,236,0.15);
+      transform: translateY(-2px);
+    }
+
+    .footer-col-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 13px;
+      color: rgba(253,246,236,0.6);
+      transition: color 0.15s;
+    }
+
+    .footer-col ul li a:hover { color: var(--cream); }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .footer-contact-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .footer-contact-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(253,246,236,0.4);
+      margin-bottom: 2px;
+    }
+
+    .footer-contact-value {
+      font-size: 13px;
+      color: rgba(253,246,236,0.75);
+      font-weight: 500;
+    }
+
+    .footer-contact-value a {
+      color: rgba(253,246,236,0.75);
+      transition: color 0.15s;
+    }
+
+    .footer-contact-value a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(253,246,236,0.3);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 12px;
+      color: rgba(253,246,236,0.3);
+      transition: color 0.15s;
+    }
+
+    .footer-bottom-links a:hover { color: rgba(253,246,236,0.6); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-right { display: none; }
+      .hero-inner { padding: 60px 24px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 60px 20px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; align-items: center; justify-content: center; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-brand-desc { max-width: 100%; }
+      .trust-inner { grid-template-columns: repeat(2, 1fr); }
+      .hero-h1 { font-size: 42px; }
+      .order-cta-buttons { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 480px) {
+      .instagram-grid { grid-template-columns: repeat(2, 1fr); }
+      .instagram-grid .ig-tile:nth-child(n+5) { display: none; }
+      .product-grid { grid-template-columns: 1fr; }
+      .trust-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ══════════════════════════════════════════
+       HIDDEN / TRANSITIONS
+    ══════════════════════════════════════════ */
+    .product-card.hidden { display: none; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.5s ease both;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ ANNOUNCEMENT BAR ══ -->
+  <div class="announcement-bar">
+    🛵&nbsp; Delivery only &nbsp;•&nbsp; Pre-order 24 hrs in advance &nbsp;•&nbsp; Bangkok, Thailand
+  </div>
+
+  <!-- ══ STICKY NAV ══ -->
+  <div class="nav-wrapper" id="navbar">
+    <nav>
+      <a href="#" class="nav-brand">The Rits Baker</a>
+
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#instagram">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#menu" class="nav-cta">Order Now</a></li>
+      </ul>
+
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#hero">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#instagram">Gallery</a>
+      <a href="#contact">Contact</a>
+      <a href="#menu" class="nav-cta">Order Now →</a>
+    </div>
+  </div>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="hero" style="padding:0;">
+    <div class="hero-pattern"></div>
+    <div class="hero-inner">
+
+      <!-- Left: Brand Narrative -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot"></span>
+          Artisan · Eggless · Handcrafted
+        </div>
+
+        <h1 class="hero-h1">
+          Food That Feels<br/>
+          <em>Like Home.</em>
+        </h1>
+
+        <p class="hero-sub">
+          Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves — baked with love and delivered across Bangkok.
+        </p>
+
+        <div class="hero-tags">
+          <span class="hero-tag">100% Eggless</span>
+          <span class="hero-tag">Pre-order 24 hrs</span>
+          <span class="hero-tag">Delivery Only</span>
+          <span class="hero-tag">Bangkok</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#menu" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            View Full Menu
+          </a>
+          <a href="#contact" class="btn-secondary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            Get in Touch
+          </a>
+        </div>
+
+        <div class="hero-social-proof">
+          <div class="hero-avatars">
+            <div class="hero-avatar">P</div>
+            <div class="hero-avatar" style="background:linear-gradient(135deg,#8B4513,#6B3A1F)">R</div>
+            <div class="hero-avatar" style="background:linear-gradient(135deg,#C8831A,#A06015)">A</div>
+            <div class="hero-avatar" style="background:linear-gradient(135deg,#5C2D12,#3D1F0D)">S</div>
+          </div>
+          <p class="hero-proof-text"><strong>200+</strong> happy pre-orders this month</p>
+        </div>
+      </div>
+
+      <!-- Right: Collage -->
+      <div class="hero-right">
+        <!-- Card 1: Brownies (tall) -->
+        <div class="hero-card hero-card-1">
+          <div class="hero-card-inner" style="background:linear-gradient(160deg,#3D1F0D,#6B3A1F,#8B4513);">
+            <div class="hero-card-icon">🍫</div>
+            <div class="hero-card-label">Fudge Brownies</div>
+            <div class="hero-card-sub">Box of 8 · ฿245</div>
+          </div>
+          <div class="hero-stat-badge">⭐ Top Seller</div>
+        </div>
+        <!-- Card 2: Loaf -->
+        <div class="hero-card">
+          <div class="hero-card-inner" style="background:linear-gradient(135deg,#C8831A,#E8A84A,#F5C060);">
+            <div class="hero-card-icon">🍞</div>
+            <div class="hero-card-label">Banana Loaf</div>
+            <div class="hero-card-sub">Fresh daily · ฿190</div>
+          </div>
+        </div>
+        <!-- Card 3: Kunafa -->
+        <div class="hero-card">
+          <div class="hero-card-inner" style="background:linear-gradient(135deg,#8B6914,#C8831A,#D4A54A);">
+            <div class="hero-card-icon">🥮</div>
+            <div class="hero-card-label">Kunafa Dates</div>
+            <div class="hero-card-sub">Pack of 6 · ฿300</div>
+          </div>
+          <div class="hero-stat-badge">🔥 Popular</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ TRUST STRIP ══ -->
+  <div class="trust-strip">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="trust-icon">🥚</div>
+        <div class="trust-label">100% Eggless</div>
+        <div class="trust-sub">All products, always</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🧈</div>
+        <div class="trust-label">Pure Butter</div>
+        <div class="trust-sub">Premium quality only</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🛵</div>
+        <div class="trust-label">Bangkok Delivery</div>
+        <div class="trust-sub">Pre-order 24 hrs ahead</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">❤️</div>
+        <div class="trust-label">Made With Love</div>
+        <div class="trust-sub">Small-batch, home kitchen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MENU / PRODUCT GRID ══ -->
+  <div class="categories" id="menu">
+    <div class="categories-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">Our Menu</p>
+        <h2 class="section-title">Eggless Bakes, Made Fresh</h2>
+        <p class="section-sub">Every item is handcrafted to order. Browse below and tap "Order on WhatsApp" to place your pre-order.</p>
+      </div>
+
+      <!-- Search -->
+      <div class="search-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" class="search-input" id="search-input" placeholder="Search brownies, loaves, cookies…" oninput="filterProducts()" />
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="tab-bar" id="tab-bar">
+        <button class="tab-btn active" onclick="filterByCategory('All', this)">All</button>
+        <button class="tab-btn" onclick="filterByCategory('Signature Loaves', this)">Signature Loaves</button>
+        <button class="tab-btn" onclick="filterByCategory('Cookies', this)">Cookies</button>
+        <button class="tab-btn" onclick="filterByCategory('Savories & Gifting', this)">Savories & Gifting</button>
+        <button class="tab-btn" onclick="filterByCategory('Desserts', this)">Desserts</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="product-grid" id="product-grid"></div>
+    </div>
+  </div>
+
+  <!-- ══ ORDER CTA ══ -->
+  <section class="order-cta-section" id="contact" style="padding:80px 24px;">
+    <div class="order-cta-inner">
+      <span class="order-cta-tag">Pre-order Today</span>
+      <h2 class="order-cta-title" style="font-family:'Cormorant Garamond',serif;">
+        Ready to Order Something Special?
+      </h2>
+      <p class="order-cta-sub">
+        We bake everything fresh on demand. Message us on WhatsApp or LINE to place your pre-order — we'll confirm within the hour.
+      </p>
+      <div class="order-cta-buttons">
+        <a href="https://wa.me/66972932849" target="_blank" rel="noopener" class="btn-gold">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order via WhatsApp
+        </a>
+        <a href="https://www.facebook.com/theritsbaker" target="_blank" rel="noopener" class="btn-outline-cream">
+          <span>📘</span> Facebook Page
+        </a>
+        <a href="mailto:Theritsbaker@gmail.com" class="btn-outline-cream">
+          <span>✉️</span> Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ══ -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">Customer Love</p>
+        <h2 class="section-title">What Our Customers Say</h2>
+        <p class="section-sub">Real words from our Bangkok regulars who keep coming back for more.</p>
+      </div>
+
+      <div class="testimonials-grid">
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-quote">
+            "The Nutella Oreo Brownies are absolutely insane — dense, fudgy, and the perfect amount of sweetness. I've ordered four times already and I'm not stopping. The fact that they're eggless makes them even more special for my family."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#C8831A,#A06015)">P</div>
+            <div>
+              <div class="testimonial-name">Priya Mehta</div>
+              <div class="testimonial-loc">Sukhumvit, Bangkok</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-quote">
+            "I ordered the Kunafa Dates and Dubai Chocolates for a dinner party and my guests couldn't believe it was home-baked! The quality rivals any fancy bakery in the city. Ordering 24 hours in advance is totally worth it."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#3D1F0D,#6B3A1F)">R</div>
+            <div>
+              <div class="testimonial-name">Rahul Sharma</div>
+              <div class="testimonial-loc">Silom, Bangkok</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          </div>
+          <p class="testimonial-quote">
+            "The Mawa Cake and Nankhatai take me straight back to my grandmother's kitchen in India. Pure nostalgia, impeccable quality. The Rits Baker is my go-to for every occasion — birthdays, festivals, or just a random Tuesday craving."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background:linear-gradient(135deg,#8B4513,#5C2D12)">A</div>
+            <div>
+              <div class="testimonial-name">Anjali Kapoor</div>
+              <div class="testimonial-loc">Asok, Bangkok</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INSTAGRAM-STYLE PHOTO GRID ══ -->
+  <section class="instagram-section" id="instagram">
+    <div class="section-inner">
+      <div class="section-header">
+        <p class="section-eyebrow">@TheRitsBaker</p>
+        <h2 class="section-title">From Our Kitchen</h2>
+        <p class="section-sub">A peek into the bakes, flavors, and moments that make The Rits Baker special.</p>
+      </div>
+
+      <div class="instagram-grid">
+        <!-- Tile 1: Brownies -->
+        <div class="ig-tile">
+          <div class="ig-tile-inner" style="background:linear-gradient(135deg,#3D1F0D,#6B3A1F,#8B4513);">
+            <div class="ig-tile-emoji">🍫</div>
+          </div>
+          <div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div>
+        </div>
+        <!-- Tile 2: Golden Loaf -->
+        <div class="ig-tile">
+          <div class="ig-tile-inner" style="background:linear-gradient(135deg,#E8A84A,#C8831A,#A06015);">
+            <div class="ig-tile-emoji">🍞</div>
+          </div>
+          <div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div>
+        </div>
+        <!-- Tile 3: Kunafa -->
+        <div class="ig-tile">
+          <div class="ig-tile-inner" style="background:linear-gradient(135deg,#C8831A,#D4A54A,#F5C060);">
+            <div class="ig-tile-emoji">🥮</div>
+          </div>
+          <div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div>
+        </div>
+        <!-- Tile 4: Cheesecake -->
+        <div class="ig-tile">
+          <div class="ig-tile-inner" style="background:linear-gradient(135deg,#F5E8D4,#E3C99E,#D4A54A);">
+            <div class="ig-tile-emoji">🎂</div>
+          </div>
+          <div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div>
+        </div>
+        <!-- Tile 5: Cookies -->
+        <div class="ig-tile">
+          <div class="ig-tile-inner" style="background:linear-gradient(135deg,#8B5E3C,#C8831A,#E8A84A);">
+            <div class="ig-tile-emoji">🍪</div>
+          </div>
+          <div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div>
+        </div>
+        <!-- Tile 6: Truffles -->
+        <div class="ig-tile">
+          <div class="ig-tile-inner" style="background:linear-gradient(135deg,#1E0E04,#3D1F0D,#5C2D12);">
+            <div class="ig-tile-emoji">🍬</div>
+          </div>
+          <div class="ig-overlay"><span class="ig-overlay-icon">♥</span></div>
+        </div>
+      </div>
+
+      <div class="ig-cta-wrap">
+        <a href="https://www.instagram.com/theritsbaker/" target="_blank" rel="noopener" class="ig-follow-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          Follow @TheRitsBaker on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+
+        <!-- Brand -->
+        <div>
+          <div class="footer-brand-name">The Rits Baker</div>
+          <p class="footer-brand-desc">Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves baked with love in Bangkok.</p>
+          <div class="footer-social-links">
+            <a href="https://wa.me/66972932849" target="_blank" rel="noopener" class="footer-social-link" title="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/theritsbaker" target="_blank" rel="noopener" class="footer-social-link" title="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/theritsbaker/" target="_blank" rel="noopener" class="footer-social-link" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="mailto:Theritsbaker@gmail.com" class="footer-social-link" title="Email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <div class="footer-col-title">Quick Links</div>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#instagram">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories -->
+        <div class="footer-col">
+          <div class="footer-col-title">Categories</div>
+          <ul>
+            <li><a href="#menu">Signature Loaves</a></li>
+            <li><a href="#menu">Cookies</a></li>
+            <li><a href="#menu">Savories &amp; Gifting</a></li>
+            <li><a href="#menu">Desserts</a></li>
+            <li><a href="#menu">Dubai Chocolates</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col" id="contact-col">
+          <div class="footer-col-title">Get In Touch</div>
+
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon" style="background:rgba(37,211,102,0.15);">💬</div>
+            <div>
+              <div class="footer-contact-label">WhatsApp</div>
+              <div class="footer-contact-value">
+                <a href="https://wa.me/66972932849" target="_blank" rel="noopener">+66-972-932-849</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon" style="background:rgba(6,199,85,0.15);">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            </div>
+            <div>
+              <div class="footer-contact-label">LINE</div>
+              <div class="footer-contact-value">@TheRitsBaker</div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon" style="background:rgba(200,131,26,0.15);">✉️</div>
+            <div>
+              <div class="footer-contact-label">Email</div>
+              <div class="footer-contact-value">
+                <a href="mailto:Theritsbaker@gmail.com">Theritsbaker@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-contact-item">
+            <div class="footer-contact-icon" style="background:rgba(253,246,236,0.08);">📍</div>
+            <div>
+              <div class="footer-contact-label">Location</div>
+              <div class="footer-contact-value">Bangkok, Thailand</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2025 The Rits Baker. All rights reserved. Handcrafted with ❤️ in Bangkok.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+          <a href="#menu">Menu</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ══ Product Data ══
+    const WHATSAPP = '66972932849';
+
+    const products = [
+      { id: 'banana-loaf', name: 'Authentic Thai Banana Loaf', category: 'Signature Loaves', price: '฿190', isTopSeller: false, image: null, emoji: '🍌', gradient: 'linear-gradient(135deg,#F5C060,#E8A84A,#C8831A)', desc: 'Moist, fragrant banana loaf made with ripe Thai bananas and pure butter.' },
+      { id: 'carrot-loaf', name: 'Orange/Carrot Loaf', category: 'Signature Loaves', price: '฿220', isTopSeller: false, image: '/images/carrot_loaf.jpeg', emoji: '🥕', gradient: 'linear-gradient(135deg,#E07B39,#C8831A,#A06015)', desc: 'Lightly spiced carrot loaf with a delicate orange zest and golden crumb.' },
+      { id: 'vanilla-butter-loaf', name: 'Vanilla Butter Loaf Cake', category: 'Signature Loaves', price: '฿250', isTopSeller: false, image: null, emoji: '🍰', gradient: 'linear-gradient(135deg,#F5E8D4,#E3C99E,#D4A54A)', desc: 'Classic French-style vanilla butter cake, rich, tender and utterly simple.' },
+      { id: 'date-walnut', name: 'Date & Walnut Cake', category: 'Signature Loaves', price: '฿290', isTopSeller: false, image: '/images/dates_walnut_cake.jpeg', emoji: '🌰', gradient: 'linear-gradient(135deg,#8B6914,#6B4F10,#3D2A08)', desc: 'Wholesome loaf packed with plump dates and crunchy California walnuts.' },
+      { id: 'choco-loaf', name: 'Rich Chocolate Loaf', category: 'Signature Loaves', price: '฿290', isTopSeller: true, image: null, emoji: '🍫', gradient: 'linear-gradient(135deg,#2C1A0E,#4A2010,#6B3A1F)', desc: 'Deep, dark chocolate loaf with a dense fudgy crumb. A chocoholic\'s dream.' },
+      { id: 'coconut-cookies', name: 'Coconut Cookies', category: 'Cookies', price: '฿195', isTopSeller: false, image: null, emoji: '🥥', gradient: 'linear-gradient(135deg,#F5E8D4,#D4B896,#C8A070)', desc: 'Crisp, golden cookies with toasted coconut and a light buttery bite.' },
+      { id: 'nankhatai', name: 'Classical Nankhatai', category: 'Cookies', price: '฿195', isTopSeller: true, image: '/images/raggi_cookies.jpeg', emoji: '🍪', gradient: 'linear-gradient(135deg,#C8831A,#A06015,#7A4810)', desc: 'Traditional Indian shortbread — melt-in-your-mouth with cardamom warmth.' },
+      { id: 'osamania', name: 'Osamania Biscuits', category: 'Cookies', price: '฿250', isTopSeller: false, image: null, emoji: '🫓', gradient: 'linear-gradient(135deg,#D4A54A,#C8831A,#8B5E3C)', desc: 'Hyderabadi-style butter biscuits — lightly sweet, perfectly crisp.' },
+      { id: 'choco-chip-cookies', name: 'Almond/Oats/Choco Chip Cookies', category: 'Cookies', price: '฿240', isTopSeller: false, image: '/images/double_choco_cookies.jpeg', emoji: '🍪', gradient: 'linear-gradient(135deg,#5C3317,#8B5E3C,#C8831A)', desc: 'Hearty cookies loaded with almonds, rolled oats, and dark chocolate chips.' },
+      { id: 'cheesy-cashews', name: 'Cheesy Cashews (125g)', category: 'Savories & Gifting', price: '฿240', isTopSeller: false, image: null, emoji: '🧀', gradient: 'linear-gradient(135deg,#8B7355,#A08060,#C8A070)', desc: 'Roasted cashews coated in a savory cheese crust. Perfect gifting snack.' },
+      { id: 'mukhwas', name: '7 Seed Mukhwas (125g)', category: 'Savories & Gifting', price: '฿160', isTopSeller: false, image: null, emoji: '🌿', gradient: 'linear-gradient(135deg,#5A7A3A,#7A9A5A,#A0BA80)', desc: 'Traditional mouth freshener with seven aromatic seeds and fennel.' },
+      { id: 'muffins', name: 'Muffins – Pack of 6', category: 'Savories & Gifting', price: '฿195', isTopSeller: true, image: '/images/pizza_muffins.jpeg', emoji: '🧁', gradient: 'linear-gradient(135deg,#C8831A,#E8A84A,#D4704A)', desc: 'Pizza, Spinach Cheese, or Corn muffins — savory bites, great for gifting.' },
+      { id: 'cheesecake', name: 'Premium Cheesecakes', category: 'Desserts', price: '฿690/lb', isTopSeller: true, image: '/images/red_valvet_cake.jpeg', emoji: '🎂', gradient: 'linear-gradient(135deg,#8B0000,#C0392B,#E74C3C)', desc: 'Silky, dense cheesecake with a buttery biscuit base. Multiple flavors available.' },
+      { id: 'fudge-brownies', name: 'Fudge Brownies (Box of 8)', category: 'Desserts', price: '฿245', isTopSeller: false, image: '/images/mocha_brownie.jpeg', emoji: '🍫', gradient: 'linear-gradient(135deg,#1E0E04,#3D1F0D,#5C2D12)', desc: 'Fudgy, crinkle-top brownies baked with premium dark chocolate.' },
+      { id: 'biscoff-brownies', name: 'Nuts/Biscoff Brownies (Box of 8)', category: 'Desserts', price: '฿350', isTopSeller: false, image: null, emoji: '🍯', gradient: 'linear-gradient(135deg,#8B5E3C,#C8831A,#E8A84A)', desc: 'Rich brownies swirled with Biscoff spread and topped with mixed nuts.' },
+      { id: 'nutella-brownies', name: 'Nutella/Oreo Brownies (Box of 8)', category: 'Desserts', price: '฿290', isTopSeller: true, image: null, emoji: '🌰', gradient: 'linear-gradient(135deg,#3D1F0D,#8B4513,#C8831A)', desc: 'Decadent chocolate brownies stuffed with Nutella and crushed Oreos.' },
+      { id: 'kunafa-dates', name: 'Kunafa Dates (Pack of 6)', category: 'Desserts', price: '฿300', isTopSeller: true, image: '/images/khunafa_dates.jpeg', emoji: '🥮', gradient: 'linear-gradient(135deg,#C8831A,#E8A84A,#D4A000)', desc: 'Golden shredded kunafa pastry filled with soft dates and drizzled honey.' },
+      { id: 'truffles', name: 'Assorted Biscoff Truffles (Pack of 12)', category: 'Desserts', price: '฿400', isTopSeller: false, image: null, emoji: '🍬', gradient: 'linear-gradient(135deg,#2C1A0E,#5C3317,#8B5E3C)', desc: 'Smooth, melt-in-your-mouth truffles with Biscoff cream centers.' },
+      { id: 'baklava', name: 'Baklava', category: 'Desserts', price: '฿590/lb', isTopSeller: false, image: null, emoji: '🍮', gradient: 'linear-gradient(135deg,#8B6914,#C8A000,#E8C040)', desc: 'Flaky phyllo pastry layered with pistachios and soaked in rose-scented syrup.' },
+      { id: 'basbousa', name: 'Basbousa', category: 'Desserts', price: '฿550/lb', isTopSeller: false, image: null, emoji: '🍰', gradient: 'linear-gradient(135deg,#D4A54A,#E8C078,#F5D090)', desc: 'Egyptian semolina cake soaked in simple syrup with a hint of rose water.' },
+      { id: 'dubai-choc', name: 'Dubai Chocolates (10 pieces)', category: 'Desserts', price: '฿690', isTopSeller: false, image: '/images/kunafa_dubai_choclate_bars.jpeg', emoji: '🍫', gradient: 'linear-gradient(135deg,#1A0A00,#3D1F0D,#C8831A)', desc: 'Viral Dubai-style chocolate bars filled with pistachio cream and kunafa.' },
+      { id: 'mawa-cake', name: 'Traditional Mawa Cake', category: 'Desserts', price: '฿390/lb', isTopSeller: false, image: '/images/traditional_mawa_cake.jpeg', emoji: '🎂', gradient: 'linear-gradient(135deg,#8B5E3C,#A07050,#C8A070)', desc: 'A Mumbai bakery classic — dense, cardamom-scented cake made with khoya.' },
+    ];
+
+    let currentCategory = 'All';
+    let currentSearch = '';
+
+    // ══ Build product card HTML ══
+    function buildCard(p) {
+      const waText = encodeURIComponent(`Hi, I'd like to order ${p.name}`);
+      const waUrl = `https://wa.me/${WHATSAPP}?text=${waText}`;
+
+      const imageHtml = p.image
+        ? `<img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+           <div class="product-placeholder" style="display:none;background:${p.gradient};">
+             <div class="product-placeholder-emoji">${p.emoji}</div>
+             <div class="product-placeholder-name">${p.name}</div>
+           </div>`
+        : `<div class="product-placeholder" style="background:${p.gradient};">
+             <div class="product-placeholder-emoji">${p.emoji}</div>
+             <div class="product-placeholder-name">${p.name}</div>
+           </div>`;
+
+      const badge = p.isTopSeller
+        ? `<div class="top-seller-badge"><span>⭐</span> Top Seller</div>`
+        : '';
+
+      return `
+        <div class="product-card fade-in" data-category="${p.category}" data-name="${p.name.toLowerCase()}">
+          <div class="product-img-wrap">
+            ${imageHtml}
+            ${badge}
+          </div>
+          <div class="product-body">
+            <div class="product-category">${p.category}</div>
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-price">${p.price}</div>
+            <a href="${waUrl}" target="_blank" rel="noopener" class="btn-whatsapp">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Order on WhatsApp
+            </a>
+          </div>
+        </div>`;
+    }
+
+    // ══ Render grid ══
+    function renderGrid() {
+      const grid = document.getElementById('product-grid');
+      const q = currentSearch.trim().toLowerCase();
+
+      const filtered = products.filter(p => {
+        const matchCat = currentCategory === 'All' || p.category === currentCategory;
+        const matchQ = !q || p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="no-results">No items found. Try a different search or category.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(buildCard).join('');
+    }
+
+    // ══ Filter by category ══
+    function filterByCategory(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrid();
+    }
+
+    // ══ Filter by search ══
+    function filterProducts() {
+      currentSearch = document.getElementById('search-input').value;
+      renderGrid();
+    }
+
+    // ══ Sticky nav shadow ══
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // ══ Mobile menu toggle ══
+    document.getElementById('hamburger-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('open');
+      });
+    });
+
+    // ══ Initial render ══
+    renderGrid();
+  </script>
+
+</body>
+</html>

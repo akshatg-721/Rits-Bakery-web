@@ -16,6 +16,7 @@ interface MenuProduct {
   description?: string
   image: string
   isTopSeller: boolean
+  tags?: string[]
 }
 
 const categories = [
@@ -34,6 +35,7 @@ const products: MenuProduct[] = [
     price: '฿190',
     image: '/logo.png',
     isTopSeller: false,
+    tags: ['Best Seller'],
   },
   {
     id: 'orange-carrot-loaf',
@@ -58,6 +60,7 @@ const products: MenuProduct[] = [
     price: '฿290',
     image: '/images/dates_walnut_cake.jpeg',
     isTopSeller: false,
+    tags: ['Contains Nuts'],
   },
   {
     id: 'rich-chocolate-loaf',
@@ -138,6 +141,7 @@ const products: MenuProduct[] = [
     price: '฿245',
     image: '/images/mocha_brownie.jpeg',
     isTopSeller: false,
+    tags: ['Best Seller'],
   },
   {
     id: 'nuts-biscoff-brownies-box-of-8',
@@ -178,6 +182,7 @@ const products: MenuProduct[] = [
     price: '฿590/lb',
     image: '/logo.png',
     isTopSeller: false,
+    tags: ['Contains Nuts'],
   },
   {
     id: 'basbousa',
@@ -230,7 +235,7 @@ export function ShopSection() {
   }, [activeCategory, searchQuery])
 
   return (
-    <section id="menu" className="px-6 py-16 sm:px-8">
+    <section id="menu" className="px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
           <h2 className="font-serif text-4xl italic text-[#111111] sm:text-5xl">
@@ -253,7 +258,7 @@ export function ShopSection() {
             />
           </div>
 
-          <div className="-mx-6 overflow-x-auto px-6 sm:mx-0 sm:px-0">
+          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
             <div className="mx-auto flex w-max gap-3 sm:w-fit">
               {categories.map((category) => (
                 <button
@@ -273,7 +278,7 @@ export function ShopSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filteredProducts.map((product) => (
             <article
               key={product.id}
@@ -308,9 +313,29 @@ export function ShopSection() {
                 {product.description ?? 'Freshly baked with premium ingredients and homemade love.'}
               </p>
 
-              <p className="mt-3 text-base font-semibold text-[#111111]">
-                {product.price}
-              </p>
+              <div className="mt-3 flex items-center justify-between gap-2">
+                <p className="text-base font-semibold text-[#111111]">
+                  {product.price}
+                </p>
+                {product.tags && product.tags.length > 0 && (
+                  <div className="flex flex-wrap justify-end gap-1">
+                    {product.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          tag === 'Best Seller'
+                            ? 'bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20'
+                            : tag === 'Contains Nuts'
+                            ? 'bg-[#e8f5ee] text-[#006241] ring-1 ring-inset ring-[#006241]/20'
+                            : 'bg-gray-100 text-gray-600 ring-1 ring-inset ring-gray-500/20'
+                        }`}
+                      >
+                        {tag === 'Best Seller' ? '🏆 ' : tag === 'Contains Nuts' ? '🌰 ' : ''}{tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               <Button
                 className="mt-auto w-full rounded-md bg-[#006241] text-white hover:bg-[#004F35]"
@@ -327,7 +352,7 @@ export function ShopSection() {
                 }}
               >
                 <ShoppingBag className="size-4" />
-                Add to Cart
+                Add to Order
               </Button>
             </article>
           ))}
