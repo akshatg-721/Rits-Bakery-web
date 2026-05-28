@@ -12,11 +12,11 @@ interface ProductCardProps {
 
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
-    <article className="group flex h-full flex-col rounded-md border border-gray-200 bg-white p-4 transition duration-300 hover:-translate-y-1 hover:shadow-md">
+    <article className="group flex h-full flex-col rounded-md border border-gray-100 bg-white p-4 shadow-[0_8px_24px_rgb(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgb(0,0,0,0.08)] active:scale-[0.985]">
       {/* Image Placeholder */}
-      <div className="aspect-square overflow-hidden rounded-md bg-gray-100">
+      <div className="aspect-square overflow-hidden rounded-md bg-gray-100 ring-1 ring-black/5">
         <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-          <span className="text-sm text-gray-400">Product Image</span>
+          <span className="text-base text-gray-400">Product Image</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       )}
 
       <Button
-        className="mt-auto w-full rounded-md bg-[#006241] text-white hover:bg-[#004F35]"
+        className="mt-auto w-full rounded-md bg-[#006241] text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)] hover:-translate-y-0.5 hover:bg-[#004F35] hover:shadow-[0_12px_28px_rgb(0,98,65,0.2)]"
         onClick={() => onAddToCart(product)}
       >
         <ShoppingBag className="size-4" />

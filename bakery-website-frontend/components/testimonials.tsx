@@ -27,18 +27,18 @@ export function Testimonials() {
     <section
       id="testimonials"
       aria-label="Customer testimonials"
-      className="bg-[#F9F9F9] px-4 py-12 sm:px-6 lg:px-8 lg:py-20"
+      className="overflow-hidden bg-[#F9F9F9] px-4 py-12 sm:px-6 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-6xl">
         {/* Heading */}
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#006241]">
+          <p className="text-xs font-semibold uppercase leading-relaxed tracking-[0.2em] text-[#006241]">
             Happy Customers
           </p>
-          <h2 className="mt-3 font-serif text-3xl italic text-[#111111] sm:text-4xl lg:text-5xl">
+          <h2 className="mt-3 font-serif text-3xl italic leading-tight text-[#111111] sm:text-4xl lg:text-5xl">
             What Bangkok is saying
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-gray-500">
+          <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-gray-500">
             Real words from real customers who keep coming back for more.
           </p>
         </div>
@@ -48,7 +48,7 @@ export function Testimonials() {
           {reviews.map((review) => (
             <figure
               key={review.id}
-              className="relative flex flex-col gap-5 rounded-2xl border border-gray-200 bg-white p-7 shadow-sm transition-shadow duration-300 hover:shadow-md"
+              className="relative flex flex-col gap-5 rounded-md border border-gray-100 bg-white p-6 shadow-[0_8px_24px_rgb(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgb(0,0,0,0.08)] sm:p-7"
             >
               {/* Decorative quote mark */}
               <span
@@ -64,7 +64,7 @@ export function Testimonials() {
               </p>
 
               {/* Review text */}
-              <blockquote className="flex-1 text-[0.9375rem] leading-7 text-gray-600">
+              <blockquote className="flex-1 text-base leading-7 text-gray-600">
                 &ldquo;{review.body}&rdquo;
               </blockquote>
 

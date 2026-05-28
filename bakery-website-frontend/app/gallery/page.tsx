@@ -61,24 +61,25 @@ export default function GalleryPage() {
   }, [lightboxIndex])
 
   return (
-    <main className="min-h-screen bg-[#FAFAF8] px-4 py-24 sm:px-6 sm:py-32">
+    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8] px-4 py-20 sm:px-6 sm:py-32">
       {/* ── Header ── */}
       <div className="mx-auto max-w-7xl text-center">
-        <h1 className="font-serif text-5xl italic text-[#111111] sm:text-6xl">
+        <h1 className="font-serif text-4xl italic leading-tight text-[#111111] sm:text-5xl lg:text-6xl">
           From Our Kitchen
         </h1>
-        <p className="mx-auto mt-4 max-w-md text-base italic leading-relaxed text-gray-500">
+        <p className="mx-auto mt-4 max-w-md text-base italic leading-7 text-gray-500">
           Real bakes, real ingredients, unedited moments.
         </p>
-        <div className="mx-auto mt-10 h-px w-16 bg-[#111111]/20" />
+        <div className="mx-auto mt-8 h-px w-16 bg-[#111111]/20 sm:mt-10" />
       </div>
 
       {/* ── Masonry Grid ── */}
-      <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-6 space-y-3 md:space-y-6 max-w-7xl mx-auto px-4 mt-8">
+      <div className="mx-auto mt-8 max-w-7xl columns-2 gap-3 space-y-3 px-0 sm:px-4 md:columns-3 md:gap-6 md:space-y-6 lg:columns-4">
         {galleryImages.map((image, index) => (
-          <div
+          <button
+            type="button"
             key={image.src}
-            className="group relative cursor-pointer overflow-hidden break-inside-avoid rounded-sm"
+            className="group relative block w-full cursor-pointer overflow-hidden break-inside-avoid rounded-md bg-gray-100 text-left shadow-[0_8px_24px_rgb(0,0,0,0.06)] ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgb(0,0,0,0.09)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]/40"
             onClick={() => setLightboxIndex(index)}
           >
             <img
@@ -91,24 +92,24 @@ export default function GalleryPage() {
             {/* Hover overlay with caption */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             <div className="pointer-events-none absolute bottom-0 left-0 w-full px-5 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <span className="text-sm font-medium tracking-wide text-white">
+              <span className="text-base font-medium tracking-wide text-white sm:text-sm">
                 {image.alt}
               </span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
 
       {/* ── Lightbox Modal ── */}
       {lightboxIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 px-4 backdrop-blur-md"
           onClick={closeLightbox}
         >
           {/* Close button */}
           <button
             aria-label="Close lightbox"
-            className="absolute right-5 top-5 z-10 flex size-10 items-center justify-center text-white/70 transition-colors hover:text-white"
+            className="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-white/10 text-white/75 shadow-[0_8px_24px_rgb(0,0,0,0.2)] backdrop-blur-md transition-all hover:bg-white/15 hover:text-white active:scale-[0.96] sm:right-5 sm:top-5"
             onClick={closeLightbox}
           >
             <X className="size-6" />
@@ -118,12 +119,12 @@ export default function GalleryPage() {
           <img
             src={galleryImages[lightboxIndex].src}
             alt={galleryImages[lightboxIndex].alt}
-            className="max-h-[85vh] max-w-[90vw] object-contain"
+            className="max-h-[82vh] max-w-full rounded-md object-contain shadow-[0_24px_80px_rgb(0,0,0,0.35)] sm:max-h-[85vh]"
             onClick={(e) => e.stopPropagation()}
           />
 
           {/* Caption */}
-          <p className="absolute bottom-6 left-0 w-full text-center text-sm tracking-wide text-white/60">
+          <p className="absolute bottom-6 left-0 w-full px-6 text-center text-base tracking-wide text-white/70 sm:text-sm">
             {galleryImages[lightboxIndex].alt}
           </p>
         </div>

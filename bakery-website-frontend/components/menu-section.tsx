@@ -297,44 +297,47 @@ export function MenuSection() {
   }
 
   return (
-    <section id="menu" className="bg-[#FAFAF8] px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl py-16 sm:py-24">
+    <section id="menu" className="overflow-hidden bg-[#FAFAF8] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl py-14 sm:py-24">
         {menuCategories.map((category, catIdx) => (
           <div
             key={category.slug}
             id={category.slug}
-            className={catIdx > 0 ? 'mt-20 sm:mt-28' : ''}
+            className={catIdx > 0 ? 'mt-16 sm:mt-28' : ''}
             /* Offset scroll target so heading isn't hidden behind sticky header */
             style={{ scrollMarginTop: '6rem' }}
           >
             {/* ── Category Heading ── */}
-            <div className="mb-10 sm:mb-14">
-              <h3 className="font-serif text-3xl text-[#1a1a1a] sm:text-4xl">
+            <div className="mb-8 sm:mb-14">
+              <h3 className="font-serif text-3xl leading-tight text-[#1a1a1a] sm:text-4xl lg:text-5xl">
                 {category.title}
               </h3>
-              <div className="mt-3 h-px w-16 bg-[#006241]/40" />
+              <div className="mt-3 h-px w-16 bg-[#006241]/30" />
             </div>
 
             {/* ── Product Grid ── */}
-            <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-4 md:gap-x-6 md:gap-y-12">
               {category.products.map((product) => (
-                <article key={product.id} className="group">
+                <article
+                  key={product.id}
+                  className="group transition-transform duration-200 active:scale-[0.985]"
+                >
                   {/* Image Container with hover reveals */}
-                  <div className="relative overflow-hidden rounded-sm bg-gray-100">
+                  <div className="relative aspect-square overflow-hidden rounded-sm bg-gray-100 transition-transform duration-300 md:group-hover:-translate-y-1">
                     <img
                       src={product.image}
                       alt={product.name}
                       loading="lazy"
-                      className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
 
                     {/* Add-to-cart bar — bottom */}
                     <button
                       type="button"
-                      className="absolute bottom-0 left-0 w-full translate-y-full bg-[#111111]/90 py-2.5 text-center transition-transform duration-300 group-hover:translate-y-0 focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 sm:py-3"
+                      className="absolute inset-x-0 bottom-0 hidden min-h-12 items-center justify-center bg-[#111111]/90 px-4 text-center shadow-[0_8px_20px_rgb(0,0,0,0.18)] backdrop-blur-sm transition-all duration-300 hover:bg-[#006241] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 md:flex md:translate-y-full md:group-hover:translate-y-0 md:focus-visible:translate-y-0"
                       onClick={() => handleAddToCart(product)}
                     >
-                      <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white sm:text-[11px]">
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
                         Add to Cart
                       </span>
                     </button>
@@ -342,11 +345,11 @@ export function MenuSection() {
                   </div>
 
                   {/* Text beneath image */}
-                  <div className="mt-4 flex flex-col items-center text-center">
-                    <span className="mb-1 text-[10px] font-medium uppercase tracking-[0.2em] text-gray-400">
+                  <div className="mt-3 flex flex-col items-center px-1.5 text-center md:mt-4 md:px-1">
+                    <span className="mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                       Eggless
                     </span>
-                    <h4 className="text-sm font-medium leading-snug text-gray-900 sm:text-[15px]">
+                    <h4 className="text-base font-medium leading-snug text-gray-900">
                       {product.name}
                     </h4>
                     {product.tags && product.tags.length > 0 && (
@@ -354,10 +357,10 @@ export function MenuSection() {
                         {product.tags.map((tag) => (
                           <span
                             key={tag}
-                            className={`inline-block rounded-sm px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] ${
+                            className={`inline-block rounded-full px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider shadow-[0_2px_8px_rgb(0,0,0,0.04)] sm:text-[10px] ${
                               tag === 'Top Seller'
                                 ? 'bg-[#006241] text-white'
-                                : 'bg-white text-[#111111]'
+                                : 'bg-white text-[#111111] ring-1 ring-black/5'
                             }`}
                           >
                             {tag}
@@ -365,9 +368,16 @@ export function MenuSection() {
                         ))}
                       </div>
                     )}
-                    <p className="mt-1 text-sm text-gray-500">
+                    <p className="mt-2 text-base font-medium text-gray-600">
                       {product.price}
                     </p>
+                    <button
+                      type="button"
+                      className="mt-4 flex min-h-11 w-full items-center justify-center rounded-sm border border-black/20 px-3 py-2.5 text-center text-xs font-medium uppercase tracking-[0.15em] text-black transition-colors active:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 md:hidden"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </article>
               ))}
@@ -376,7 +386,7 @@ export function MenuSection() {
         ))}
 
         {/* Footer note */}
-        <p className="mx-auto mt-20 max-w-2xl text-center text-xs leading-6 text-gray-400 sm:text-sm">
+        <p className="mx-auto mt-16 max-w-2xl text-center text-base leading-7 text-gray-500 sm:mt-20 sm:text-sm sm:leading-6">
           All items are 100% eggless. Vegan, fasting-friendly, and monk fruit
           sweetener options available upon request. Prices may vary.
           <br />

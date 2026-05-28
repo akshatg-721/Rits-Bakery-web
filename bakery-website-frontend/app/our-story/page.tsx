@@ -8,18 +8,26 @@ export const metadata: Metadata = {
 
 export default function OurStoryPage() {
   return (
-    <main className="min-h-screen bg-[#FAFAF8] px-6 py-24 sm:px-8 sm:py-32">
+    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8] px-4 py-20 sm:px-8 sm:py-32">
       <article className="mx-auto max-w-2xl">
         {/* ── Page Heading ── */}
-        <h1 className="text-center font-serif text-5xl italic text-[#111111] sm:text-6xl">
+        <h1 className="text-center font-serif text-4xl italic leading-tight text-[#111111] sm:text-5xl lg:text-6xl">
           Our Story
         </h1>
 
         {/* ── Thin decorative rule ── */}
-        <div className="mx-auto mt-10 mb-16 h-px w-16 bg-[#111111]/20" />
+        <div className="mx-auto mb-12 mt-8 h-px w-16 bg-[#111111]/20 sm:mb-16 sm:mt-10" />
+
+        <div className="mb-12 overflow-hidden rounded-md bg-gray-100 shadow-[0_12px_34px_rgb(0,0,0,0.08)] ring-1 ring-black/5 sm:mb-16">
+          <img
+            src="/gallery/IMG_8022.JPG"
+            alt="Freshly baked desserts from The Rits Baker kitchen"
+            className="aspect-[4/3] w-full object-cover sm:aspect-[16/9]"
+          />
+        </div>
 
         {/* ── Story Body ── */}
-        <div className="space-y-7 text-center text-base leading-loose text-[#444444] sm:text-lg sm:leading-loose">
+        <div className="space-y-7 text-center text-base leading-8 text-[#444444] sm:text-lg sm:leading-9">
           <p>
             At The Rits Baker, we believe great baking begins with love, quality
             ingredients, and beautiful flavors.
@@ -47,7 +55,7 @@ export default function OurStoryPage() {
             quiet sweet moment, we&apos;re happy to have you here.
           </p>
 
-          <p className="mt-12 font-serif text-lg italic text-[#111111]">
+          <p className="mt-12 font-serif text-xl italic leading-8 text-[#111111]">
             With warmth,
             <br />
             The Team at The Rits Baker BKK
@@ -66,7 +74,7 @@ export default function OurStoryPage() {
             <div>
               <a
                 href="mailto:theritsbaker@gmail.com"
-                className="text-sm text-[#111111] decoration-[#111111]/30 decoration-1 underline-offset-4 transition-colors hover:underline hover:decoration-[#111111]"
+                className="inline-flex min-h-11 items-center text-base text-[#111111] decoration-[#111111]/30 decoration-1 underline-offset-4 transition-colors hover:underline hover:decoration-[#111111] sm:text-sm"
               >
                 theritsbaker@gmail.com
               </a>
@@ -76,7 +84,7 @@ export default function OurStoryPage() {
                 href="https://wa.me/66972932849"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[#111111] decoration-[#111111]/30 decoration-1 underline-offset-4 transition-colors hover:underline hover:decoration-[#111111]"
+                className="inline-flex min-h-11 items-center text-base text-[#111111] decoration-[#111111]/30 decoration-1 underline-offset-4 transition-colors hover:underline hover:decoration-[#111111] sm:text-sm"
               >
                 +66-972932849
               </a>

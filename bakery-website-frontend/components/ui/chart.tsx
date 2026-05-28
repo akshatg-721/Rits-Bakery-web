@@ -7,6 +7,15 @@ import { cn } from '@/lib/utils'
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const
+const UNSAFE_CSS_VALUE = /[;{}<>"'`]/
+
+function sanitizeCssIdentifier(value: string) {
+  return value.replace(/[^a-zA-Z0-9_-]/g, '')
+}
+
+function isSafeCssValue(value: string) {
+  return !UNSAFE_CSS_VALUE.test(value)
+}
 
 export type ChartConfig = {
   [k in string]: {
@@ -90,7 +99,11 @@ ${colorConfig
     const color =
       itemConfig.theme?.[theme as keyof typeof itemConfig.theme] ||
       itemConfig.color
-    return color ? `  --color-${key}: ${color};` : null
+    const cssKey = sanitizeCssIdentifier(key)
+
+    return color && cssKey && isSafeCssValue(color)
+      ? `  --color-${cssKey}: ${color};`
+      : null
   })
   .join('\n')}
 }

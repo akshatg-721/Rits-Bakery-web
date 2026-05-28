@@ -42,8 +42,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cormorant.variable} scroll-smooth`} style={{ backgroundColor: '#F9F9F9' }}>
-      <body className="font-sans antialiased bg-[#F9F9F9] text-[#111111]">
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable} overflow-x-hidden scroll-smooth`} style={{ backgroundColor: '#F9F9F9' }}>
+      <body className="min-h-screen overflow-x-hidden bg-[#F9F9F9] font-sans text-[#111111] antialiased">
         <CartProvider>
           <Header />
           {children}

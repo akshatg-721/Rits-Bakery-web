@@ -232,6 +232,18 @@ export function ShopSection() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
 
+  const handleAddToCart = (product: MenuProduct) => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: getNumericPrice(product.price),
+      displayPrice: product.price,
+      description: product.description,
+      image: product.image,
+    })
+    setCartOpen(true)
+  }
+
   const filteredProducts = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase()
 
@@ -248,39 +260,39 @@ export function ShopSection() {
   }, [activeCategory, searchQuery])
 
   return (
-    <section id="menu" className="px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+    <section id="menu" className="overflow-hidden px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
-          <h2 className="font-serif text-4xl italic text-[#111111] sm:text-5xl">
+          <h2 className="font-serif text-3xl italic leading-tight text-[#111111] sm:text-4xl lg:text-5xl">
             Our Eggless Bakery Menu
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-gray-600 sm:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-600">
             Browse signature eggless bakes, gifting favorites, and desserts made
             fresh for delivery-only pre-orders.
           </p>
         </div>
 
-        <div className="sticky top-24 z-30 mt-10 space-y-5 bg-[#F9F9F9]/95 py-4 backdrop-blur">
+        <div className="sticky top-24 z-30 mt-10 space-y-5 bg-[#F9F9F9]/95 py-4 backdrop-blur-xl">
           <div className="relative mx-auto max-w-2xl">
             <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
             <Input
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search eggless cakes, cookies, brownies..."
-              className="h-12 rounded-full border-gray-200 bg-white pl-12 pr-4 text-[#111111] shadow-none focus-visible:border-[#006241] focus-visible:ring-[#006241]/20"
+              className="min-h-12 rounded-full border-gray-200 bg-white pl-12 pr-4 text-base text-[#111111] shadow-[0_4px_18px_rgb(0,0,0,0.04)] focus-visible:border-[#006241] focus-visible:ring-[#006241]/20"
             />
           </div>
 
-          <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
-            <div className="mx-auto flex w-max gap-3 sm:w-fit">
+          <div className="-mx-4 overflow-x-auto px-4 no-scrollbar sm:mx-0 sm:px-0">
+            <div className="mx-auto flex w-max snap-x snap-mandatory gap-3 sm:w-fit">
               {categories.map((category) => (
                 <button
                   key={category}
                   type="button"
                   onClick={() => setActiveCategory(category)}
-                  className={`whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium transition ${
+                  className={`min-h-11 snap-start whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium shadow-[0_2px_10px_rgb(0,0,0,0.03)] transition-all duration-200 active:scale-[0.97] ${
                     activeCategory === category
-                      ? 'border-[#006241] bg-[#006241] text-white'
+                      ? 'border-[#006241] bg-[#006241] text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)]'
                       : 'border-gray-200 bg-white text-gray-700 hover:border-[#006241]/50 hover:text-[#006241]'
                   }`}
                 >
@@ -292,48 +304,38 @@ export function ShopSection() {
         </div>
 
         {/* Editorial Product Grid */}
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
           {filteredProducts.map((product) => (
             <article
               key={product.id}
-              className="group"
+              className="group transition-transform duration-200 active:scale-[0.985]"
             >
               {/* Flush, full-width image */}
-              <div className="relative aspect-square overflow-hidden rounded-sm bg-gray-100">
+              <div className="relative aspect-square overflow-hidden rounded-sm bg-gray-100 transition-transform duration-300 md:group-hover:-translate-y-1">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <button
                   type="button"
-                  className="absolute bottom-0 left-0 w-full translate-y-full bg-[#111111]/90 py-2.5 text-center transition-transform duration-300 group-hover:translate-y-0 focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 sm:py-3"
-                  onClick={() => {
-                    addItem({
-                      id: product.id,
-                      name: product.name,
-                      price: getNumericPrice(product.price),
-                      displayPrice: product.price,
-                      description: product.description,
-                      image: product.image,
-                    })
-                    setCartOpen(true)
-                  }}
+                  className="absolute inset-x-0 bottom-0 hidden min-h-12 items-center justify-center bg-[#111111]/90 px-4 text-center shadow-[0_8px_20px_rgb(0,0,0,0.18)] backdrop-blur-sm transition-all duration-300 hover:bg-[#006241] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 md:flex md:translate-y-full md:group-hover:translate-y-0 md:focus-visible:translate-y-0"
+                  onClick={() => handleAddToCart(product)}
                 >
-                  <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white sm:text-[11px]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
                     Add to Cart
                   </span>
                 </button>
               </div>
 
               {/* Centered editorial text */}
-              <div className="mt-4 text-center">
+              <div className="mt-3 px-1.5 text-center md:mt-4 md:px-1">
                 {product.isTopSeller && (
                   <span className="mb-1.5 inline-block text-[10px] font-semibold uppercase tracking-widest text-[#006241]">
                     Top Seller
                   </span>
                 )}
-                <h3 className="font-serif text-sm leading-snug text-[#1a1a1a] sm:text-base">
+                <h3 className="font-serif text-base leading-snug text-[#1a1a1a]">
                   {product.name}
                 </h3>
                 {product.tags && product.tags.length > 0 && (
@@ -341,10 +343,10 @@ export function ShopSection() {
                     {product.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`inline-block rounded-sm px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] ${
+                        className={`inline-block rounded-full px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider shadow-[0_2px_8px_rgb(0,0,0,0.04)] sm:text-[10px] ${
                           tag === 'Top Seller'
                             ? 'bg-[#006241] text-white'
-                            : 'bg-gray-100 text-[#111111]'
+                            : 'bg-white text-[#111111] ring-1 ring-black/5'
                         }`}
                       >
                         {tag}
@@ -352,21 +354,28 @@ export function ShopSection() {
                     ))}
                   </div>
                 )}
-                <p className="mt-1 text-sm text-gray-500">
+                <p className="mt-2 text-base font-medium text-gray-600">
                   {product.price}
                 </p>
+                <button
+                  type="button"
+                  className="mt-4 flex min-h-11 w-full items-center justify-center rounded-sm border border-black/20 px-3 py-2.5 text-center text-xs font-medium uppercase tracking-[0.15em] text-black transition-colors active:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 md:hidden"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to Cart
+                </button>
               </div>
             </article>
           ))}
         </div>
 
         {filteredProducts.length === 0 && (
-          <div className="mt-12 rounded-md border border-dashed border-gray-300 bg-white px-6 py-12 text-center text-gray-600">
+          <div className="mt-12 rounded-md border border-dashed border-[#006241]/25 bg-white px-6 py-12 text-center text-base leading-7 text-gray-600 shadow-[0_8px_24px_rgb(0,0,0,0.04)]">
             No menu items found. Try another search or category.
           </div>
         )}
 
-        <p className="mx-auto mt-12 max-w-4xl text-center text-sm leading-7 text-gray-500">
+        <p className="mx-auto mt-12 max-w-4xl text-center text-base leading-7 text-gray-500 sm:text-sm">
           * Vegan, fasting-friendly, and monk fruit sweetener options available.
           Prices may vary. Open Every Day | Delivery Only (Pre-order 24hrs
           before).

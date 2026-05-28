@@ -4,11 +4,11 @@ import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
   return (
-    <section className="w-full bg-[#F9F9F9]">
+    <section className="w-full overflow-hidden bg-[#F9F9F9]">
       <div className="grid min-h-[88vh] grid-cols-1 lg:grid-cols-2">
 
         {/* ── Left Column: Brand Narrative ── */}
-        <div className="flex flex-col justify-center p-6 sm:p-12 lg:p-20 xl:p-28">
+        <div className="flex flex-col justify-center px-4 py-12 sm:p-12 lg:p-20 xl:p-28">
 
           {/* Eyebrow label */}
           <p className="mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#006241]">
@@ -16,7 +16,7 @@ export function HeroSection() {
           </p>
 
           {/* H1 Headline */}
-          <h1 className="font-serif text-4xl font-semibold leading-[1.08] tracking-tight text-[#111111] sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="font-serif text-4xl font-semibold leading-[1.08] text-[#111111] sm:text-5xl lg:text-6xl xl:text-7xl">
             Food That Feels Like Home.
           </h1>
 
@@ -30,7 +30,7 @@ export function HeroSection() {
             {['100% Eggless', 'Pre-order 24 hrs', 'Delivery Only'].map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-[#006241]/25 bg-[#006241]/8 px-3.5 py-1 text-xs font-medium text-[#006241]"
+                className="rounded-full border border-[#006241]/20 bg-[#006241]/5 px-3.5 py-1.5 text-xs font-medium text-[#006241]"
               >
                 {tag}
               </span>
@@ -41,14 +41,14 @@ export function HeroSection() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Button
               asChild
-              className="h-12 rounded-md bg-[#006241] px-8 text-sm font-semibold text-white shadow-sm transition hover:bg-[#004F35] hover:shadow-md active:scale-[0.98]"
+              className="min-h-12 rounded-md bg-[#006241] px-8 text-sm font-semibold text-white shadow-[0_10px_24px_rgb(0,98,65,0.16)] transition hover:-translate-y-0.5 hover:bg-[#004F35] hover:shadow-[0_14px_32px_rgb(0,98,65,0.2)] active:translate-y-0 active:scale-[0.98]"
             >
               <Link href="/#menu">View Menu</Link>
             </Button>
 
             <Link
               href="/our-story"
-              className="inline-flex h-12 items-center justify-center px-6 text-sm font-semibold text-[#006241] transition hover:underline hover:underline-offset-4"
+              className="inline-flex min-h-12 items-center justify-center rounded-md px-6 text-sm font-semibold text-[#006241] transition hover:bg-[#006241]/5 hover:underline hover:underline-offset-4 active:scale-[0.98]"
             >
               Our Story →
             </Link>

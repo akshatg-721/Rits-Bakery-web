@@ -12,14 +12,14 @@ const FACEBOOK_PAGE_URL = 'https://www.facebook.com/theritsbaker'
 
 export function SocialHub() {
   return (
-    <section className="border-t border-gray-200 bg-[#F9F9F9] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+    <section className="overflow-hidden border-t border-gray-200 bg-[#F9F9F9] px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
       <div className="mx-auto max-w-7xl">
         {/* Section header */}
         <div className="mb-12 text-center">
-          <h2 className="font-serif text-3xl italic text-[#111111] sm:text-4xl">
+          <h2 className="font-serif text-3xl italic leading-tight text-[#111111] sm:text-4xl lg:text-5xl">
             Connect With Us
           </h2>
-          <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-gray-500">
+          <p className="mx-auto mt-3 max-w-lg text-base leading-7 text-gray-500">
             Follow along for fresh bakes, behind-the-scenes moments, and sweet
             updates from our kitchen in Bangkok.
           </p>
@@ -32,7 +32,7 @@ export function SocialHub() {
             <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-[#006241] lg:text-left">
               Latest on Facebook
             </h3>
-            <div className="flex-1 overflow-hidden rounded-md border border-gray-200 bg-white">
+            <div className="flex-1 overflow-hidden rounded-md border border-gray-100 bg-white shadow-[0_8px_24px_rgb(0,0,0,0.05)]">
               <iframe
                 src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(FACEBOOK_PAGE_URL)}&tabs=timeline&width=400&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false`}
                 width="100%"
@@ -50,7 +50,7 @@ export function SocialHub() {
             <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-[#006241] lg:text-left">
               Follow @TheRitsBaker
             </h3>
-            <div className="flex flex-1 flex-col rounded-md border border-gray-200 bg-white p-4">
+            <div className="flex flex-1 flex-col rounded-md border border-gray-100 bg-white p-4 shadow-[0_8px_24px_rgb(0,0,0,0.05)]">
               {/* 2×2 image grid */}
               <div className="grid grid-cols-2 gap-2">
                 {instagramImages.map((src) => (
@@ -59,7 +59,7 @@ export function SocialHub() {
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative aspect-square overflow-hidden rounded-md"
+                    className="group relative aspect-square overflow-hidden rounded-md transition-transform duration-200 active:scale-[0.98]"
                   >
                     <img
                       src={src}
@@ -78,7 +78,7 @@ export function SocialHub() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 flex items-center justify-center gap-2 rounded-md border border-[#006241] px-5 py-2.5 text-sm font-medium text-[#006241] transition hover:bg-[#006241] hover:text-white"
+                className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-md border border-[#006241] px-5 py-2.5 text-sm font-medium text-[#006241] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#006241] hover:text-white active:translate-y-0 active:scale-[0.98]"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -103,8 +103,8 @@ export function SocialHub() {
             <h3 className="mb-4 text-center text-sm font-semibold uppercase tracking-widest text-[#006241] lg:text-left">
               Scan to Order
             </h3>
-            <div className="flex flex-1 flex-col rounded-md border border-gray-200 bg-white p-4">
-              <p className="mb-4 text-sm text-gray-500">
+            <div className="flex flex-1 flex-col rounded-md border border-gray-100 bg-white p-4 shadow-[0_8px_24px_rgb(0,0,0,0.05)]">
+              <p className="mb-4 text-base leading-7 text-gray-500 sm:text-sm sm:leading-6">
                 Scan a QR code below to place your order directly via WhatsApp or
                 LINE.
               </p>
