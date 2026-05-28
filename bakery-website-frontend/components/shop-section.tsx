@@ -20,6 +20,7 @@ interface MenuProduct {
 const categories = [
   'All',
   'Signature Loaves',
+  'Tea-Time Classics',
   'Cookies',
   'Savories & Gifting',
   'Desserts',
@@ -36,11 +37,19 @@ const products: MenuProduct[] = [
     tags: ['Best Seller'],
   },
   {
-    id: 'orange-carrot-loaf',
-    name: 'Orange/Carrot Loaf',
+    id: 'fresh-orange-loaf',
+    name: 'Fresh Orange Loaf',
     category: 'Signature Loaves',
     price: '฿220',
-    image: 'https://images.unsplash.com/photo-1773933200726-458f8c64ac29?auto=format&fit=crop&w=800&q=80',
+    image: 'https://unsplash.com/photos/0RLZC3X1es4/download?force=true&w=800',
+    isTopSeller: false,
+  },
+  {
+    id: 'classic-carrot-loaf',
+    name: 'Classic Carrot Loaf',
+    category: 'Signature Loaves',
+    price: '฿220',
+    image: 'https://unsplash.com/photos/z2ZGrxKVNfs/download?force=true&w=800',
     isTopSeller: false,
   },
   {
@@ -58,7 +67,7 @@ const products: MenuProduct[] = [
     price: '฿290',
     image: 'https://images.unsplash.com/photo-1614777986387-015c2a89b696?auto=format&fit=crop&w=800&q=80',
     isTopSeller: false,
-    tags: ['Contains Nuts'],
+    tags: ['Best Seller', 'No Sugar', 'Contains Nuts'],
   },
   {
     id: 'rich-chocolate-loaf',
@@ -201,7 +210,7 @@ const products: MenuProduct[] = [
   {
     id: 'traditional-mawa-cake',
     name: 'Traditional Mawa Cake',
-    category: 'Desserts',
+    category: 'Tea-Time Classics',
     price: '฿390/lb',
     image: '/images/traditional_mawa_cake.jpeg',
     isTopSeller: false,
@@ -281,26 +290,34 @@ export function ShopSection() {
           {filteredProducts.map((product) => (
             <article
               key={product.id}
-              className="group cursor-pointer"
-              onClick={() => {
-                addItem({
-                  id: product.id,
-                  name: product.name,
-                  price: getNumericPrice(product.price),
-                  displayPrice: product.price,
-                  description: product.description,
-                  image: product.image,
-                })
-                setCartOpen(true)
-              }}
+              className="group"
             >
               {/* Flush, full-width image */}
-              <div className="aspect-square overflow-hidden rounded-sm bg-gray-100">
+              <div className="relative aspect-square overflow-hidden rounded-sm bg-gray-100">
                 <img
                   src={product.image}
                   alt={product.name}
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                <button
+                  type="button"
+                  className="absolute bottom-0 left-0 w-full translate-y-full bg-[#111111]/90 py-2.5 text-center transition-transform duration-300 group-hover:translate-y-0 focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 sm:py-3"
+                  onClick={() => {
+                    addItem({
+                      id: product.id,
+                      name: product.name,
+                      price: getNumericPrice(product.price),
+                      displayPrice: product.price,
+                      description: product.description,
+                      image: product.image,
+                    })
+                    setCartOpen(true)
+                  }}
+                >
+                  <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white sm:text-[11px]">
+                    Add to Cart
+                  </span>
+                </button>
               </div>
 
               {/* Centered editorial text */}
@@ -313,6 +330,22 @@ export function ShopSection() {
                 <h3 className="font-serif text-sm leading-snug text-[#1a1a1a] sm:text-base">
                   {product.name}
                 </h3>
+                {product.tags && product.tags.length > 0 && (
+                  <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+                    {product.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className={`inline-block rounded-sm px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] ${
+                          tag === 'Best Seller' || tag === 'Top Seller'
+                            ? 'bg-[#006241] text-white'
+                            : 'bg-gray-100 text-[#111111]'
+                        }`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <p className="mt-1 text-sm text-gray-500">
                   {product.price}
                 </p>

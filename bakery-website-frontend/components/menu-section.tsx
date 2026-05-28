@@ -1,6 +1,5 @@
 'use client'
 
-import { Search } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
 
 /* ─── Product data type ─── */
@@ -36,11 +35,18 @@ const menuCategories: Category[] = [
         tags: ['Best Seller'],
       },
       {
-        id: 'orange-carrot-loaf',
-        name: 'Orange & Carrot Loaf',
+        id: 'fresh-orange-loaf',
+        name: 'Fresh Orange Loaf',
         price: '฿ 220',
         numericPrice: 220,
-        image: 'https://images.unsplash.com/photo-1773933200726-458f8c64ac29?auto=format&fit=crop&w=800&q=80',
+        image: 'https://unsplash.com/photos/0RLZC3X1es4/download?force=true&w=800',
+      },
+      {
+        id: 'classic-carrot-loaf',
+        name: 'Classic Carrot Loaf',
+        price: '฿ 220',
+        numericPrice: 220,
+        image: 'https://unsplash.com/photos/z2ZGrxKVNfs/download?force=true&w=800',
       },
       {
         id: 'vanilla-butter-loaf-cake',
@@ -55,7 +61,7 @@ const menuCategories: Category[] = [
         price: '฿ 290',
         numericPrice: 290,
         image: 'https://images.unsplash.com/photo-1614777986387-015c2a89b696?auto=format&fit=crop&w=800&q=80',
-        tags: ['Contains Nuts'],
+        tags: ['Best Seller', 'No Sugar', 'Contains Nuts'],
       },
       {
         id: 'rich-chocolate-loaf',
@@ -64,13 +70,6 @@ const menuCategories: Category[] = [
         numericPrice: 290,
         image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80',
         tags: ['Top Seller'],
-      },
-      {
-        id: 'traditional-mawa-cake',
-        name: 'Traditional Mawa Cake',
-        price: '฿ 390 / lb',
-        numericPrice: 390,
-        image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
@@ -144,6 +143,13 @@ const menuCategories: Category[] = [
         price: '฿ 550 / lb',
         numericPrice: 550,
         image: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80',
+      },
+      {
+        id: 'traditional-mawa-cake',
+        name: 'Traditional Mawa Cake',
+        price: '฿ 390 / lb',
+        numericPrice: 390,
+        image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
@@ -293,12 +299,9 @@ export function MenuSection() {
             {/* ── Product Grid ── */}
             <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-4">
               {category.products.map((product) => (
-                <article key={product.id} className="group cursor-pointer">
+                <article key={product.id} className="group">
                   {/* Image Container with hover reveals */}
-                  <div
-                    className="relative overflow-hidden rounded-sm bg-gray-100"
-                    onClick={() => handleAddToCart(product)}
-                  >
+                  <div className="relative overflow-hidden rounded-sm bg-gray-100">
                     <img
                       src={product.image}
                       alt={product.name}
@@ -306,42 +309,17 @@ export function MenuSection() {
                       className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
 
-                    {/* Quick-view icon — top right */}
-                    <button
-                      aria-label={`Quick view ${product.name}`}
-                      className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-white text-[#111111] opacity-0 shadow-md transition-opacity duration-300 group-hover:opacity-100 sm:right-4 sm:top-4 sm:size-10"
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        handleAddToCart(product)
-                      }}
-                    >
-                      <Search className="size-4" />
-                    </button>
-
                     {/* Add-to-cart bar — bottom */}
-                    <div className="absolute bottom-0 left-0 w-full translate-y-full bg-[#111111]/90 py-2.5 text-center transition-transform duration-300 group-hover:translate-y-0 sm:py-3">
+                    <button
+                      type="button"
+                      className="absolute bottom-0 left-0 w-full translate-y-full bg-[#111111]/90 py-2.5 text-center transition-transform duration-300 group-hover:translate-y-0 focus-visible:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 sm:py-3"
+                      onClick={() => handleAddToCart(product)}
+                    >
                       <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white sm:text-[11px]">
                         Add to Cart
                       </span>
-                    </div>
+                    </button>
 
-                    {/* Tags — top left */}
-                    {product.tags && product.tags.length > 0 && (
-                      <div className="absolute left-3 top-3 flex flex-col gap-1 sm:left-4 sm:top-4">
-                        {product.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className={`inline-block rounded-sm px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] ${
-                              tag === 'Best Seller' || tag === 'Top Seller'
-                                ? 'bg-[#006241] text-white'
-                                : 'bg-white/90 text-[#111111]'
-                            }`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
 
                   {/* Text beneath image */}
@@ -352,6 +330,22 @@ export function MenuSection() {
                     <h4 className="text-sm font-medium leading-snug text-gray-900 sm:text-[15px]">
                       {product.name}
                     </h4>
+                    {product.tags && product.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+                        {product.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className={`inline-block rounded-sm px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] ${
+                              tag === 'Best Seller' || tag === 'Top Seller'
+                                ? 'bg-[#006241] text-white'
+                                : 'bg-white text-[#111111]'
+                            }`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                     <p className="mt-1 text-sm text-gray-500">
                       {product.price}
                     </p>
