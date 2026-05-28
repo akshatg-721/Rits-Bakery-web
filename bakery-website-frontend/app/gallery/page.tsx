@@ -57,7 +57,7 @@ export default function GalleryPage() {
       </div>
 
       {/* ── Masonry Grid ── */}
-      <div className="mx-auto mt-14 max-w-7xl columns-1 gap-5 space-y-5 sm:columns-2 lg:columns-3">
+      <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-6 space-y-3 md:space-y-6 max-w-7xl mx-auto px-4 mt-8">
         {galleryImages.map((image, index) => (
           <div
             key={image.src}

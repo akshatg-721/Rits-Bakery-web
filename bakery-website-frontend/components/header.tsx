@@ -49,7 +49,7 @@ export function Header() {
       </div>
 
       {/* ── Main Header ── */}
-      <header className="sticky top-0 z-40 border-b border-gray-200 bg-[#F9F9F9]/95 backdrop-blur">
+      <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300">
 
         {/* ════════════════════════════════════════
             MOBILE HEADER  (hidden on md+)
@@ -175,7 +175,7 @@ export function Header() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium tracking-wide text-[#111111]/70 transition hover:text-[#006241] hover:underline hover:underline-offset-8"
+                className="relative py-2 text-sm font-medium text-gray-700 transition-colors hover:text-[#006241] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#006241] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </Link>
@@ -192,7 +192,7 @@ export function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search treats..."
-                className="h-9 w-48 rounded-full border border-gray-200 bg-white pl-9 pr-4 text-sm text-[#111111] placeholder:text-gray-400 transition-all duration-200 focus:w-64 focus:border-[#006241]/40 focus:outline-none focus:ring-2 focus:ring-[#006241]/10"
+                className="h-9 w-48 rounded-full border border-gray-200/80 bg-gray-50 pl-9 pr-4 text-sm text-[#111111] placeholder:text-gray-400 transition-all duration-200 focus:w-64 focus:border-[#006241]/40 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006241]/10"
               />
             </form>
 

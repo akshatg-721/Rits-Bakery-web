@@ -19,9 +19,7 @@ interface Category {
   products: Product[]
 }
 
-/* ─── Curated Unsplash images ─── */
-const img = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=600&q=80`
+/* ─── Verified Unsplash image URLs ─── */
 
 /* ─── All menu data organized by category ─── */
 const menuCategories: Category[] = [
@@ -34,7 +32,7 @@ const menuCategories: Category[] = [
         name: 'Authentic Thai Banana Loaf',
         price: '฿ 190',
         numericPrice: 190,
-        image: img('1605286024831-8da0e440a927'),
+        image: 'https://images.unsplash.com/photo-1632931057788-645c49bc0db5?auto=format&fit=crop&w=800&q=80',
         tags: ['Best Seller'],
       },
       {
@@ -42,21 +40,21 @@ const menuCategories: Category[] = [
         name: 'Orange & Carrot Loaf',
         price: '฿ 220',
         numericPrice: 220,
-        image: img('1621955711739-104a3cee1135'),
+        image: 'https://images.unsplash.com/photo-1773933200726-458f8c64ac29?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'vanilla-butter-loaf-cake',
         name: 'Vanilla Butter Loaf Cake',
         price: '฿ 250',
         numericPrice: 250,
-        image: img('1486427944344-5a2276841a99'),
+        image: 'https://images.unsplash.com/photo-1632228930927-d95286a28b5c?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'date-walnut-cake',
         name: 'Date & Walnut Cake',
         price: '฿ 290',
         numericPrice: 290,
-        image: img('1618426326193-820cca39a85f'),
+        image: 'https://images.unsplash.com/photo-1614777986387-015c2a89b696?auto=format&fit=crop&w=800&q=80',
         tags: ['Contains Nuts'],
       },
       {
@@ -64,7 +62,7 @@ const menuCategories: Category[] = [
         name: 'Rich Chocolate Loaf',
         price: '฿ 290',
         numericPrice: 290,
-        image: img('1606313564200-e75d5e30476c'),
+        image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80',
         tags: ['Top Seller'],
       },
       {
@@ -72,7 +70,7 @@ const menuCategories: Category[] = [
         name: 'Traditional Mawa Cake',
         price: '฿ 390 / lb',
         numericPrice: 390,
-        image: img('1517433670267-08bbd4be890f'),
+        image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
@@ -85,7 +83,7 @@ const menuCategories: Category[] = [
         name: 'Fudge Brownies (Box of 8)',
         price: '฿ 245',
         numericPrice: 245,
-        image: img('1606313564200-e75d5e30476c'),
+        image: 'https://images.unsplash.com/photo-1607920591413-4ec007e70023?auto=format&fit=crop&w=800&q=80',
         tags: ['Best Seller'],
       },
       {
@@ -93,7 +91,7 @@ const menuCategories: Category[] = [
         name: 'Nuts & Biscoff Brownies (Box of 8)',
         price: '฿ 350',
         numericPrice: 350,
-        image: img('1612886623637-a999ab01c498'),
+        image: 'https://images.unsplash.com/photo-1612886623637-a999ab01c498?auto=format&fit=crop&w=800&q=80',
         tags: ['Contains Nuts'],
       },
       {
@@ -101,7 +99,7 @@ const menuCategories: Category[] = [
         name: 'Nutella Oreo Brownies (Box of 8)',
         price: '฿ 290',
         numericPrice: 290,
-        image: img('1590841609987-4ac211afdde1'),
+        image: 'https://images.unsplash.com/photo-1590841609987-4ac211afdde1?auto=format&fit=crop&w=800&q=80',
         tags: ['Top Seller'],
       },
       {
@@ -109,7 +107,7 @@ const menuCategories: Category[] = [
         name: 'Mocha Brownies (Box of 8)',
         price: '฿ 270',
         numericPrice: 270,
-        image: img('1559620192-032c4bc4674e'),
+        image: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
@@ -122,7 +120,7 @@ const menuCategories: Category[] = [
         name: 'Classical Nankhatai',
         price: '฿ 195',
         numericPrice: 195,
-        image: img('1558961363-fa8fdf82db35'),
+        image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80',
         tags: ['Top Seller'],
       },
       {
@@ -130,14 +128,14 @@ const menuCategories: Category[] = [
         name: 'Osamania Biscuits',
         price: '฿ 250',
         numericPrice: 250,
-        image: img('1499636136210-6f4ee915583e'),
+        image: 'https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'premium-cheesecakes',
         name: 'Premium Cheesecakes',
         price: '฿ 690 / lb',
         numericPrice: 690,
-        image: img('1533134242443-d4fd215305ad'),
+        image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80',
         tags: ['Best Seller'],
       },
       {
@@ -145,7 +143,7 @@ const menuCategories: Category[] = [
         name: 'Basbousa',
         price: '฿ 550 / lb',
         numericPrice: 550,
-        image: img('1576618148400-f54bed99fcfd'),
+        image: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
@@ -158,14 +156,14 @@ const menuCategories: Category[] = [
         name: 'Coconut Cookies',
         price: '฿ 195',
         numericPrice: 195,
-        image: img('1590080876351-941da357a43c'),
+        image: 'https://images.unsplash.com/photo-1590080876351-941da357a43c?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'almond-oats-choco-chip-cookies',
         name: 'Almond & Oats Choco Chip Cookies',
         price: '฿ 240',
         numericPrice: 240,
-        image: img('1499636136210-6f4ee915583e'),
+        image: 'https://images.unsplash.com/photo-1585325701956-60dd9c8553bc?auto=format&fit=crop&w=800&q=80',
         tags: ['Contains Nuts'],
       },
       {
@@ -173,14 +171,14 @@ const menuCategories: Category[] = [
         name: 'Assorted Biscoff Truffles (12 pcs)',
         price: '฿ 400',
         numericPrice: 400,
-        image: img('1548907040-4baa42d10919'),
+        image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'double-choco-cookies',
         name: 'Double Choco Cookies',
         price: '฿ 220',
         numericPrice: 220,
-        image: img('1558961363-fa8fdf82db35'),
+        image: 'https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
@@ -193,7 +191,7 @@ const menuCategories: Category[] = [
         name: 'Kunafa Dates (Pack of 6)',
         price: '฿ 300',
         numericPrice: 300,
-        image: img('1576618148400-f54bed99fcfd'),
+        image: 'https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=800&q=80',
         tags: ['Top Seller'],
       },
       {
@@ -201,7 +199,7 @@ const menuCategories: Category[] = [
         name: 'Baklava',
         price: '฿ 590 / lb',
         numericPrice: 590,
-        image: img('1519676867240-f03562e64548'),
+        image: 'https://images.unsplash.com/photo-1598110750624-207050c4f28c?auto=format&fit=crop&w=800&q=80',
         tags: ['Contains Nuts'],
       },
       {
@@ -209,14 +207,14 @@ const menuCategories: Category[] = [
         name: 'Dubai Chocolates (10 pieces)',
         price: '฿ 690',
         numericPrice: 690,
-        image: img('1549007994-cb92caefdcce'),
+        image: 'https://images.unsplash.com/photo-1549007994-cb92caefdcce?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'rose-pistachio-cake',
         name: 'Rose & Pistachio Cake',
         price: '฿ 450',
         numericPrice: 450,
-        image: img('1565958011703-44f9829ba187'),
+        image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80',
         tags: ['Contains Nuts'],
       },
     ],
@@ -230,7 +228,7 @@ const menuCategories: Category[] = [
         name: 'Savoury Muffins (Pack of 6)',
         price: '฿ 195',
         numericPrice: 195,
-        image: img('1607958996333-41aef7caefaa'),
+        image: 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=800&q=80',
         tags: ['Top Seller'],
       },
       {
@@ -238,7 +236,7 @@ const menuCategories: Category[] = [
         name: 'Cheesy Cashews (125g)',
         price: '฿ 240',
         numericPrice: 240,
-        image: img('1604928141064-207cea6f571f'),
+        image: 'https://images.unsplash.com/photo-1604928141064-207cea6f571f?auto=format&fit=crop&w=800&q=80',
         tags: ['Contains Nuts'],
       },
       {
@@ -246,14 +244,14 @@ const menuCategories: Category[] = [
         name: '7 Seed Mukhwas (125g)',
         price: '฿ 160',
         numericPrice: 160,
-        image: img('1604928141064-207cea6f571f'),
+        image: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=800&q=80',
       },
       {
         id: 'cheese-straws',
         name: 'Cheese Straws (Pack of 12)',
         price: '฿ 210',
         numericPrice: 210,
-        image: img('1555243896-c709bfa0b564'),
+        image: 'https://images.unsplash.com/photo-1555243896-c709bfa0b564?auto=format&fit=crop&w=800&q=80',
       },
     ],
   },
