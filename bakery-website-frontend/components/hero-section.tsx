@@ -76,7 +76,7 @@ export function HeroSection() {
         {/* ── Right Column: Hero Image ── */}
         <div className="relative min-h-[300px] overflow-hidden sm:min-h-[400px] lg:min-h-full">
           <img
-            src="/images/hero-bg.jpg"
+            src="/gallery/IMG_8022.JPG"
             alt="Handcrafted brownies, loaf cakes, and kunafa pastries by The Rits Baker"
             className="absolute inset-0 h-full w-full object-cover"
           />

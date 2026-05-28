@@ -82,9 +82,9 @@ export function CartDrawer() {
                     {/* Product image thumbnail */}
                     <div className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-md border border-gray-200 bg-gray-50">
                       <img
-                        src={item.image ?? '/logo.png'}
+                        src={item.image ?? '/menu/curation_teatime.png'}
                         alt=""
-                        className="size-10 object-contain opacity-70"
+                        className="size-full object-cover opacity-70"
                       />
                     </div>
 

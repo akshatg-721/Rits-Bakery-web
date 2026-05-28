@@ -7,28 +7,28 @@ import Link from 'next/link'
 
 const slides = [
   {
-    src: '/images/hero-bg.jpg',
+    src: '/gallery/IMG_8022.JPG',
     alt: 'Handcrafted eggless brownies and loaf cakes by The Rits Baker Bangkok',
     headline: 'Food That Feels Like Home.',
     sub: 'Premium handcrafted eggless bakes delivered fresh across Bangkok.',
     cta: { label: 'Order Now', href: '/#menu' },
   },
   {
-    src: '/images/curation_brownies.png',
+    src: '/menu/curation_brownies.png',
     alt: 'Fudge brownies freshly baked by The Rits Baker',
     headline: 'Fudge Brownies Worth Every Bite.',
     sub: 'Rich, gooey, and 100% eggless — our bestselling box of 8.',
     cta: { label: 'View Brownies', href: '/#menu' },
   },
   {
-    src: '/images/curation_middleeastern.png',
+    src: '/menu/curation_middleeastern.png',
     alt: 'Golden baklava and kunafa by The Rits Baker',
     headline: 'Middle Eastern Magic.',
     sub: 'Baklava, Kunafa Dates, and Dubai Chocolates — made with love.',
     cta: { label: 'Explore Menu', href: '/#menu' },
   },
   {
-    src: '/images/curation_teatime.png',
+    src: '/menu/curation_teatime.png',
     alt: 'Tea-time classics — Date & Walnut cake by The Rits Baker',
     headline: 'The Perfect Tea-Time.',
     sub: 'Date & Walnut, Traditional Mawa Cake, and more comforting classics.',

@@ -3,32 +3,32 @@ import Link from 'next/link'
 const curations = [
   {
     label: 'Signature Loaves',
-    image: '/images/curation_loaves.png',
+    image: '/menu/curation_loaves.png',
     href: '#signature-loaves',
   },
   {
     label: 'Artisanal Brownies',
-    image: '/images/curation_brownies.png',
+    image: '/menu/curation_brownies.png',
     href: '#artisanal-brownies',
   },
   {
     label: 'Tea-Time Classics',
-    image: '/images/curation_teatime.png',
+    image: '/menu/curation_teatime.png',
     href: '#tea-time-classics',
   },
   {
     label: 'Cookies & Biscuits',
-    image: '/images/curation_cookies.png',
+    image: '/menu/curation_cookies.png',
     href: '#cookies-biscuits',
   },
   {
     label: 'Middle Eastern Indulgence',
-    image: '/images/curation_middleeastern.png',
+    image: '/menu/curation_middleeastern.png',
     href: '#middle-eastern',
   },
   {
     label: 'Savory Bites',
-    image: '/images/curation_savory.png',
+    image: '/menu/curation_savory.png',
     href: '#savory-bites',
   },
 ]

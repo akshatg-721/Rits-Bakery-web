@@ -32,7 +32,7 @@ const products: MenuProduct[] = [
     name: 'Authentic Thai Banana Loaf',
     category: 'Signature Loaves',
     price: '฿190',
-    image: 'https://images.unsplash.com/photo-1632931057788-645c49bc0db5?auto=format&fit=crop&w=800&q=80',
+    image: '/menu/curation_loaves.png',
     isTopSeller: false,
   },
   {
@@ -40,7 +40,7 @@ const products: MenuProduct[] = [
     name: 'Fresh Orange Loaf',
     category: 'Signature Loaves',
     price: '฿220',
-    image: 'https://unsplash.com/photos/0RLZC3X1es4/download?force=true&w=800',
+    image: '/menu/traditional_mawa_cake_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -48,7 +48,7 @@ const products: MenuProduct[] = [
     name: 'Classic Carrot Loaf',
     category: 'Signature Loaves',
     price: '฿220',
-    image: 'https://unsplash.com/photos/z2ZGrxKVNfs/download?force=true&w=800',
+    image: '/menu/date_walnut_cake.webp',
     isTopSeller: false,
   },
   {
@@ -56,7 +56,7 @@ const products: MenuProduct[] = [
     name: 'Vanilla Butter Loaf Cake',
     category: 'Signature Loaves',
     price: '฿250',
-    image: 'https://images.unsplash.com/photo-1632228930927-d95286a28b5c?auto=format&fit=crop&w=800&q=80',
+    image: '/menu/premium_vanila_cke_menu.jpg',
     isTopSeller: false,
   },
   {
@@ -64,7 +64,7 @@ const products: MenuProduct[] = [
     name: 'Date & Walnut Cake',
     category: 'Signature Loaves',
     price: '฿290',
-    image: '/images/dates_walnut_cake.jpeg',
+    image: '/menu/date_walnut_cake.webp',
     isTopSeller: true,
     tags: ['No Sugar', 'Contains Nuts', 'Top Seller'],
   },
@@ -73,7 +73,7 @@ const products: MenuProduct[] = [
     name: 'Rich Chocolate Loaf',
     category: 'Signature Loaves',
     price: '฿290',
-    image: '/images/rich_choclate_loaf_menu.jpg',
+    image: '/menu/rich_choclate_loaf_menu.jpg',
     isTopSeller: false,
   },
   {
@@ -81,7 +81,7 @@ const products: MenuProduct[] = [
     name: 'Coconut Cookies',
     category: 'Cookies',
     price: '฿195',
-    image: '/images/coconut_cookies_menu.jpeg',
+    image: '/menu/coconut_cookies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -89,7 +89,7 @@ const products: MenuProduct[] = [
     name: 'Classical Nankhatai',
     category: 'Cookies',
     price: '฿195',
-    image: '/images/classical_nankhatai_menu.jpeg',
+    image: '/menu/classical_nankhatai_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -97,7 +97,7 @@ const products: MenuProduct[] = [
     name: 'Osamania Biscuits',
     category: 'Cookies',
     price: '฿250',
-    image: '/images/almond_oats_choco-chip_cookies_menu.jpeg',
+    image: '/menu/osmania_biscuits_menu.jpg',
     isTopSeller: false,
   },
   {
@@ -105,7 +105,7 @@ const products: MenuProduct[] = [
     name: 'Almond/Oats/Choco Chip Cookies',
     category: 'Cookies',
     price: '฿240',
-    image: '/images/double_choco_cookies.jpeg',
+    image: '/menu/double_choco_cookies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -113,7 +113,7 @@ const products: MenuProduct[] = [
     name: 'Cheesy Cashews (125g)',
     category: 'Savories & Gifting',
     price: '฿240',
-    image: '/images/pizza_muffins.jpeg',
+    image: '/menu/chessy_cashews_menu.png',
     isTopSeller: false,
   },
   {
@@ -121,7 +121,7 @@ const products: MenuProduct[] = [
     name: '7 Seed Mukhwas (125g)',
     category: 'Savories & Gifting',
     price: '฿160',
-    image: '/images/pizza_muffins.jpeg',
+    image: '/menu/7_seed_mukhwas_menu.png',
     isTopSeller: false,
   },
   {
@@ -129,15 +129,15 @@ const products: MenuProduct[] = [
     name: 'Muffins (Pack of 6)',
     category: 'Savories & Gifting',
     price: '฿195',
-    image: '/images/pizza_muffins.jpeg',
+    image: '/menu/pizza_muffins_menu.png',
     isTopSeller: false,
   },
   {
     id: 'premium-cheesecakes',
-    name: 'Premium Cheesecakes',
-    category: 'Desserts',
+    name: 'Premium Cheese Cake',
+    category: 'Tea-Time Classics',
     price: '฿690/lb',
-    image: '/images/red_valvet_cake.jpeg',
+    image: '/menu/premium_cheese_cakes.png',
     isTopSeller: false,
   },
   {
@@ -145,7 +145,7 @@ const products: MenuProduct[] = [
     name: 'Fudge Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿245',
-    image: '/images/fudge_brownies_menu.jpeg',
+    image: '/menu/fudge_brownies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -153,7 +153,7 @@ const products: MenuProduct[] = [
     name: 'Nuts/Biscoff Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿350',
-    image: '/images/nuts_Biscoff_brownies_menu.jpeg',
+    image: '/menu/nuts_Biscoff_brownies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -161,7 +161,7 @@ const products: MenuProduct[] = [
     name: 'Nutella/Oreo Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿290',
-    image: '/images/nutella_Oreo_brownies_menu.jpeg',
+    image: '/menu/nutella_Oreo_brownies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -169,7 +169,7 @@ const products: MenuProduct[] = [
     name: 'Kunafa Dates (Pack of 6)',
     category: 'Desserts',
     price: '฿300',
-    image: '/images/kunafa_dates_menu.jpeg',
+    image: '/menu/kunafa_dates_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -177,7 +177,15 @@ const products: MenuProduct[] = [
     name: 'Assorted Biscoff Truffles (Pack of 12)',
     category: 'Desserts',
     price: '฿400',
-    image: '/images/kunafa_dubai_choclate_bars.jpeg',
+    image: '/menu/assorted_biscoff_truffles.jpg',
+    isTopSeller: false,
+  },
+  {
+    id: 'cheese-straws',
+    name: 'Cheese Straws (Pack of 12)',
+    category: 'Savories & Gifting',
+    price: '฿210',
+    image: '/menu/cheese_straws_menu.png',
     isTopSeller: false,
   },
   {
@@ -185,7 +193,7 @@ const products: MenuProduct[] = [
     name: 'Baklava',
     category: 'Desserts',
     price: '฿590/lb',
-    image: '/images/baklava_menu.jpeg',
+    image: '/menu/baklava_menu.jpeg',
     isTopSeller: false,
     tags: ['Contains Nuts'],
   },
@@ -194,7 +202,7 @@ const products: MenuProduct[] = [
     name: 'Basbousa',
     category: 'Desserts',
     price: '฿550/lb',
-    image: '/images/basbousa_menu.jpg',
+    image: '/menu/basbousa_menu.jpg',
     isTopSeller: false,
   },
   {
@@ -202,7 +210,7 @@ const products: MenuProduct[] = [
     name: 'Dubai Chocolates (10 pieces)',
     category: 'Desserts',
     price: '฿690',
-    image: '/images/kunafa_dubai_choclate_bars.jpeg',
+    image: '/menu/kunafa_dubai_choclate_bars.jpeg',
     isTopSeller: false,
   },
   {
@@ -210,7 +218,7 @@ const products: MenuProduct[] = [
     name: 'Traditional Mawa Cake',
     category: 'Tea-Time Classics',
     price: '฿390/lb',
-    image: '/images/traditional_mawa_cake.jpeg',
+    image: '/menu/traditional_mawa_cake_menu.jpeg',
     isTopSeller: false,
   },
 ]

@@ -1,10 +1,10 @@
 import { ExternalLink, MessageCircle } from 'lucide-react'
 
 const instagramImages = [
-  '/images/mocha_brownie.jpeg',
-  '/images/dates_walnut_cake.jpeg',
-  '/images/carrot_loaf.jpeg',
-  '/images/khunafa_dates.jpeg',
+  '/gallery/Fuzzy_Brownie.JPG',
+  '/gallery/Banana_cake.JPG',
+  '/gallery/Kunafa_Dates.JPG',
+  '/gallery/Pizza_Spanish_muffins.JPG',
 ]
 
 const INSTAGRAM_URL = 'https://www.instagram.com/theritsbaker/'
@@ -118,7 +118,7 @@ export function SocialHub() {
                   </div>
                   <div className="aspect-square w-full overflow-hidden rounded-md border border-gray-200 bg-white">
                     <img
-                      src="/images/whatsapp-qr.jpg"
+                      src="/whatsapp-qr.jpg"
                       alt="Scan to order via WhatsApp"
                       className="h-full w-full object-contain p-2"
                     />
@@ -139,7 +139,7 @@ export function SocialHub() {
                   </div>
                   <div className="aspect-square w-full overflow-hidden rounded-md border border-gray-200 bg-white">
                     <img
-                      src="/images/line-qr.jpg"
+                      src="/line-qr.jpg"
                       alt="Scan to order via LINE"
                       className="h-full w-full object-contain p-2"
                     />

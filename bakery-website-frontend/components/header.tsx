@@ -117,7 +117,7 @@ export function Header() {
           <div className="flex flex-1 justify-center">
             <Link href="/" aria-label="The Rits Baker home">
               <img
-                src="/images/logo.png"
+                src="/logo.png"
                 alt="The Rits Baker"
                 className="h-auto w-20"
               />
@@ -164,7 +164,7 @@ export function Header() {
         <div className="mx-auto hidden max-w-7xl items-center justify-between px-5 py-3.5 sm:px-8 md:flex">
           <Link href="/" aria-label="The Rits Baker home" className="shrink-0">
             <img
-              src="/images/logo.png"
+              src="/logo.png"
               alt="The Rits Baker"
               className="h-auto w-24 max-w-[120px] sm:w-28"
             />

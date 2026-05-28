@@ -1,8 +1,42 @@
+'use client'
+
+import { FormEvent, useState } from 'react'
 import { MessageCircle } from 'lucide-react'
 
 const WHATSAPP_NUMBER = '66972932849'
+const FORM_SUBMIT_URL = 'https://formsubmit.co/theritsbaker@gmail.com'
 
 export default function ContactPage() {
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch(FORM_SUBMIT_URL, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error('Form submission failed')
+      }
+
+      setIsSubmitted(true)
+      form.reset()
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[#FAFAF8] px-6 py-24 sm:px-8 sm:py-32">
       <section className="mx-auto max-w-2xl">
@@ -20,8 +54,7 @@ export default function ContactPage() {
 
         {/* ── Email Form ── */}
         <form
-          action="https://formsubmit.co/theritsbaker@gmail.com"
-          method="POST"
+          onSubmit={handleSubmit}
           className="space-y-6"
         >
           {/* Honeypot + disable captcha */}
@@ -66,13 +99,20 @@ export default function ContactPage() {
           />
 
           {/* Submit */}
-          <button
-            id="contact-email-submit"
-            type="submit"
-            className="bg-[#111111] px-10 py-3.5 text-sm font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#333333] active:bg-black"
-          >
-            Send
-          </button>
+          {isSubmitted ? (
+            <p className="mt-4 text-sm font-medium text-[#006241]">
+              Email received, our team will revert you soon.
+            </p>
+          ) : (
+            <button
+              id="contact-email-submit"
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-[#111111] px-10 py-3.5 text-sm font-medium uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#333333] active:bg-black disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {isSubmitting ? 'Sending...' : 'Send'}
+            </button>
+          )}
         </form>
 
         {/* ── Divider ── */}
