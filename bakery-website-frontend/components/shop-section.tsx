@@ -34,7 +34,6 @@ const products: MenuProduct[] = [
     price: '฿190',
     image: 'https://images.unsplash.com/photo-1632931057788-645c49bc0db5?auto=format&fit=crop&w=800&q=80',
     isTopSeller: false,
-    tags: ['Best Seller'],
   },
   {
     id: 'fresh-orange-loaf',
@@ -65,24 +64,24 @@ const products: MenuProduct[] = [
     name: 'Date & Walnut Cake',
     category: 'Signature Loaves',
     price: '฿290',
-    image: 'https://images.unsplash.com/photo-1614777986387-015c2a89b696?auto=format&fit=crop&w=800&q=80',
-    isTopSeller: false,
-    tags: ['Best Seller', 'No Sugar', 'Contains Nuts'],
+    image: '/images/dates_walnut_cake.jpeg',
+    isTopSeller: true,
+    tags: ['No Sugar', 'Contains Nuts', 'Top Seller'],
   },
   {
     id: 'rich-chocolate-loaf',
     name: 'Rich Chocolate Loaf',
     category: 'Signature Loaves',
     price: '฿290',
-    image: '/images/mocha_brownie.jpeg',
-    isTopSeller: true,
+    image: '/images/rich_choclate_loaf_menu.jpg',
+    isTopSeller: false,
   },
   {
     id: 'coconut-cookies',
     name: 'Coconut Cookies',
     category: 'Cookies',
     price: '฿195',
-    image: '/images/raggi_cookies.jpeg',
+    image: '/images/coconut_cookies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -90,15 +89,15 @@ const products: MenuProduct[] = [
     name: 'Classical Nankhatai',
     category: 'Cookies',
     price: '฿195',
-    image: '/images/raggi_cookies.jpeg',
-    isTopSeller: true,
+    image: '/images/classical_nankhatai_menu.jpeg',
+    isTopSeller: false,
   },
   {
     id: 'osamania-biscuits',
     name: 'Osamania Biscuits',
     category: 'Cookies',
     price: '฿250',
-    image: '/images/double_choco_cookies.jpeg',
+    image: '/images/almond_oats_choco-chip_cookies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -131,7 +130,7 @@ const products: MenuProduct[] = [
     category: 'Savories & Gifting',
     price: '฿195',
     image: '/images/pizza_muffins.jpeg',
-    isTopSeller: true,
+    isTopSeller: false,
   },
   {
     id: 'premium-cheesecakes',
@@ -139,23 +138,22 @@ const products: MenuProduct[] = [
     category: 'Desserts',
     price: '฿690/lb',
     image: '/images/red_valvet_cake.jpeg',
-    isTopSeller: true,
+    isTopSeller: false,
   },
   {
     id: 'fudge-brownies-box-of-8',
     name: 'Fudge Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿245',
-    image: '/images/mocha_brownie.jpeg',
+    image: '/images/fudge_brownies_menu.jpeg',
     isTopSeller: false,
-    tags: ['Best Seller'],
   },
   {
     id: 'nuts-biscoff-brownies-box-of-8',
     name: 'Nuts/Biscoff Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿350',
-    image: '/images/mocha_brownie.jpeg',
+    image: '/images/nuts_Biscoff_brownies_menu.jpeg',
     isTopSeller: false,
   },
   {
@@ -163,16 +161,16 @@ const products: MenuProduct[] = [
     name: 'Nutella/Oreo Brownies (Box of 8)',
     category: 'Desserts',
     price: '฿290',
-    image: '/images/mocha_brownie.jpeg',
-    isTopSeller: true,
+    image: '/images/nutella_Oreo_brownies_menu.jpeg',
+    isTopSeller: false,
   },
   {
     id: 'kunafa-dates-pack-of-6',
     name: 'Kunafa Dates (Pack of 6)',
     category: 'Desserts',
     price: '฿300',
-    image: '/images/khunafa_dates.jpeg',
-    isTopSeller: true,
+    image: '/images/kunafa_dates_menu.jpeg',
+    isTopSeller: false,
   },
   {
     id: 'assorted-biscoff-truffles-pack-of-12',
@@ -187,7 +185,7 @@ const products: MenuProduct[] = [
     name: 'Baklava',
     category: 'Desserts',
     price: '฿590/lb',
-    image: '/images/khunafa_dates.jpeg',
+    image: '/images/baklava_menu.jpeg',
     isTopSeller: false,
     tags: ['Contains Nuts'],
   },
@@ -196,7 +194,7 @@ const products: MenuProduct[] = [
     name: 'Basbousa',
     category: 'Desserts',
     price: '฿550/lb',
-    image: '/images/traditional_mawa_cake.jpeg',
+    image: '/images/basbousa_menu.jpg',
     isTopSeller: false,
   },
   {
@@ -336,7 +334,7 @@ export function ShopSection() {
                       <span
                         key={tag}
                         className={`inline-block rounded-sm px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider sm:text-[10px] ${
-                          tag === 'Best Seller' || tag === 'Top Seller'
+                          tag === 'Top Seller'
                             ? 'bg-[#006241] text-white'
                             : 'bg-gray-100 text-[#111111]'
                         }`}
