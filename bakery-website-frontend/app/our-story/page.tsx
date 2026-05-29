@@ -1,15 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next'
+
+import { Newsletter } from '@/components/newsletter'
 
 export const metadata: Metadata = {
-  title: "Our Story | The Rits Baker",
+  title: 'Our Story | The Rits Baker',
   description:
-    "Discover the story behind The Rits Baker — a warm artisanal kitchen in Bangkok creating premium handcrafted desserts with love and quality ingredients.",
-};
+    'Discover the story behind The Rits Baker — a warm artisanal kitchen in Bangkok creating premium handcrafted desserts with love and quality ingredients.',
+}
 
 export default function OurStoryPage() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8] px-4 py-20 sm:px-8 sm:py-32">
-      <article className="mx-auto max-w-2xl">
+    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8]">
+      <article className="mx-auto max-w-2xl px-4 py-20 sm:px-8 sm:py-32">
         {/* ── Page Heading ── */}
         <h1 className="text-center font-serif text-4xl italic leading-tight text-[#111111] sm:text-5xl lg:text-6xl">
           Our Story
@@ -92,6 +94,7 @@ export default function OurStoryPage() {
           </div>
         </div>
       </article>
+      <Newsletter />
     </main>
-  );
+  )
 }

@@ -3,6 +3,8 @@
 import { useState, useCallback, useEffect } from 'react'
 import { X } from 'lucide-react'
 
+import { Newsletter } from '@/components/newsletter'
+
 /* ─── Gallery image data ─── */
 const galleryImages = [
   { src: '/gallery/00f69aa4-35f7-4651-a475-f780ce56225b.JPG', alt: 'Gallery Photo 1' },
@@ -61,44 +63,48 @@ export default function GalleryPage() {
   }, [lightboxIndex])
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8] px-4 py-20 sm:px-6 sm:py-32">
-      {/* ── Header ── */}
-      <div className="mx-auto max-w-7xl text-center">
-        <h1 className="font-serif text-4xl italic leading-tight text-[#111111] sm:text-5xl lg:text-6xl">
-          From Our Kitchen
-        </h1>
-        <p className="mx-auto mt-4 max-w-md text-base italic leading-7 text-gray-500">
-          Real bakes, real ingredients, unedited moments.
-        </p>
-        <div className="mx-auto mt-8 h-px w-16 bg-[#111111]/20 sm:mt-10" />
-      </div>
+    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8]">
+      <section className="px-4 py-20 sm:px-6 sm:py-32">
+        {/* ── Header ── */}
+        <div className="mx-auto max-w-7xl text-center">
+          <h1 className="font-serif text-4xl italic leading-tight text-[#111111] sm:text-5xl lg:text-6xl">
+            From Our Kitchen
+          </h1>
+          <p className="mx-auto mt-4 max-w-md text-base italic leading-7 text-gray-500">
+            Real bakes, real ingredients, unedited moments.
+          </p>
+          <div className="mx-auto mt-8 h-px w-16 bg-[#111111]/20 sm:mt-10" />
+        </div>
 
-      {/* ── Masonry Grid ── */}
-      <div className="mx-auto mt-8 max-w-7xl columns-2 gap-3 space-y-3 px-0 sm:px-4 md:columns-3 md:gap-6 md:space-y-6 lg:columns-4">
-        {galleryImages.map((image, index) => (
-          <button
-            type="button"
-            key={image.src}
-            className="group relative block w-full cursor-pointer overflow-hidden break-inside-avoid rounded-md bg-gray-100 text-left shadow-[0_8px_24px_rgb(0,0,0,0.06)] ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgb(0,0,0,0.09)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]/40"
-            onClick={() => setLightboxIndex(index)}
-          >
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
+        {/* ── Masonry Grid ── */}
+        <div className="mx-auto mt-8 max-w-7xl columns-2 gap-3 space-y-3 px-0 sm:px-4 md:columns-3 md:gap-6 md:space-y-6 lg:columns-4">
+          {galleryImages.map((image, index) => (
+            <button
+              type="button"
+              key={image.src}
+              className="group relative block w-full cursor-pointer overflow-hidden break-inside-avoid rounded-md bg-gray-100 text-left shadow-[0_8px_24px_rgb(0,0,0,0.06)] ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgb(0,0,0,0.09)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]/40"
+              onClick={() => setLightboxIndex(index)}
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
 
-            {/* Hover overlay with caption */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            <div className="pointer-events-none absolute bottom-0 left-0 w-full px-5 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <span className="text-base font-medium tracking-wide text-white sm:text-sm">
-                {image.alt}
-              </span>
-            </div>
-          </button>
-        ))}
-      </div>
+              {/* Hover overlay with caption */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute bottom-0 left-0 w-full px-5 pb-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span className="text-base font-medium tracking-wide text-white sm:text-sm">
+                  {image.alt}
+                </span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <Newsletter />
 
       {/* ── Lightbox Modal ── */}
       {lightboxIndex !== null && (

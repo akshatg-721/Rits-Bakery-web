@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from 'lucide-react'
 const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/#menu' },
-  { label: 'Our Story', href: '/our-story' },
+  { label: 'Our Story', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -55,11 +55,11 @@ export function Footer() {
             </h2>
             <address className="mt-5 flex flex-col items-center gap-3 not-italic md:items-start">
               <a
-                href="mailto:Theritsbaker@gmail.com"
+                href="mailto:theritsbaker@gmail.com"
                 className="flex min-h-11 items-center gap-2.5 text-base text-stone-300 transition hover:text-white sm:text-sm"
               >
                 <Mail className="size-4 shrink-0 text-[#006241]" />
-                Theritsbaker@gmail.com
+                theritsbaker@gmail.com
               </a>
               <a
                 href="tel:+66972932849"

@@ -1,7 +1,7 @@
 import { Curations } from '@/components/curations'
 import { HeroSlider } from '@/components/hero-slider'
 import { MenuSection } from '@/components/menu-section'
-import { NewsletterBar } from '@/components/newsletter-bar'
+import { Newsletter } from '@/components/newsletter'
 
 export default function Page() {
   return (
@@ -16,7 +16,7 @@ export default function Page() {
       <MenuSection />
 
       {/* 4. Minimalist newsletter + social bar */}
-      <NewsletterBar />
+      <Newsletter />
     </main>
   )
 }

@@ -22,7 +22,7 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/menu' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'About Us', href: '/our-story' },
+  { label: 'About Us', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -45,7 +45,7 @@ export function Header() {
       {/* ── Announcement Bar ── */}
       <div className="w-full overflow-hidden bg-[#006241] px-3 py-2 text-center shadow-[0_1px_0_rgb(255,255,255,0.12)_inset]">
         <p className="whitespace-nowrap text-[10px] font-semibold uppercase leading-5 tracking-[0.16em] text-white/90 sm:text-xs">
-          Delivery only&nbsp;•&nbsp;Pre-order 24 hrs&nbsp;•&nbsp;Bangkok
+          100% EGG-LESS&nbsp;•&nbsp;Delivery only&nbsp;•&nbsp;Pre-order 24 hrs&nbsp;•&nbsp;Bangkok
         </p>
       </div>
 

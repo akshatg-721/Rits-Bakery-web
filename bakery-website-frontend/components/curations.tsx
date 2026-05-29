@@ -1,37 +1,6 @@
 import Link from 'next/link'
 
-const curations = [
-  {
-    label: 'Signature Loaves',
-    image: '/menu/curation_loaves.png',
-    href: '#signature-loaves',
-  },
-  {
-    label: 'Artisanal Brownies',
-    image: '/menu/curation_brownies.png',
-    href: '#artisanal-brownies',
-  },
-  {
-    label: 'Tea-Time Classics',
-    image: '/menu/curation_teatime.png',
-    href: '#tea-time-classics',
-  },
-  {
-    label: 'Cookies & Biscuits',
-    image: '/menu/curation_cookies.png',
-    href: '#cookies-biscuits',
-  },
-  {
-    label: 'Middle Eastern Indulgence',
-    image: '/menu/curation_middleeastern.png',
-    href: '#middle-eastern',
-  },
-  {
-    label: 'Savory Bites',
-    image: '/menu/curation_savory.png',
-    href: '#savory-bites',
-  },
-]
+import { menuCategories } from '@/lib/menu-data'
 
 export function Curations() {
   return (
@@ -54,18 +23,18 @@ export function Curations() {
         {/* Horizontal scrollable row on mobile, centered flex on desktop */}
         <div className="-mx-4 overflow-x-auto px-4 pb-2 no-scrollbar sm:mx-0 sm:px-0">
           <div className="flex w-max snap-x snap-mandatory gap-5 sm:w-auto sm:flex-wrap sm:justify-center sm:gap-6 lg:gap-10">
-            {curations.map((curation) => (
+            {menuCategories.map((curation) => (
               <Link
-                key={curation.label}
-                href={curation.href}
+                key={curation.slug}
+                href={`#${curation.slug}`}
                 className="group flex min-w-[112px] snap-start flex-col items-center gap-3 rounded-md py-1 transition-transform duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]/30 active:scale-[0.98] sm:min-w-0"
-                aria-label={`Browse ${curation.label}`}
+                aria-label={`Browse ${curation.title}`}
               >
                 {/* Circle image */}
                 <div className="relative size-24 overflow-hidden rounded-full shadow-[0_10px_26px_rgb(0,0,0,0.06)] ring-1 ring-black/5 ring-offset-2 ring-offset-white transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-[#006241]/60 lg:size-32">
                   <img
                     src={curation.image}
-                    alt={curation.label}
+                    alt={curation.title}
                     className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
                   />
                   {/* Subtle green tint on hover */}
@@ -74,7 +43,7 @@ export function Curations() {
 
                 {/* Label */}
                 <span className="max-w-[108px] text-center text-sm font-semibold leading-tight text-[#111111] transition group-hover:text-[#006241] sm:max-w-[120px] lg:max-w-[128px]">
-                  {curation.label}
+                  {curation.title}
                 </span>
               </Link>
             ))}
