@@ -5,17 +5,21 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
+import { getWhatsAppOrderUrl } from '@/lib/checkout'
+
 const slides = [
   {
     src: '/gallery/IMG_8022.JPG',
     alt: 'Handcrafted eggless brownies and loaf cakes by The Rits Baker Bangkok',
+    tagline: 'Handcrafted · Eggless · Bangkok',
     headline: 'Dessert That Feels Like Home.',
     sub: 'Premium handcrafted eggless bakes delivered fresh across Bangkok.',
-    cta: { label: 'Order Now', href: '/#menu' },
+    cta: { label: 'Order Now', href: getWhatsAppOrderUrl() },
   },
   {
     src: '/menu/curation_brownies.png',
     alt: 'Fudge brownies freshly baked by The Rits Baker',
+    tagline: 'Freshly Baked Daily',
     headline: 'Fudge Brownies Worth Every Bite.',
     sub: 'Rich, gooey, and 100% eggless — our bestselling box of 8.',
     cta: { label: 'View Brownies', href: '/#menu' },
@@ -23,6 +27,7 @@ const slides = [
   {
     src: '/menu/curation_middleeastern.png',
     alt: 'Golden baklava and kunafa by The Rits Baker',
+    tagline: 'Premium Ingredients',
     headline: 'Middle Eastern Magic.',
     sub: 'Baklava, Kunafa Dates, and Dubai Chocolates — made with love.',
     cta: { label: 'Explore Menu', href: '/#menu' },
@@ -30,6 +35,7 @@ const slides = [
   {
     src: '/menu/curation_teatime.png',
     alt: 'Tea-time classics — Date & Walnut cake by The Rits Baker',
+    tagline: 'Delivered to Your Door',
     headline: 'The Perfect Tea-Time.',
     sub: 'Date & Walnut, Traditional Mawa Cake, and more comforting classics.',
     cta: { label: 'See All Cakes', href: '/#menu' },
@@ -84,7 +90,7 @@ export function HeroSlider() {
               <div className="absolute inset-0 flex items-end px-5 pb-20 sm:items-center sm:px-16 sm:pb-0 lg:px-24">
                 <div className="max-w-lg animate-in fade-in-0 slide-in-from-bottom-3 duration-700">
                   <p className="mb-3 text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-white/80 sm:tracking-[0.25em]">
-                    Handcrafted · Eggless · Bangkok
+                    {slide.tagline}
                   </p>
                   <h1 className="font-serif text-4xl font-semibold leading-[1.04] text-white drop-shadow-sm md:text-5xl lg:text-6xl">
                     {slide.headline}
@@ -94,6 +100,8 @@ export function HeroSlider() {
                   </p>
                   <Link
                     href={slide.cta.href}
+                    target={slide.cta.href.startsWith('http') ? '_blank' : undefined}
+                    rel={slide.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#006241] shadow-[0_12px_32px_rgb(0,0,0,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#F9F9F9] hover:shadow-[0_18px_42px_rgb(0,0,0,0.18)] active:translate-y-0 active:scale-[0.98]"
                   >
                     {slide.cta.label}

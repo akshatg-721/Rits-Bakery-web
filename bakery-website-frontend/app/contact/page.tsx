@@ -111,7 +111,7 @@ export default function ContactPage() {
 
           {/* Submit / Success */}
           {isSubmitted ? (
-            <p className="mt-4 text-center text-sm font-medium text-[#006241]">
+            <p className="text-[#006241] font-medium text-sm mt-4 text-center">
               Email received, our team will revert you soon.
             </p>
           ) : (

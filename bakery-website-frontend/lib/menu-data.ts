@@ -23,7 +23,7 @@ export interface MenuCategory {
 
 const menuProductCategories: MenuCategory[] = [
   {
-    title: 'Signature Loaves',
+    title: 'Signature Loaves (Pack of 10)',
     slug: 'signature-loaves',
     image: '/menu/curation_loaves.png',
     products: [
@@ -102,7 +102,7 @@ const menuProductCategories: MenuCategory[] = [
     ],
   },
   {
-    title: 'Tea Time Cookies',
+    title: 'Tea Time Cookies (250g)',
     slug: 'tea-time-cookies',
     image: '/menu/curation_cookies.png',
     products: [
@@ -322,6 +322,55 @@ const menuProductCategories: MenuCategory[] = [
     ],
   },
   {
+    title: 'Crumble Tubs (Pack of 2 - 250g)',
+    slug: 'crumble-tubs',
+    image: '/menu/biscoff_crumble cake_menu.jpeg',
+    products: [
+      {
+        id: 'biscoff-creamcheese-crumble-tub',
+        name: 'Biscoff Creamcheese',
+        price: '฿ 250',
+        numericPrice: 250,
+        image: '/menu/biscoff_crumble cake_menu.jpeg',
+      },
+      {
+        id: 'blueberry-creamcheese-crumble-tub',
+        name: 'Blueberry Creamcheese',
+        price: '฿ 195',
+        numericPrice: 195,
+        image: '/menu/blueberry_cheesecake_crumble_menu.jpeg',
+      },
+      {
+        id: 'mango-crumble-tub',
+        name: 'Mango',
+        price: '฿ 180',
+        numericPrice: 180,
+        image: '/menu/mango_crumblecake_menu (1).jpeg',
+      },
+      {
+        id: 'tiramisu-crumble-tub',
+        name: 'Tiramisu',
+        price: '฿ 350',
+        numericPrice: 350,
+        image: '/menu/tiramisu_crumblecake_menu.jpeg',
+      },
+      {
+        id: 'chocolate-crumble-tub',
+        name: 'Chocolate',
+        price: '฿ 180',
+        numericPrice: 180,
+        image: '/menu/chocolate_crumblecake_menu (1).jpeg',
+      },
+      {
+        id: 'strawberry-crumble-tub',
+        name: 'Strawberry',
+        price: '฿ 195',
+        numericPrice: 195,
+        image: '/menu/strawberry_crumblecake_menu (1).jpeg',
+      },
+    ],
+  },
+  {
     title: 'Vegan',
     slug: 'vegan',
     image: '/menu/curation_loaves.png',
@@ -372,14 +421,6 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 640 / lb',
           numericPrice: 640,
           image: '/menu/red_valvet_cake.jpeg',
-        },
-        {
-          id: 'vegan-premium-biscoff-cheese-cake',
-          name: 'Premium Biscoff Cheese Cake',
-          price: '฿ 740 / lb',
-          numericPrice: 740,
-          image: '/menu/biscoff_cheese_cake_menu.jpeg',
-          isTopSeller: true,
         },
         {
           id: 'vegan-premium-blueberry-cheese-cake',

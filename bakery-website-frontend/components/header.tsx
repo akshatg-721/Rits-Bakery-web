@@ -22,7 +22,7 @@ const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Menu', href: '/menu' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'About Us', href: '/about' },
+  { label: 'Our Story', href: '/our-story' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -32,11 +32,14 @@ export function Header() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const router = useRouter()
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (e: React.FormEvent, closeMobileNav = false) => {
     e.preventDefault()
     if (searchQuery.trim()) {
       router.push(`/menu?q=${encodeURIComponent(searchQuery.trim())}`)
       setSearchQuery('')
+      if (closeMobileNav) {
+        setMobileNavOpen(false)
+      }
     }
   }
 
@@ -50,7 +53,7 @@ export function Header() {
       </div>
 
       {/* ── Main Header ── */}
-      <header className="sticky top-0 z-50 w-full border-b border-gray-100/80 bg-white/90 shadow-[0_4px_20px_rgb(0,0,0,0.04)] backdrop-blur-xl transition-all duration-300">
+      <header className="sticky top-0 z-50 w-full border-b border-gray-100/80 bg-white/90 shadow-[0_4px_20px_rgb(0,0,0,0.04)] backdrop-blur-md transition-all duration-300">
 
         {/* ════════════════════════════════════════
             MOBILE HEADER  (hidden on md+)
@@ -82,6 +85,22 @@ export function Header() {
                   Freshly baked, handcrafted, made with love.
                 </SheetDescription>
               </SheetHeader>
+
+              {/* Search */}
+              <form
+                onSubmit={(event) => handleSearch(event, true)}
+                className="relative mx-5 mt-5"
+              >
+                <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
+                <input
+                  id="mobile-drawer-search-input"
+                  type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search treats..."
+                  className="h-12 w-full rounded-full border border-gray-200/90 bg-gray-50 pl-10 pr-4 text-base text-[#111111] placeholder:text-gray-400 transition-all duration-200 focus:border-[#006241]/40 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006241]/10"
+                />
+              </form>
 
               {/* Nav links */}
               <nav className="flex flex-col px-4 py-3" aria-label="Mobile navigation">

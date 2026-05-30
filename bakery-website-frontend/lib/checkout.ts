@@ -3,6 +3,14 @@ import { siteConfig } from '@/lib/data'
 
 const MAX_WHATSAPP_MESSAGE_LENGTH = 1800
 
+export function getWhatsAppOrderUrl(message = 'Hello The Rits Baker! I would like to place an order.') {
+  const phoneNumber = siteConfig.whatsappNumber.replace(/\D/g, '')
+
+  if (!phoneNumber) return '#'
+
+  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+}
+
 export function checkoutWithWhatsApp(cartItems: CartItem[]) {
   const phoneNumber = siteConfig.whatsappNumber.replace(/\D/g, '')
 
@@ -25,7 +33,7 @@ export function checkoutWithWhatsApp(cartItems: CartItem[]) {
     message = `Hello ${siteConfig.name}! I would like to place an order with ${cartItems.length} item types. Please confirm availability.`
   }
 
-  const checkoutUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  const checkoutUrl = getWhatsAppOrderUrl(message)
   const checkoutWindow = window.open(checkoutUrl, '_blank', 'noopener,noreferrer')
 
   if (checkoutWindow) {

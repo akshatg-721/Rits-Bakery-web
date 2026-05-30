@@ -72,23 +72,29 @@ export function ShopSection() {
             />
           </div>
 
-          <div className="-mx-4 overflow-x-auto px-4 no-scrollbar sm:mx-0 sm:px-0">
-            <div className="mx-auto flex w-max snap-x snap-mandatory gap-3 sm:w-fit">
-              {menuCategoryOptions.map((category) => (
-                <button
-                  key={category}
-                  type="button"
-                  onClick={() => setActiveCategory(category)}
-                  className={`min-h-11 snap-start whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium shadow-[0_2px_10px_rgb(0,0,0,0.03)] transition-all duration-200 active:scale-[0.97] ${
-                    activeCategory === category
-                      ? 'border-[#006241] bg-[#006241] text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)]'
-                      : 'border-gray-200 bg-white text-gray-700 hover:border-[#006241]/50 hover:text-[#006241]'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+          <div className="relative">
+            <div className="-mx-4 overflow-x-auto px-4 pr-12 no-scrollbar sm:mx-0 sm:px-0">
+              <div className="mx-auto flex w-max snap-x snap-mandatory gap-3 sm:w-fit">
+                {menuCategoryOptions.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveCategory(category)}
+                    className={`min-h-11 snap-start whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium shadow-[0_2px_10px_rgb(0,0,0,0.03)] transition-all duration-200 active:scale-[0.97] ${
+                      activeCategory === category
+                        ? 'border-[#006241] bg-[#006241] text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)]'
+                        : 'border-gray-200 bg-white text-gray-700 hover:border-[#006241]/50 hover:text-[#006241]'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-0 right-0 top-0 w-14 bg-gradient-to-l from-[#F9F9F9] via-[#F9F9F9]/85 to-transparent sm:hidden"
+            />
           </div>
         </div>
 
