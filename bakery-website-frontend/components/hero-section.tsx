@@ -17,7 +17,7 @@ export function HeroSection() {
 
           {/* H1 Headline */}
           <h1 className="font-serif text-4xl font-semibold leading-[1.08] text-[#111111] sm:text-5xl lg:text-6xl xl:text-7xl">
-            Food That Feels Like Home.
+            Dessert That Feels Like Home.
           </h1>
 
           {/* Subheadline */}

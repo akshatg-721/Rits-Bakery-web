@@ -35,7 +35,7 @@ export function Header() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      router.push(`/#menu?q=${encodeURIComponent(searchQuery.trim())}`)
+      router.push(`/menu?q=${encodeURIComponent(searchQuery.trim())}`)
       setSearchQuery('')
     }
   }
@@ -45,7 +45,7 @@ export function Header() {
       {/* ── Announcement Bar ── */}
       <div className="w-full overflow-hidden bg-[#006241] px-3 py-2 text-center shadow-[0_1px_0_rgb(255,255,255,0.12)_inset]">
         <p className="whitespace-nowrap text-[10px] font-semibold uppercase leading-5 tracking-[0.16em] text-white/90 sm:text-xs">
-          100% EGG-LESS&nbsp;•&nbsp;Delivery only&nbsp;•&nbsp;Pre-order 24 hrs&nbsp;•&nbsp;Bangkok
+          EGG-LESS&nbsp;•&nbsp;Delivery only&nbsp;•&nbsp;Pre-order&nbsp;•&nbsp;Bangkok
         </p>
       </div>
 

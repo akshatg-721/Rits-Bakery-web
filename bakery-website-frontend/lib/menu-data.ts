@@ -74,15 +74,14 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Fudge Brownies',
         price: '฿ 270',
         numericPrice: 270,
-        description: 'Pack of 9',
         image: '/menu/fudge_brownies_menu.jpeg',
+        isTopSeller: true,
       },
       {
         id: 'mocha-brownies',
         name: 'Mocha Brownies',
         price: '฿ 295',
         numericPrice: 295,
-        description: 'Pack of 9',
         image: '/menu/mocha_brownies_menu.webp',
       },
       {
@@ -90,7 +89,6 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Nuts & Biscoff Brownies',
         price: '฿ 395',
         numericPrice: 395,
-        description: 'Pack of 9',
         image: '/menu/nuts_Biscoff_brownies_menu.jpeg',
         tags: ['Contains Nuts'],
       },
@@ -99,7 +97,6 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Nutella Oreo Brownies',
         price: '฿ 325',
         numericPrice: 325,
-        description: 'Pack of 9',
         image: '/menu/nutella_Oreo_brownies_menu.jpeg',
       },
     ],
@@ -179,7 +176,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Premium Biscoff Cheese Cake',
         price: '฿ 690 / lb',
         numericPrice: 690,
-        image: '/menu/premium_cheese_cakes.png',
+        image: '/menu/biscoff_cheese_cake_menu.jpeg',
         isTopSeller: true,
       },
       {
@@ -219,6 +216,14 @@ const menuProductCategories: MenuCategory[] = [
         image: '/menu/Date_Walnut_Cake_menu.jpg',
         tags: ['No Sugar', 'Contains Nuts'],
       },
+      {
+        id: 'rose-n-pistachio-cake',
+        name: 'Rose n Pistachio Cake',
+        price: '฿ 590 / lb',
+        numericPrice: 590,
+        image: '/menu/curation_middleeastern.png',
+        tags: ['Contains Nuts'],
+      },
     ],
   },
   {
@@ -253,7 +258,7 @@ const menuProductCategories: MenuCategory[] = [
         name: '7 Seed Mukhwas (125g)',
         price: '฿ 160',
         numericPrice: 160,
-        image: '/menu/7_seed_mukhwas_menu.png',
+        image: '/menu/7_seed_mukhwas_menu.jpeg',
       },
       {
         id: 'cheese-straws',
@@ -275,7 +280,7 @@ const menuProductCategories: MenuCategory[] = [
         price: '฿ 300',
         numericPrice: 300,
         image: '/menu/kunafa_dates_menu.jpeg',
-        tags: ['No Sugar'],
+        isTopSeller: true,
       },
       {
         id: 'baklava',
@@ -301,10 +306,10 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'dubai-chocolate-mini-bar',
-        name: 'Dubai Chocolate Mini Bar',
+        name: 'Mini Dubai Chocolate Bar',
         price: '฿ 399',
         numericPrice: 399,
-        image: '/menu/kunafa_dubai_choclate_bars.jpeg',
+        image: '/menu/dubai_choclate_mini_bar_menu.jpeg',
       },
       {
         id: 'rose-pistachio-cake',
@@ -319,8 +324,104 @@ const menuProductCategories: MenuCategory[] = [
   {
     title: 'Vegan',
     slug: 'vegan',
-    image: '/placeholder.jpg',
-    products: [],
+    image: '/menu/curation_loaves.png',
+    products: (() => {
+      // Duplicate all Signature Loaves + Premium Cakes (excluding Traditional Mawa Cake)
+      // with +50 THB on every item
+      const signatureLoaves: MenuProduct[] = [
+        {
+          id: 'vegan-authentic-thai-banana-loaf',
+          name: 'Authentic Thai Banana Loaf',
+          price: '฿ 240',
+          numericPrice: 240,
+          image: '/menu/curation_loaves.png',
+        },
+        {
+          id: 'vegan-fresh-orange-loaf',
+          name: 'Fresh Orange Loaf',
+          price: '฿ 270',
+          numericPrice: 270,
+          image: '/menu/fresh_orange_loaf.jpg',
+        },
+        {
+          id: 'vegan-classical-carrot-cake',
+          name: 'Classical Carrot Cake',
+          price: '฿ 270',
+          numericPrice: 270,
+          image: '/menu/classical_carrot_cake.jpg',
+        },
+        {
+          id: 'vegan-vanilla-butter-loaf-cake',
+          name: 'Vanilla Butter Loaf Cake',
+          price: '฿ 300',
+          numericPrice: 300,
+          image: '/menu/premium_vanila_cke_menu.jpg',
+        },
+        {
+          id: 'vegan-rich-chocolate-loaf',
+          name: 'Rich Chocolate Loaf',
+          price: '฿ 340',
+          numericPrice: 340,
+          image: '/menu/rich_choclate_loaf_menu.jpg',
+        },
+      ]
+      const premiumCakes: MenuProduct[] = [
+        {
+          id: 'vegan-red-velvet-cake',
+          name: 'Red Velvet Cake',
+          price: '฿ 640 / lb',
+          numericPrice: 640,
+          image: '/menu/red_valvet_cake.jpeg',
+        },
+        {
+          id: 'vegan-premium-biscoff-cheese-cake',
+          name: 'Premium Biscoff Cheese Cake',
+          price: '฿ 740 / lb',
+          numericPrice: 740,
+          image: '/menu/biscoff_cheese_cake_menu.jpeg',
+          isTopSeller: true,
+        },
+        {
+          id: 'vegan-premium-blueberry-cheese-cake',
+          name: 'Premium Blueberry Cheese Cake',
+          price: '฿ 740 / lb',
+          numericPrice: 740,
+          image: '/menu/premium_blueberry_cheese_cake_menu.jpg',
+        },
+        {
+          id: 'vegan-premium-strawberry-cheese-cake',
+          name: 'Premium Strawberry Cheese Cake',
+          price: '฿ 740 / lb',
+          numericPrice: 740,
+          image: '/menu/premium_strwabeery_cheese_cake_menu.jpg',
+        },
+        {
+          id: 'vegan-seasonal-mango-cheese-cake',
+          name: 'Seasonal Mango Cheese Cake',
+          price: '฿ 740 / lb',
+          numericPrice: 740,
+          image: '/menu/Seasonal_mango_cheese_cake_menu.png',
+        },
+        // Traditional Mawa Cake excluded from Vegan
+        {
+          id: 'vegan-date-and-walnut-cake',
+          name: 'Date and Walnut Cake (No sugar)',
+          price: '฿ 440 / lb',
+          numericPrice: 440,
+          image: '/menu/Date_Walnut_Cake_menu.jpg',
+          tags: ['No Sugar', 'Contains Nuts'],
+        },
+        {
+          id: 'vegan-rose-n-pistachio-cake',
+          name: 'Rose n Pistachio Cake',
+          price: '฿ 640 / lb',
+          numericPrice: 640,
+          image: '/menu/curation_middleeastern.png',
+          tags: ['Contains Nuts'],
+        },
+      ]
+      return [...signatureLoaves, ...premiumCakes]
+    })(),
   },
 ]
 

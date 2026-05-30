@@ -9,7 +9,7 @@ const slides = [
   {
     src: '/gallery/IMG_8022.JPG',
     alt: 'Handcrafted eggless brownies and loaf cakes by The Rits Baker Bangkok',
-    headline: 'Food That Feels Like Home.',
+    headline: 'Dessert That Feels Like Home.',
     sub: 'Premium handcrafted eggless bakes delivered fresh across Bangkok.',
     cta: { label: 'Order Now', href: '/#menu' },
   },
