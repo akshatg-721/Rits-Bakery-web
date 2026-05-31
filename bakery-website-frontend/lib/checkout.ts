@@ -2,6 +2,8 @@ import type { CartItem } from '@/lib/cart-context'
 import { siteConfig } from '@/lib/data'
 
 const MAX_WHATSAPP_MESSAGE_LENGTH = 1800
+export const WHATSAPP_ORDER_URL =
+  'https://wa.me/66972932849?text=Hi%2C%20I%20would%20like%20to%20place%20an%20order'
 
 export function getWhatsAppOrderUrl(message = 'Hello The Rits Baker! I would like to place an order.') {
   const phoneNumber = siteConfig.whatsappNumber.replace(/\D/g, '')

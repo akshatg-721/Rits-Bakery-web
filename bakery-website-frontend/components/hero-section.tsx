@@ -47,7 +47,7 @@ export function HeroSection() {
             </Button>
 
             <Link
-              href="/our-story"
+              href="/about"
               className="inline-flex min-h-12 items-center justify-center rounded-md px-6 text-sm font-semibold text-[#006241] transition hover:bg-[#006241]/5 hover:underline hover:underline-offset-4 active:scale-[0.98]"
             >
               Our Story →

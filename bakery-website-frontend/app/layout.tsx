@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { CartProvider } from '@/lib/cart-context'
+import { WhatsAppFAB } from '@/components/whatsapp-fab'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -18,21 +19,19 @@ export const metadata: Metadata = {
   title: 'The Rits Baker | Handcrafted Eggless Bakery in Bangkok',
   description: 'Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves baked with love in Bangkok. Delivery only — pre-order 24 hrs in advance.',
   icons: {
-    icon: [
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
+  openGraph: {
+    title: 'The Rits Baker | Handcrafted Eggless Bakery in Bangkok',
+    description: 'Premium handcrafted eggless desserts, signature fudge brownies, and fresh daily loaves baked with love in Bangkok. Delivery only — pre-order 24 hrs in advance.',
+    url: 'https://theritsbaker.com',
+    type: 'website',
+    images: [
       {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
+        url: 'https://theritsbaker.com/logo.png',
       },
     ],
-    apple: '/apple-icon.png',
   },
 }
 
@@ -43,11 +42,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${cormorant.variable} overflow-x-hidden scroll-smooth`} style={{ backgroundColor: '#F9F9F9' }}>
+      <head>
+        <link rel="icon" href="/logo.png" />
+      </head>
       <body className="min-h-screen overflow-x-hidden bg-[#F9F9F9] font-sans text-[#111111] antialiased">
         <CartProvider>
           <Header />
           {children}
           <Footer />
+          <WhatsAppFAB />
         </CartProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

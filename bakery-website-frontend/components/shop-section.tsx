@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Search } from 'lucide-react'
 
 import { MenuProductCard } from '@/components/menu-product-card'
@@ -13,10 +13,18 @@ import {
   type MenuProductWithCategory,
 } from '@/lib/menu-data'
 
-export function ShopSection() {
+interface ShopSectionProps {
+  initialSearchQuery?: string
+}
+
+export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
   const { addItem, setCartOpen } = useCart()
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
   const [activeCategory, setActiveCategory] = useState('All')
+
+  useEffect(() => {
+    setSearchQuery(initialSearchQuery)
+  }, [initialSearchQuery])
 
   const handleAddToCart = (product: MenuProduct) => {
     addItem({
@@ -73,8 +81,8 @@ export function ShopSection() {
           </div>
 
           <div className="relative">
-            <div className="-mx-4 overflow-x-auto px-4 pr-12 no-scrollbar sm:mx-0 sm:px-0">
-              <div className="mx-auto flex w-max snap-x snap-mandatory gap-3 sm:w-fit">
+            <div className="-mx-4 flex overflow-x-auto snap-x snap-mandatory px-4 pr-12 no-scrollbar scrollbar-none sm:mx-0 sm:px-0">
+              <div className="mx-auto flex w-max gap-3 sm:w-fit">
                 {menuCategoryOptions.map((category) => (
                   <button
                     key={category}
@@ -93,7 +101,7 @@ export function ShopSection() {
             </div>
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute bottom-0 right-0 top-0 w-14 bg-gradient-to-l from-[#F9F9F9] via-[#F9F9F9]/85 to-transparent sm:hidden"
+              className="bg-gradient-to-l from-white to-transparent w-8 h-full absolute right-0 top-0 pointer-events-none sm:hidden"
             />
           </div>
         </div>

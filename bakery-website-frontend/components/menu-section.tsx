@@ -71,11 +71,6 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
                 <h3 className="font-serif text-3xl leading-tight text-[#1a1a1a] sm:text-4xl lg:text-5xl">
                   {category.title}
                 </h3>
-                {category.slug === 'artisanal-brownies' && (
-                  <span className="rounded-full bg-[#006241]/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-[#006241]">
-                    Pack of 9
-                  </span>
-                )}
               </div>
               <div className="mt-3 h-px w-16 bg-[#006241]/30" />
             </div>

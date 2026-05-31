@@ -32,7 +32,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Authentic Thai Banana Loaf',
         price: '฿ 190',
         numericPrice: 190,
-        image: '/menu/curation_loaves.png',
+        image: '/gallery/Banana_cake.JPG',
       },
       {
         id: 'fresh-orange-loaf',
@@ -53,19 +53,19 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Vanilla Butter Loaf Cake',
         price: '฿ 250',
         numericPrice: 250,
-        image: '/menu/premium_vanila_cke_menu.jpg',
+        image: '/menu/premium_vanilla_cake_menu.jpg',
       },
       {
         id: 'rich-chocolate-loaf',
         name: 'Rich Chocolate Loaf',
         price: '฿ 290',
         numericPrice: 290,
-        image: '/menu/rich_choclate_loaf_menu.jpg',
+        image: '/menu/rich_chocolate_loaf_menu.jpg',
       },
     ],
   },
   {
-    title: 'Artisanal Brownies',
+    title: 'Artisanal Brownies (Pack of 9)',
     slug: 'artisanal-brownies',
     image: '/menu/curation_brownies.png',
     products: [
@@ -162,14 +162,14 @@ const menuProductCategories: MenuCategory[] = [
   {
     title: 'Premium Cakes',
     slug: 'premium-cakes',
-    image: '/menu/red_valvet_cake.jpeg',
+    image: '/menu/premium_blueberry_cheese_cake_menu.jpg',
     products: [
       {
         id: 'red-velvet-cake',
         name: 'Red Velvet Cake',
         price: '฿ 590 / lb',
         numericPrice: 590,
-        image: '/menu/red_valvet_cake.jpeg',
+        image: '/menu/red_velvet_cake.jpeg',
       },
       {
         id: 'premium-biscoff-cheese-cake',
@@ -191,7 +191,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Premium Strawberry Cheese Cake',
         price: '฿ 690 / lb',
         numericPrice: 690,
-        image: '/menu/premium_strwabeery_cheese_cake_menu.jpg',
+        image: '/menu/premium_strawberry_cheese_cake_menu.jpg',
       },
       {
         id: 'seasonal-mango-cheese-cake',
@@ -205,7 +205,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Traditional Mawa Cake',
         price: '฿ 390 / lb',
         numericPrice: 390,
-        image: '/menu/Traditional_Mawa_Cake.jpg',
+        image: '/menu/traditional_mawa_menu.jpeg',
         isTopSeller: true,
       },
       {
@@ -221,7 +221,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Rose n Pistachio Cake',
         price: '฿ 590 / lb',
         numericPrice: 590,
-        image: '/menu/curation_middleeastern.png',
+        image: '/gallery/d20cdbf0-c6e2-4a19-8ea2-18300cc33d97.JPG',
         tags: ['Contains Nuts'],
       },
     ],
@@ -250,7 +250,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Cheesy Cashews (125g)',
         price: '฿ 240',
         numericPrice: 240,
-        image: '/menu/chessy_cashews_menu.png',
+        image: '/menu/cheesy_cashews_menu.png',
         tags: ['Contains Nuts'],
       },
       {
@@ -302,21 +302,21 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Dubai Chocolate Bar',
         price: '฿ 690',
         numericPrice: 690,
-        image: '/menu/kunafa_dubai_choclate_bars.jpeg',
+        image: '/menu/kunafa_dubai_chocolate_bars.jpeg',
       },
       {
         id: 'dubai-chocolate-mini-bar',
         name: 'Mini Dubai Chocolate Bar',
         price: '฿ 399',
         numericPrice: 399,
-        image: '/menu/dubai_choclate_mini_bar_menu.jpeg',
+        image: '/menu/dubai_chocolate_mini_bar_menu.jpeg',
       },
       {
         id: 'rose-pistachio-cake',
-        name: 'Rose & Pistachio Cake',
+        name: 'Rose n Pistachio Cake',
         price: '฿ 450',
         numericPrice: 450,
-        image: '/menu/curation_middleeastern.png',
+        image: '/gallery/d20cdbf0-c6e2-4a19-8ea2-18300cc33d97.JPG',
         tags: ['Contains Nuts'],
       },
     ],
@@ -373,7 +373,7 @@ const menuProductCategories: MenuCategory[] = [
   {
     title: 'Vegan',
     slug: 'vegan',
-    image: '/menu/curation_loaves.png',
+    image: '/menu/Date_Walnut_Cake_menu.jpg',
     products: (() => {
       // Duplicate all Signature Loaves + Premium Cakes (excluding Traditional Mawa Cake)
       // with +50 THB on every item
@@ -383,7 +383,7 @@ const menuProductCategories: MenuCategory[] = [
           name: 'Authentic Thai Banana Loaf',
           price: '฿ 240',
           numericPrice: 240,
-          image: '/menu/curation_loaves.png',
+          image: '/gallery/Banana_cake.JPG',
         },
         {
           id: 'vegan-fresh-orange-loaf',
@@ -404,14 +404,14 @@ const menuProductCategories: MenuCategory[] = [
           name: 'Vanilla Butter Loaf Cake',
           price: '฿ 300',
           numericPrice: 300,
-          image: '/menu/premium_vanila_cke_menu.jpg',
+          image: '/menu/premium_vanilla_cake_menu.jpg',
         },
         {
           id: 'vegan-rich-chocolate-loaf',
           name: 'Rich Chocolate Loaf',
           price: '฿ 340',
           numericPrice: 340,
-          image: '/menu/rich_choclate_loaf_menu.jpg',
+          image: '/menu/rich_chocolate_loaf_menu.jpg',
         },
       ]
       const premiumCakes: MenuProduct[] = [
@@ -420,7 +420,15 @@ const menuProductCategories: MenuCategory[] = [
           name: 'Red Velvet Cake',
           price: '฿ 640 / lb',
           numericPrice: 640,
-          image: '/menu/red_valvet_cake.jpeg',
+          image: '/menu/red_velvet_cake.jpeg',
+        },
+        {
+          id: 'vegan-premium-biscoff-cheese-cake',
+          name: 'Premium Biscoff Cheese Cake (Vegan)',
+          price: '฿ 740 / lb',
+          numericPrice: 740,
+          image: '/menu/biscoff_cheese_cake_menu.jpeg',
+          isTopSeller: true,
         },
         {
           id: 'vegan-premium-blueberry-cheese-cake',
@@ -434,7 +442,7 @@ const menuProductCategories: MenuCategory[] = [
           name: 'Premium Strawberry Cheese Cake',
           price: '฿ 740 / lb',
           numericPrice: 740,
-          image: '/menu/premium_strwabeery_cheese_cake_menu.jpg',
+          image: '/menu/premium_strawberry_cheese_cake_menu.jpg',
         },
         {
           id: 'vegan-seasonal-mango-cheese-cake',
@@ -457,7 +465,7 @@ const menuProductCategories: MenuCategory[] = [
           name: 'Rose n Pistachio Cake',
           price: '฿ 640 / lb',
           numericPrice: 640,
-          image: '/menu/curation_middleeastern.png',
+          image: '/gallery/d20cdbf0-c6e2-4a19-8ea2-18300cc33d97.JPG',
           tags: ['Contains Nuts'],
         },
       ]

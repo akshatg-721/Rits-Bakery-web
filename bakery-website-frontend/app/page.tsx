@@ -5,18 +5,34 @@ import { Newsletter } from '@/components/newsletter'
 
 export default function Page() {
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#F9F9F9]">
-      {/* 1. Full-bleed hero image slider */}
-      <HeroSlider />
-
-      {/* 2. Circular category curations (anchored to menu sections) */}
-      <Curations />
-
-      {/* 3. Unified continuous-scroll menu */}
-      <MenuSection />
-
-      {/* 4. Minimalist newsletter + social bar */}
-      <Newsletter />
-    </main>
+    <>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Bakery',
+              name: 'The Rits Baker',
+              url: 'https://theritsbaker.com',
+              telephone: '+66-972932849',
+              email: 'theritsbaker@gmail.com',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Bangkok',
+                addressCountry: 'TH',
+              },
+              servesCuisine: 'Eggless Bakery',
+            }),
+          }}
+        />
+      </head>
+      <main className="min-h-screen overflow-x-hidden bg-[#F9F9F9]">
+        <HeroSlider />
+        <Curations />
+        <MenuSection />
+        <Newsletter />
+      </main>
+    </>
   )
 }
