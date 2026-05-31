@@ -312,14 +312,6 @@ const menuProductCategories: MenuCategory[] = [
         numericPrice: 399,
         image: '/menu/dubai_chocolate_mini_bar_menu.jpeg',
       },
-      {
-        id: 'rose-pistachio-cake',
-        name: 'Rose n Pistachio Cake',
-        price: '฿ 450',
-        numericPrice: 450,
-        image: '/menu/Rose_pistacho_cake_menu.jpg',
-        tags: ['Contains Nuts'],
-      },
     ],
   },
   {
