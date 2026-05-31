@@ -7,6 +7,7 @@ export interface MenuProduct {
   description?: string
   tags?: string[]
   isTopSeller?: boolean
+  vegan?: boolean
 }
 
 export interface MenuProductWithCategory extends MenuProduct {
@@ -146,8 +147,8 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'double-choco-cookies',
         name: 'Double Choco Cookies',
-        price: '฿ 220',
-        numericPrice: 220,
+        price: '฿ 250',
+        numericPrice: 250,
         image: '/menu/double_choco_cookies_menu.jpeg',
       },
       {
@@ -221,7 +222,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Rose n Pistachio Cake',
         price: '฿ 590 / lb',
         numericPrice: 590,
-        image: '/gallery/d20cdbf0-c6e2-4a19-8ea2-18300cc33d97.JPG',
+        image: '/menu/Rose_pistacho_cake_menu.jpg',
         tags: ['Contains Nuts'],
       },
     ],
@@ -316,7 +317,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Rose n Pistachio Cake',
         price: '฿ 450',
         numericPrice: 450,
-        image: '/gallery/d20cdbf0-c6e2-4a19-8ea2-18300cc33d97.JPG',
+        image: '/menu/Rose_pistacho_cake_menu.jpg',
         tags: ['Contains Nuts'],
       },
     ],
@@ -384,6 +385,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 240',
           numericPrice: 240,
           image: '/gallery/Banana_cake.JPG',
+          vegan: true,
         },
         {
           id: 'vegan-fresh-orange-loaf',
@@ -391,6 +393,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 270',
           numericPrice: 270,
           image: '/menu/fresh_orange_loaf.jpg',
+          vegan: true,
         },
         {
           id: 'vegan-classical-carrot-cake',
@@ -398,6 +401,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 270',
           numericPrice: 270,
           image: '/menu/classical_carrot_cake.jpg',
+          vegan: true,
         },
         {
           id: 'vegan-vanilla-butter-loaf-cake',
@@ -405,6 +409,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 300',
           numericPrice: 300,
           image: '/menu/premium_vanilla_cake_menu.jpg',
+          vegan: true,
         },
         {
           id: 'vegan-rich-chocolate-loaf',
@@ -412,6 +417,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 340',
           numericPrice: 340,
           image: '/menu/rich_chocolate_loaf_menu.jpg',
+          vegan: true,
         },
       ]
       const premiumCakes: MenuProduct[] = [
@@ -421,6 +427,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 640 / lb',
           numericPrice: 640,
           image: '/menu/red_velvet_cake.jpeg',
+          vegan: true,
         },
         {
           id: 'vegan-premium-biscoff-cheese-cake',
@@ -428,7 +435,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 740 / lb',
           numericPrice: 740,
           image: '/menu/biscoff_cheese_cake_menu.jpeg',
-          isTopSeller: true,
+          vegan: true,
         },
         {
           id: 'vegan-premium-blueberry-cheese-cake',
@@ -436,6 +443,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 740 / lb',
           numericPrice: 740,
           image: '/menu/premium_blueberry_cheese_cake_menu.jpg',
+          vegan: true,
         },
         {
           id: 'vegan-premium-strawberry-cheese-cake',
@@ -443,6 +451,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 740 / lb',
           numericPrice: 740,
           image: '/menu/premium_strawberry_cheese_cake_menu.jpg',
+          vegan: true,
         },
         {
           id: 'vegan-seasonal-mango-cheese-cake',
@@ -450,6 +459,7 @@ const menuProductCategories: MenuCategory[] = [
           price: '฿ 740 / lb',
           numericPrice: 740,
           image: '/menu/Seasonal_mango_cheese_cake_menu.png',
+          vegan: true,
         },
         // Traditional Mawa Cake excluded from Vegan
         {
@@ -459,14 +469,16 @@ const menuProductCategories: MenuCategory[] = [
           numericPrice: 440,
           image: '/menu/Date_Walnut_Cake_menu.jpg',
           tags: ['No Sugar', 'Contains Nuts'],
+          vegan: true,
         },
         {
           id: 'vegan-rose-n-pistachio-cake',
           name: 'Rose n Pistachio Cake',
           price: '฿ 640 / lb',
           numericPrice: 640,
-          image: '/gallery/d20cdbf0-c6e2-4a19-8ea2-18300cc33d97.JPG',
+          image: '/menu/Rose_pistacho_cake_menu.jpg',
           tags: ['Contains Nuts'],
+          vegan: true,
         },
       ]
       return [...signatureLoaves, ...premiumCakes]

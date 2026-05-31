@@ -11,6 +11,7 @@ export default function ContactPage() {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSending, setIsSending] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -25,13 +26,32 @@ export default function ContactPage() {
     if (!formData.email.trim()) return
 
     setIsSending(true)
+    setErrorMessage('')
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200))
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        const errorData = await res.json()
+        const nextErrorMessage =
+          errorData?.error || errorData?.message || 'Failed to send email.'
+        setErrorMessage(nextErrorMessage)
+        alert(nextErrorMessage)
+        return
+      }
+
       setIsSubmitted(true)
       setFormData({ name: '', email: '', phone: '', comment: '' })
     } catch {
-      // silently handle
+      const nextErrorMessage = 'Failed to send email.'
+      setErrorMessage(nextErrorMessage)
+      alert(nextErrorMessage)
     } finally {
       setIsSending(false)
     }
@@ -102,6 +122,7 @@ export default function ContactPage() {
               >
                 {isSending ? 'Sending...' : 'Send'}
               </button>
+              {errorMessage && <p>{errorMessage}</p>}
             </form>
           )}
         </div>

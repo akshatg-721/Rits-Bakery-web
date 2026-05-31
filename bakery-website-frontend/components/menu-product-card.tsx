@@ -18,6 +18,8 @@ export function MenuProductCard({
   onAddToCart,
 }: MenuProductCardProps) {
   const Heading = headingLevel
+  const isVegan =
+    product.name.toLowerCase().includes('vegan') || Boolean(product.vegan)
 
   return (
     <article className="group transition-transform duration-200 active:scale-[0.985]">
@@ -26,6 +28,13 @@ export function MenuProductCard({
           <span className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-widest text-black font-medium">
             Top Seller
           </span>
+        )}
+        {isVegan && (
+          <div className="absolute right-2 top-2 z-10">
+            <span className="rounded-sm bg-[#2a3c24] px-2 py-1 text-[9px] font-semibold uppercase tracking-widest text-white shadow-sm backdrop-blur-md">
+              Vegan
+            </span>
+          </div>
         )}
         <img
           src={product.image}
