@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+
 import { ShopSection } from '@/components/shop-section'
 import { Newsletter } from '@/components/newsletter'
 
@@ -12,7 +14,9 @@ export default function MenuPage({ searchParams }: MenuPageProps) {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8]">
-      <ShopSection initialSearchQuery={searchQuery} />
+      <Suspense fallback={null}>
+        <ShopSection initialSearchQuery={searchQuery} />
+      </Suspense>
       <Newsletter />
     </main>
   )

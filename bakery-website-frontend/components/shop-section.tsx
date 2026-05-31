@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Search } from 'lucide-react'
 
 import { MenuProductCard } from '@/components/menu-product-card'
@@ -21,10 +22,18 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
   const { addItem, setCartOpen } = useCart()
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
   const [activeCategory, setActiveCategory] = useState('All')
+  const inputRef = useRef<HTMLInputElement>(null)
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setSearchQuery(initialSearchQuery)
   }, [initialSearchQuery])
+
+  useEffect(() => {
+    if (searchParams.get('searchFocus') === 'true' && inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [searchParams])
 
   const handleAddToCart = (product: MenuProduct) => {
     addItem({
@@ -73,6 +82,7 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
           <div className="relative mx-auto max-w-2xl">
             <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
             <Input
+              ref={inputRef}
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search eggless cakes, cookies, brownies..."

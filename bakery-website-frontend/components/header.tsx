@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Menu, Search, ShoppingBag } from 'lucide-react'
 
 import { CartDrawer } from '@/components/cart-drawer'
@@ -31,6 +31,7 @@ export function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const router = useRouter()
+  const pathname = usePathname()
 
   const handleSearch = (e: Parameters<NonNullable<React.ComponentProps<'form'>['onSubmit']>>[0], closeMobileNav = false) => {
     e.preventDefault()
@@ -41,6 +42,15 @@ export function Header() {
         setMobileNavOpen(false)
       }
     }
+  }
+
+  const handleSearchIconClick = () => {
+    if (pathname !== '/menu') {
+      router.push('/menu?searchFocus=true')
+      return
+    }
+
+    router.push('/menu?searchFocus=true')
   }
 
   return (
@@ -139,11 +149,9 @@ export function Header() {
               size="icon"
               variant="ghost"
               className="rounded-full text-[#111111] hover:bg-[#006241]/10 hover:text-[#006241]"
-              asChild
+              onClick={handleSearchIconClick}
             >
-              <Link href="/menu">
-                <Search className="size-5" />
-              </Link>
+              <Search className="size-5" />
             </Button>
 
             <Button
