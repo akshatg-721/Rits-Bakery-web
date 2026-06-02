@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { ShoppingBag } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -11,6 +12,14 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
+  const [isAdded, setIsAdded] = useState(false)
+
+  const handleAddToCart = () => {
+    onAddToCart(product)
+    setIsAdded(true)
+    window.setTimeout(() => setIsAdded(false), 2000)
+  }
+
   return (
     <article className="group flex h-full flex-col rounded-md border border-gray-100 bg-white p-4 shadow-[0_8px_24px_rgb(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgb(0,0,0,0.08)] active:scale-[0.985]">
       {/* Image Placeholder */}
@@ -37,11 +46,15 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       )}
 
       <Button
-        className="mt-auto w-full rounded-md bg-[#006241] text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)] hover:-translate-y-0.5 hover:bg-[#004F35] hover:shadow-[0_12px_28px_rgb(0,98,65,0.2)]"
-        onClick={() => onAddToCart(product)}
+        className={`mt-auto w-full rounded-md text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)] hover:-translate-y-0.5 hover:shadow-[0_12px_28px_rgb(0,98,65,0.2)] ${
+          isAdded
+            ? 'bg-[#2a3c24] hover:bg-[#2a3c24]'
+            : 'bg-[#006241] hover:bg-[#004F35]'
+        }`}
+        onClick={handleAddToCart}
       >
         <ShoppingBag className="size-4" />
-        Add to Cart
+        {isAdded ? 'Added ✓' : 'Add to Cart'}
       </Button>
     </article>
   )

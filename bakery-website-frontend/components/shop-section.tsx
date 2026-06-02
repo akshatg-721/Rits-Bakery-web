@@ -19,7 +19,7 @@ interface ShopSectionProps {
 }
 
 export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
-  const { addItem, setCartOpen } = useCart()
+  const { addItem } = useCart()
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
   const [activeCategory, setActiveCategory] = useState('All')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -44,7 +44,6 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
       description: product.description,
       image: product.image,
     })
-    setCartOpen(true)
   }
 
   const filteredProducts = useMemo(() => {

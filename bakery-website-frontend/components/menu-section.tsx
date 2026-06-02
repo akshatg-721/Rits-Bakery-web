@@ -11,7 +11,7 @@ interface MenuSectionProps {
 }
 
 export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
-  const { addItem, setCartOpen } = useCart()
+  const { addItem } = useCart()
 
   const handleAddToCart = (product: MenuProduct) => {
     addItem({
@@ -22,7 +22,6 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
       description: product.description,
       image: product.image,
     })
-    setCartOpen(true)
   }
 
   const normalizedQuery = initialSearchQuery.trim().toLowerCase()

@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { ShoppingBag } from 'lucide-react'
 
 import type { MenuProduct } from '@/lib/menu-data'
@@ -17,9 +18,16 @@ export function MenuProductCard({
   showEgglessLabel = true,
   onAddToCart,
 }: MenuProductCardProps) {
+  const [isAdded, setIsAdded] = useState(false)
   const Heading = headingLevel
   const isVegan =
     product.name.toLowerCase().includes('vegan') || Boolean(product.vegan)
+
+  const handleAddToCart = () => {
+    onAddToCart(product)
+    setIsAdded(true)
+    window.setTimeout(() => setIsAdded(false), 2000)
+  }
 
   return (
     <article className="group transition-transform duration-200 active:scale-[0.985]">
@@ -44,19 +52,25 @@ export function MenuProductCard({
         />
         <button
           type="button"
-          aria-label={`Add ${product.name} to cart`}
-          className="absolute bottom-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-black shadow-sm backdrop-blur-sm sm:hidden"
-          onClick={() => onAddToCart(product)}
+          aria-label={isAdded ? `${product.name} added to cart` : `Add ${product.name} to cart`}
+          className={`absolute bottom-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full shadow-sm backdrop-blur-sm sm:hidden ${
+            isAdded ? 'bg-[#2a3c24] text-white' : 'bg-white/90 text-black'
+          }`}
+          onClick={handleAddToCart}
         >
           <ShoppingBag className="size-4" />
         </button>
         <button
           type="button"
-          className="absolute inset-x-0 bottom-0 hidden min-h-12 items-center justify-center bg-[#111111]/90 px-4 text-center shadow-[0_8px_20px_rgb(0,0,0,0.18)] backdrop-blur-sm transition-all duration-300 hover:bg-[#006241] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 sm:flex sm:translate-y-full sm:group-hover:translate-y-0 sm:focus-visible:translate-y-0"
-          onClick={() => onAddToCart(product)}
+          className={`absolute inset-x-0 bottom-0 hidden min-h-12 items-center justify-center px-4 text-center shadow-[0_8px_20px_rgb(0,0,0,0.18)] backdrop-blur-sm transition-all duration-300 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#006241] focus-visible:ring-offset-2 sm:flex sm:translate-y-full sm:group-hover:translate-y-0 sm:focus-visible:translate-y-0 ${
+            isAdded
+              ? 'bg-[#2a3c24]'
+              : 'bg-[#111111]/90 hover:bg-[#006241]'
+          }`}
+          onClick={handleAddToCart}
         >
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
-            Add to Cart
+            {isAdded ? 'Added ✓' : 'Add to Cart'}
           </span>
         </button>
       </div>

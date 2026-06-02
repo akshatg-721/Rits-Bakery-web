@@ -63,7 +63,7 @@ export function Header() {
       </div>
 
       {/* ── Main Header ── */}
-      <header className="sticky top-0 z-50 w-full border-b border-gray-100/80 bg-white/95 shadow-[0_4px_20px_rgb(0,0,0,0.04)] backdrop-blur-md transition-all duration-300">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-gray-200/50 bg-[#F9F9F9]/80 backdrop-blur-md">
 
         {/* ════════════════════════════════════════
             MOBILE HEADER  (hidden on md+)

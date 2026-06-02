@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -14,10 +15,15 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
-import { checkoutWithWhatsApp } from '@/lib/checkout'
+import {
+  LINE_ORDER_URL,
+  buildCheckoutOrderMessage,
+  checkoutWithWhatsApp,
+} from '@/lib/checkout'
 import { useCart } from '@/lib/cart-context'
 
 export function CartDrawer() {
+  const [isLineOpening, setIsLineOpening] = useState(false)
   const {
     cartItems,
     updateQuantity,
@@ -29,6 +35,29 @@ export function CartDrawer() {
   } = useCart()
 
   const isEmpty = cartItems.length === 0
+
+  const checkoutWithLine = () => {
+    if (cartItems.length === 0) return
+
+    const orderString = buildCheckoutOrderMessage(cartItems)
+
+    setIsLineOpening(true)
+    void navigator.clipboard?.writeText(orderString).catch(() => undefined)
+
+    const checkoutWindow = window.open(
+      LINE_ORDER_URL,
+      '_blank',
+      'noopener,noreferrer',
+    )
+
+    if (checkoutWindow) {
+      checkoutWindow.opener = null
+    }
+
+    window.setTimeout(() => {
+      setIsLineOpening(false)
+    }, 2400)
+  }
 
   return (
     <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
@@ -152,7 +181,10 @@ export function CartDrawer() {
 
         {/* ── Footer (only visible when cart has items) ── */}
         {!isEmpty && (
-          <SheetFooter className="mt-auto border-t border-gray-100 bg-white/95 px-5 py-5 shadow-[0_-10px_30px_rgb(0,0,0,0.04)] sm:px-6">
+          <SheetFooter
+            className="mt-auto border-t border-gray-100 bg-white/95 px-5 py-5 shadow-[0_-10px_30px_rgb(0,0,0,0.04)] sm:px-6"
+            style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
+          >
             <div className="flex w-full flex-col gap-4">
               <div className="flex items-center justify-between">
                 <span className="text-base font-medium text-gray-600 sm:text-sm">
@@ -162,14 +194,34 @@ export function CartDrawer() {
                   ฿{totalPrice.toLocaleString()}
                 </span>
               </div>
-              <Button
-                id="cart-checkout-button"
-                className="min-h-12 w-full rounded-md bg-[#006241] text-base font-semibold text-white shadow-[0_12px_28px_rgb(0,98,65,0.18)] transition-all hover:-translate-y-0.5 hover:bg-[#004F35] hover:shadow-[0_16px_36px_rgb(0,98,65,0.22)] active:translate-y-0 active:scale-[0.98]"
-                onClick={() => checkoutWithWhatsApp(cartItems)}
-              >
-                <MessageCircle className="size-5" />
-                Send Order via WhatsApp
-              </Button>
+              <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
+                <Button
+                  id="cart-checkout-line-button"
+                  className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#06C755] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(6,199,85,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#05B54D] md:hover:shadow-[0_16px_36px_rgb(6,199,85,0.22)] [&_svg]:pointer-events-auto"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    checkoutWithLine()
+                  }}
+                >
+                  <MessageCircle className="size-5 cursor-pointer" />
+                  <span className="cursor-pointer">
+                    {isLineOpening
+                      ? 'Order Copied! Opening LINE...'
+                      : 'Send Order via LINE'}
+                  </span>
+                </Button>
+                <Button
+                  id="cart-checkout-button"
+                  className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#006241] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(0,98,65,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#004F35] md:hover:shadow-[0_16px_36px_rgb(0,98,65,0.22)] [&_svg]:pointer-events-auto"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    checkoutWithWhatsApp(cartItems)
+                  }}
+                >
+                  <MessageCircle className="size-5 cursor-pointer" />
+                  <span className="cursor-pointer">Send Order via WhatsApp</span>
+                </Button>
+              </div>
               <p className="text-center text-xs leading-5 text-gray-400">
                 We’ll confirm availability, delivery time, and final total in chat.
               </p>

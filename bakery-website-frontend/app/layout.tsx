@@ -48,7 +48,9 @@ export default function RootLayout({
       <body className="min-h-screen overflow-x-hidden bg-[#F9F9F9] font-sans text-[#111111] antialiased">
         <CartProvider>
           <Header />
-          {children}
+          <main className="pt-24 md:pt-32">
+            {children}
+          </main>
           <Footer />
           <WhatsAppFAB />
         </CartProvider>
