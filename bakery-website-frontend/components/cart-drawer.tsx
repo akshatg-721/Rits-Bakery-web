@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -15,12 +16,14 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet'
 import {
+  LINE_ORDER_URL,
   buildCheckoutOrderMessage,
   checkoutWithWhatsApp,
 } from '@/lib/checkout'
 import { useCart } from '@/lib/cart-context'
 
 export function CartDrawer() {
+  const [isLineOpening, setIsLineOpening] = useState(false)
   const {
     cartItems,
     updateQuantity,
@@ -37,10 +40,12 @@ export function CartDrawer() {
     if (cartItems.length === 0) return
 
     const orderString = buildCheckoutOrderMessage(cartItems)
-    const checkoutUrl = `https://line.me/R/oaMessage/%40theritsbaker/?${encodeURIComponent(orderString)}`
+
+    setIsLineOpening(true)
+    void navigator.clipboard?.writeText(orderString).catch(() => undefined)
 
     const checkoutWindow = window.open(
-      checkoutUrl,
+      LINE_ORDER_URL,
       '_blank',
       'noopener,noreferrer',
     )
@@ -48,6 +53,10 @@ export function CartDrawer() {
     if (checkoutWindow) {
       checkoutWindow.opener = null
     }
+
+    window.setTimeout(() => {
+      setIsLineOpening(false)
+    }, 2400)
   }
 
   return (
@@ -195,7 +204,11 @@ export function CartDrawer() {
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />
-                  <span className="cursor-pointer">Send Order via LINE</span>
+                  <span className="cursor-pointer">
+                    {isLineOpening
+                      ? 'Order Copied! Opening LINE...'
+                      : 'Send Order via LINE'}
+                  </span>
                 </Button>
                 <Button
                   id="cart-checkout-button"
