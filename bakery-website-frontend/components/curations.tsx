@@ -24,30 +24,34 @@ export function Curations() {
         <div className="relative">
           <div className="-mx-4 overflow-x-auto px-4 pb-2 pr-12 no-scrollbar sm:mx-0 sm:px-0">
             <div className="flex w-max snap-x snap-mandatory gap-5 sm:w-auto sm:flex-wrap sm:justify-center sm:gap-6 lg:gap-10">
-              {menuCategories.map((curation) => (
-                <Link
-                  key={curation.slug}
-                  href={`#${curation.slug}`}
-                  className="group flex min-w-[112px] snap-start flex-col items-center gap-3 rounded-md py-1 transition-transform duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]/30 active:scale-[0.98] sm:min-w-0"
-                  aria-label={`Browse ${curation.title}`}
-                >
-                  {/* Circle image */}
-                  <div className="relative size-24 overflow-hidden rounded-full shadow-[0_10px_26px_rgb(0,0,0,0.06)] ring-1 ring-black/5 ring-offset-2 ring-offset-white transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-[#006241]/60 lg:size-32">
-                    <img
-                      src={curation.image}
-                      alt={curation.title}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
-                    />
-                    {/* Subtle green tint on hover */}
-                    <div className="absolute inset-0 rounded-full bg-[#006241]/0 transition duration-300 group-hover:bg-[#006241]/10" />
-                  </div>
+              {menuCategories.map((curation) => {
+                const displayName = curation.title.replace(/\s*\(.*?\)/g, '')
 
-                  {/* Label */}
-                  <span className="max-w-[108px] text-center text-sm font-semibold leading-tight text-[#111111] transition group-hover:text-[#006241] sm:max-w-[120px] lg:max-w-[128px]">
-                    {curation.title}
-                  </span>
-                </Link>
-              ))}
+                return (
+                  <Link
+                    key={curation.slug}
+                    href={`#${curation.slug}`}
+                    className="group flex min-w-[112px] snap-start flex-col items-center gap-3 rounded-md py-1 transition-transform duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#006241]/30 active:scale-[0.98] sm:min-w-0"
+                    aria-label={`Browse ${displayName}`}
+                  >
+                    {/* Circle image */}
+                    <div className="relative size-24 overflow-hidden rounded-full shadow-[0_10px_26px_rgb(0,0,0,0.06)] ring-1 ring-black/5 ring-offset-2 ring-offset-white transition-all duration-300 group-hover:-translate-y-1 group-hover:ring-[#006241]/60 lg:size-32">
+                      <img
+                        src={curation.image}
+                        alt={curation.title}
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
+                      />
+                      {/* Subtle green tint on hover */}
+                      <div className="absolute inset-0 rounded-full bg-[#006241]/0 transition duration-300 group-hover:bg-[#006241]/10" />
+                    </div>
+
+                    {/* Label */}
+                    <span className="max-w-[108px] text-center text-sm font-semibold leading-tight text-[#111111] transition group-hover:text-[#006241] sm:max-w-[120px] lg:max-w-[128px]">
+                      {displayName}
+                    </span>
+                  </Link>
+                )
+              })}
             </div>
           </div>
           <div

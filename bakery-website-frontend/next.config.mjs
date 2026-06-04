@@ -56,6 +56,7 @@ const securityHeaders = [
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  allowedDevOrigins: ['tiny-frogs-wonder.loca.lt'],
   images: {
     unoptimized: true,
   },

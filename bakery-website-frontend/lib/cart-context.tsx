@@ -16,6 +16,7 @@ export interface CartProduct {
   displayPrice: string
   description?: string
   image?: string
+  vegan?: boolean
 }
 
 export interface CartItem extends CartProduct {

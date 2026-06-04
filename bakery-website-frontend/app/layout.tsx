@@ -3,6 +3,7 @@ import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import { Toaster } from '@/components/ui/toaster'
 import { CartProvider } from '@/lib/cart-context'
 import { WhatsAppFAB } from '@/components/whatsapp-fab'
 import './globals.css'
@@ -53,6 +54,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <WhatsAppFAB />
+          <Toaster />
         </CartProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

@@ -1,10 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import {
   Sheet,
@@ -15,15 +13,11 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet'
-import {
-  LINE_ORDER_URL,
-  buildCheckoutOrderMessage,
-  checkoutWithWhatsApp,
-} from '@/lib/checkout'
+
+import { checkoutWithLine, checkoutWithWhatsApp } from '@/lib/checkout'
 import { useCart } from '@/lib/cart-context'
 
 export function CartDrawer() {
-  const [isLineOpening, setIsLineOpening] = useState(false)
   const {
     cartItems,
     updateQuantity,
@@ -36,37 +30,14 @@ export function CartDrawer() {
 
   const isEmpty = cartItems.length === 0
 
-  const checkoutWithLine = () => {
-    if (cartItems.length === 0) return
-
-    const orderString = buildCheckoutOrderMessage(cartItems)
-
-    setIsLineOpening(true)
-    void navigator.clipboard?.writeText(orderString).catch(() => undefined)
-
-    const checkoutWindow = window.open(
-      LINE_ORDER_URL,
-      '_blank',
-      'noopener,noreferrer',
-    )
-
-    if (checkoutWindow) {
-      checkoutWindow.opener = null
-    }
-
-    window.setTimeout(() => {
-      setIsLineOpening(false)
-    }, 2400)
-  }
-
   return (
     <Sheet open={isCartOpen} onOpenChange={setCartOpen}>
       <SheetContent
         side="right"
-        className="flex w-full flex-col border-l border-white/80 bg-white/95 p-0 backdrop-blur-xl sm:max-w-md"
+        className="flex h-full max-h-screen min-h-0 w-full flex-col overflow-hidden border-l border-white/80 bg-white/95 p-0 backdrop-blur-xl sm:max-w-md"
       >
         {/* ── Header ── */}
-        <SheetHeader className="border-b border-gray-100/90 px-6 py-5">
+        <SheetHeader className="shrink-0 border-b border-gray-100/90 px-6 py-5">
           <SheetTitle className="flex items-center gap-2.5 pr-10 text-xl font-semibold text-[#111111]">
             <ShoppingBag className="size-5 text-[#006241]" />
             Your Order
@@ -104,8 +75,8 @@ export function CartDrawer() {
           </div>
         ) : (
           /* ── Populated State ── */
-          <ScrollArea className="flex-1">
-            <div className="flex flex-col gap-1 px-5 py-4 sm:px-6">
+          <div className="flex-1 overflow-y-auto overscroll-contain px-5 py-4 sm:px-6">
+            <div className="flex flex-col gap-1 pr-1">
               {cartItems.map((item, index) => (
                 <div key={item.id}>
                   <div className="flex items-center gap-4 py-4">
@@ -176,13 +147,13 @@ export function CartDrawer() {
                 </div>
               ))}
             </div>
-          </ScrollArea>
+          </div>
         )}
 
         {/* ── Footer (only visible when cart has items) ── */}
         {!isEmpty && (
           <SheetFooter
-            className="mt-auto border-t border-gray-100 bg-white/95 px-5 py-5 shadow-[0_-10px_30px_rgb(0,0,0,0.04)] sm:px-6"
+            className="mt-auto shrink-0 border-t border-gray-100 bg-white/95 px-5 py-5 shadow-[0_-10px_30px_rgb(0,0,0,0.04)] sm:px-6"
             style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
           >
             <div className="flex w-full flex-col gap-4">
@@ -200,15 +171,11 @@ export function CartDrawer() {
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#06C755] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(6,199,85,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#05B54D] md:hover:shadow-[0_16px_36px_rgb(6,199,85,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithLine()
+                    checkoutWithLine(cartItems)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />
-                  <span className="cursor-pointer">
-                    {isLineOpening
-                      ? 'Order Copied! Opening LINE...'
-                      : 'Send Order via LINE'}
-                  </span>
+                  <span className="cursor-pointer">Send Order via LINE</span>
                 </Button>
                 <Button
                   id="cart-checkout-button"

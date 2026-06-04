@@ -43,6 +43,7 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
       displayPrice: product.price,
       description: product.description,
       image: product.image,
+      vegan: product.vegan,
     })
   }
 

@@ -21,6 +21,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
       displayPrice: product.price,
       description: product.description,
       image: product.image,
+      vegan: product.vegan,
     })
   }
 
