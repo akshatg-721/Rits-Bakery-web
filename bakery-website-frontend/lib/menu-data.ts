@@ -152,6 +152,14 @@ const menuProductCategories: MenuCategory[] = [
         image: '/menu/double_choco_cookies_menu.jpeg',
       },
       {
+        id: 'gluten-free-nuts-cookies',
+        name: 'Gluten Free Nuts Cookies',
+        price: '฿ 290',
+        numericPrice: 290,
+        image: '/menu/Gluten_free_nuts_cookies.jpg',
+        tags: ['Gluten Free', 'Contains Nuts'],
+      },
+      {
         id: 'assorted-biscoff-truffles-pack-of-12',
         name: 'Assorted Biscoff Truffles (12 pcs)',
         price: '฿ 400',
