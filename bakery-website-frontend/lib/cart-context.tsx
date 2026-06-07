@@ -23,6 +23,12 @@ export interface CartItem extends CartProduct {
   quantity: number
 }
 
+export interface Coupon {
+  code: string
+  type: 'flat' | 'percent'
+  value: number
+}
+
 interface CartContextValue {
   cartItems: CartItem[]
   addItem: (product: CartProduct) => void
@@ -31,6 +37,10 @@ interface CartContextValue {
   clearCart: () => void
   totalItems: number
   totalPrice: number
+  appliedCoupon: Coupon | null
+  applyCoupon: (coupon: Coupon) => void
+  removeCoupon: () => void
+  discountAmount: number
   isCartOpen: boolean
   setCartOpen: (open: boolean) => void
 }
@@ -39,6 +49,7 @@ const CartContext = createContext<CartContextValue | undefined>(undefined)
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
+  const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null)
   const [isCartOpen, setCartOpen] = useState(false)
 
   const addItem = useCallback((product: CartProduct) => {
@@ -75,6 +86,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = useCallback(() => {
     setCartItems([])
+    setAppliedCoupon(null)
+  }, [])
+
+  const applyCoupon = useCallback((coupon: Coupon) => {
+    setAppliedCoupon(coupon)
+  }, [])
+
+  const removeCoupon = useCallback(() => {
+    setAppliedCoupon(null)
   }, [])
 
   const totalItems = useMemo(
@@ -87,6 +107,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     [cartItems],
   )
 
+  const discountAmount = useMemo(() => {
+    if (!appliedCoupon) return 0
+    if (appliedCoupon.type === 'percent') {
+      return Math.round(totalPrice * (appliedCoupon.value / 100))
+    }
+    return appliedCoupon.value
+  }, [appliedCoupon, totalPrice])
+
   const value = useMemo(
     () => ({
       cartItems,
@@ -96,10 +124,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
       clearCart,
       totalItems,
       totalPrice,
+      appliedCoupon,
+      applyCoupon,
+      removeCoupon,
+      discountAmount,
       isCartOpen,
       setCartOpen,
     }),
-    [addItem, cartItems, clearCart, isCartOpen, removeItem, totalItems, totalPrice, updateQuantity],
+    [
+      addItem,
+      cartItems,
+      clearCart,
+      appliedCoupon,
+      applyCoupon,
+      removeCoupon,
+      discountAmount,
+      isCartOpen,
+      removeItem,
+      totalItems,
+      totalPrice,
+      updateQuantity,
+    ],
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

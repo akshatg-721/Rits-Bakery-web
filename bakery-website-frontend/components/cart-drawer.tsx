@@ -1,9 +1,20 @@
 'use client'
 
-import { MessageCircle, Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react'
+import { useState } from 'react'
+import {
+  Loader2,
+  MessageCircle,
+  Minus,
+  Plus,
+  ShoppingBag,
+  Tag,
+  Trash2,
+  X,
+} from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { Input } from '@/components/ui/input'
 import {
   Sheet,
   SheetClose,
@@ -26,7 +37,45 @@ export function CartDrawer() {
     totalItems,
     isCartOpen,
     setCartOpen,
+    appliedCoupon,
+    applyCoupon,
+    removeCoupon,
+    discountAmount,
   } = useCart()
+
+  const [couponCode, setCouponCode] = useState('')
+  const [isExpanding, setIsExpanding] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) return
+    setIsLoading(true)
+    setError('')
+    try {
+      const response = await fetch('/api/check-coupon', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: couponCode }),
+      })
+      const data = await response.json()
+      if (data.success) {
+        applyCoupon({
+          code: data.code,
+          type: data.type,
+          value: data.value,
+        })
+        setCouponCode('')
+        setIsExpanding(false)
+      } else {
+        setError(data.message || 'Invalid code')
+      }
+    } catch (err) {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const isEmpty = cartItems.length === 0
 
@@ -157,21 +206,119 @@ export function CartDrawer() {
             style={{ paddingBottom: 'calc(1.25rem + env(safe-area-inset-bottom))' }}
           >
             <div className="flex w-full flex-col gap-4">
-              <div className="flex items-center justify-between">
-                <span className="text-base font-medium text-gray-600 sm:text-sm">
-                  Subtotal
-                </span>
-                <span className="text-lg font-bold tabular-nums text-[#111111]">
-                  ฿{totalPrice.toLocaleString()}
-                </span>
+              {/* ── Promo Code Section ── */}
+              <div className="flex flex-col gap-2">
+                {!appliedCoupon ? (
+                  !isExpanding ? (
+                    <button
+                      onClick={() => setIsExpanding(true)}
+                      className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-[#006241] transition-colors hover:text-[#004F35]"
+                    >
+                      <Tag className="size-3" />
+                      Have a promo code?
+                    </button>
+                  ) : (
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center gap-2">
+                        <Input
+                          placeholder="Enter code"
+                          value={couponCode}
+                          onChange={(e) => setCouponCode(e.target.value)}
+                          className="h-9 text-sm"
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') handleApplyCoupon()
+                          }}
+                        />
+                        <Button
+                          size="sm"
+                          onClick={handleApplyCoupon}
+                          disabled={isLoading || !couponCode.trim()}
+                          className="h-9 bg-[#006241] px-4 text-xs font-semibold text-white hover:bg-[#004F35]"
+                        >
+                          {isLoading ? (
+                            <Loader2 className="size-3 animate-spin" />
+                          ) : (
+                            'Apply'
+                          )}
+                        </Button>
+                        <button
+                          onClick={() => {
+                            setIsExpanding(false)
+                            setError('')
+                          }}
+                          className="p-1 text-gray-400 hover:text-gray-600"
+                        >
+                          <X className="size-4" />
+                        </button>
+                      </div>
+                      {error && (
+                        <p className="text-[11px] font-medium text-red-500">
+                          {error}
+                        </p>
+                      )}
+                    </div>
+                  )
+                ) : (
+                  <div className="flex items-center justify-between rounded-md bg-[#006241]/5 px-3 py-2 border border-[#006241]/10">
+                    <div className="flex items-center gap-2">
+                      <Tag className="size-3.5 text-[#006241]" />
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#006241]">
+                        {appliedCoupon.code} Applied
+                      </span>
+                    </div>
+                    <button
+                      onClick={removeCoupon}
+                      className="text-[#006241] hover:text-red-500 transition-colors"
+                    >
+                      <X className="size-4" />
+                    </button>
+                  </div>
+                )}
               </div>
+
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-base font-medium text-gray-600 sm:text-sm">
+                    Subtotal
+                  </span>
+                  <span
+                    className={`text-lg font-bold tabular-nums text-[#111111] ${
+                      appliedCoupon ? 'text-sm font-normal text-gray-400 line-through' : ''
+                    }`}
+                  >
+                    ฿{totalPrice.toLocaleString()}
+                  </span>
+                </div>
+
+                {appliedCoupon && (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <span className="text-base font-medium text-[#006241] sm:text-sm">
+                        Discount
+                      </span>
+                      <span className="text-base font-bold tabular-nums text-[#006241]">
+                        -฿{discountAmount.toLocaleString()}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between pt-1">
+                      <span className="text-base font-bold text-[#111111] sm:text-sm">
+                        Total
+                      </span>
+                      <span className="text-xl font-bold tabular-nums text-[#111111]">
+                        ฿{(totalPrice - discountAmount).toLocaleString()}
+                      </span>
+                    </div>
+                  </>
+                )}
+              </div>
+
               <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
                 <Button
                   id="cart-checkout-line-button"
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#06C755] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(6,199,85,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#05B54D] md:hover:shadow-[0_16px_36px_rgb(6,199,85,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithLine(cartItems)
+                    checkoutWithLine(cartItems, appliedCoupon, discountAmount)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />
@@ -182,7 +329,7 @@ export function CartDrawer() {
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#006241] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(0,98,65,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#004F35] md:hover:shadow-[0_16px_36px_rgb(0,98,65,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithWhatsApp(cartItems)
+                    checkoutWithWhatsApp(cartItems, appliedCoupon, discountAmount)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />
