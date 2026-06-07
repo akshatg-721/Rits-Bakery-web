@@ -246,6 +246,7 @@ const menuProductCategories: MenuCategory[] = [
         price: '฿ 195',
         numericPrice: 195,
         image: '/menu/pizza_muffins_menu.png',
+        isTopSeller: true,
       },
       {
         id: 'spinach-muffins-box-of-6',
