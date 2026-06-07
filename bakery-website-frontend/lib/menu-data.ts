@@ -153,7 +153,7 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'gluten-free-nuts-cookies',
-        name: 'Gluten Free Nuts Cookies',
+        name: 'Gluten Free Nuts Cookies (Ekadashi Special)',
         price: '฿ 290',
         numericPrice: 290,
         image: '/menu/Gluten_free_nuts_cookies.jpg',
@@ -232,6 +232,14 @@ const menuProductCategories: MenuCategory[] = [
         numericPrice: 590,
         image: '/menu/Rose_pistacho_cake_menu.jpg',
         tags: ['Contains Nuts'],
+      },
+      {
+        id: 'gluten-free-nuts-cake-ekadashi',
+        name: 'Gluten free Nuts cake (Ekadashi Special)',
+        price: '฿ 590 / lb',
+        numericPrice: 590,
+        image: '/menu/Ekadashi_Nuts_Cake.jpeg',
+        tags: ['Gluten Free', 'Contains Nuts'],
       },
     ],
   },
