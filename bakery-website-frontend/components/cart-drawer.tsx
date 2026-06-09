@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import {
+  Gift,
   Loader2,
   MessageCircle,
   Minus,
@@ -256,6 +257,21 @@ export function CartDrawer() {
                           {error}
                         </p>
                       )}
+
+                      {/* ── VIP Promo Code Notice ── */}
+                      <div className="flex items-start gap-1.5 mt-2 px-1">
+                        <Gift className="mt-0.5 size-3.5 shrink-0 text-[#006241]/70" />
+                        <p className="text-[11px] leading-tight text-muted-foreground/80">
+                          Spend ฿5,000/month to unlock VIP codes.{' '}
+                          <a
+                            href="mailto:theritsbaker@gmail.com"
+                            className="font-normal text-muted-foreground underline decoration-muted-foreground/40 hover:text-primary transition-colors"
+                          >
+                            Email us
+                          </a>{' '}
+                          to claim.
+                        </p>
+                      </div>
                     </div>
                   )
                 ) : (

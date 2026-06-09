@@ -7,6 +7,7 @@ export interface MenuProduct {
   description?: string
   tags?: string[]
   isTopSeller?: boolean
+  isHighProtein?: boolean
   vegan?: boolean
 }
 
@@ -153,11 +154,12 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'gluten-free-nuts-cookies',
-        name: 'Gluten Free Nuts Cookies (Ekadashi Special)',
-        price: '฿ 290',
-        numericPrice: 290,
+        name: 'Gluten Free Nuts Cookies (Ekadashi Special) - 225gms',
+        price: '฿ 299',
+        numericPrice: 299,
         image: '/menu/Gluten_free_nuts_cookies.jpg',
         tags: ['Gluten Free', 'Contains Nuts'],
+        isHighProtein: true,
       },
       {
         id: 'assorted-biscoff-truffles-pack-of-12',
@@ -224,6 +226,7 @@ const menuProductCategories: MenuCategory[] = [
         numericPrice: 390,
         image: '/menu/Date_Walnut_Cake_menu.jpg',
         tags: ['No Sugar', 'Contains Nuts'],
+        isHighProtein: true,
       },
       {
         id: 'rose-n-pistachio-cake',
@@ -240,6 +243,7 @@ const menuProductCategories: MenuCategory[] = [
         numericPrice: 590,
         image: '/menu/Ekadashi_Nuts_Cake.jpeg',
         tags: ['Gluten Free', 'Contains Nuts'],
+        isHighProtein: true,
       },
     ],
   },
@@ -478,6 +482,7 @@ const menuProductCategories: MenuCategory[] = [
           numericPrice: 440,
           image: '/menu/Date_Walnut_Cake_menu.jpg',
           tags: ['No Sugar', 'Contains Nuts'],
+          isHighProtein: true,
           vegan: true,
         },
         {
