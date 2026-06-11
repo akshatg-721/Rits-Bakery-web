@@ -44,7 +44,7 @@ interface CartContextValue {
   totalItems: number
   totalPrice: number
   appliedCoupon: Coupon | null
-  applyCoupon: (coupon: Coupon) => void
+  applyCoupon: (coupon: Coupon) => { success: boolean; error?: string }
   removeCoupon: () => void
   discountAmount: number
   deliveryDetails: DeliveryDetails
@@ -87,6 +87,31 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('rits-baker-delivery-details', JSON.stringify(deliveryDetails))
   }, [deliveryDetails])
 
+  const totalItems = useMemo(
+    () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
+    [cartItems],
+  )
+
+  const totalPrice = useMemo(
+    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [cartItems],
+  )
+
+  const discountAmount = useMemo(() => {
+    if (!appliedCoupon) return 0
+    if (appliedCoupon.type === 'percent') {
+      return Math.round(totalPrice * (appliedCoupon.value / 100))
+    }
+    return appliedCoupon.value
+  }, [appliedCoupon, totalPrice])
+
+  // Auto-remove coupon if subtotal drops below 300
+  useEffect(() => {
+    if (appliedCoupon && totalPrice < 300) {
+      setAppliedCoupon(null)
+    }
+  }, [totalPrice, appliedCoupon])
+
   const addItem = useCallback((product: CartProduct) => {
     setCartItems((items) => {
       const existingItem = items.find((item) => item.id === product.id)
@@ -125,30 +150,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const applyCoupon = useCallback((coupon: Coupon) => {
+    if (totalPrice < 300) {
+      return { success: false, error: 'Minimum order of ฿300 required to use promo codes.' }
+    }
     setAppliedCoupon(coupon)
-  }, [])
+    return { success: true }
+  }, [totalPrice])
 
   const removeCoupon = useCallback(() => {
     setAppliedCoupon(null)
   }, [])
-
-  const totalItems = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
-    [cartItems],
-  )
-
-  const totalPrice = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    [cartItems],
-  )
-
-  const discountAmount = useMemo(() => {
-    if (!appliedCoupon) return 0
-    if (appliedCoupon.type === 'percent') {
-      return Math.round(totalPrice * (appliedCoupon.value / 100))
-    }
-    return appliedCoupon.value
-  }, [appliedCoupon, totalPrice])
 
   const value = useMemo(
     () => ({

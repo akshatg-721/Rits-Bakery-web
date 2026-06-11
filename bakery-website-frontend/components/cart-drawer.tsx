@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import {
+  CalendarClock,
   Gift,
   Loader2,
   MapPin,
@@ -59,11 +60,20 @@ export function CartDrawer() {
   const [error, setError] = useState('')
   const [isDeliveryExpanding, setIsDeliveryExpanding] = useState(false)
   const [validDates, setValidDates] = useState<ReturnType<typeof getValidDeliveryDates>>([])
+  const [previousAppliedCoupon, setPreviousAppliedCoupon] = useState<string | null>(null)
 
   // Hydration safe: initialize valid dates on client only
   useEffect(() => {
     setValidDates(getValidDeliveryDates())
   }, [])
+
+  // Track when coupon is auto-removed
+  useEffect(() => {
+    if (previousAppliedCoupon && !appliedCoupon) {
+      setError('Promo code removed: Minimum order of ฿300 required.')
+    }
+    setPreviousAppliedCoupon(appliedCoupon?.code || null)
+  }, [appliedCoupon, previousAppliedCoupon])
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return
@@ -77,13 +87,17 @@ export function CartDrawer() {
       })
       const data = await response.json()
       if (data.success) {
-        applyCoupon({
+        const result = applyCoupon({
           code: data.code,
           type: data.type,
           value: data.value,
         })
-        setCouponCode('')
-        setIsExpanding(false)
+        if (!result.success) {
+          setError(result.error || '')
+        } else {
+          setCouponCode('')
+          setIsExpanding(false)
+        }
       } else {
         setError(data.message || 'Invalid code')
       }
@@ -355,62 +369,71 @@ export function CartDrawer() {
                     + Add Delivery Details (Optional)
                   </button>
                 ) : (
-                  <div className="flex flex-col gap-2">
-                    {/* Date Selector */}
-                    <select
-                      value={deliveryDate || ''}
-                      onChange={(e) => {
-                        const newDate = e.target.value || null
-                        setDeliveryDate(newDate)
-                        if (!newDate) {
-                          setDeliveryTime(null)
-                        } else {
-                            // Clear time if new date is selected (to avoid invalid slot mismatch
-                        }
-                      }}
-                      className="flex h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent"
-                    >
-                      <option value="">Preferred Date (Optional)</option>
-                      {validDates.map((date) => (
-                        <option key={date.value} value={date.value}>
-                          {date.label}
-                        </option>
-                      ))}
-                    </select>
+                  <div className="flex flex-col gap-3">
+                    {/* Delivery Schedule Container */}
+                    <div className="rounded-md border border-gray-200 bg-gray-50 p-3">
+                      <div className="flex items-center gap-1.5 mb-2 text-xs font-medium text-gray-600">
+                        <CalendarClock className="size-3.5" />
+                        Delivery Schedule (Optional)
+                      </div>
+                      <div className="flex flex-row gap-2 w-full">
+                        {/* Date Selector */}
+                        <select
+                          value={deliveryDate || ''}
+                          onChange={(e) => {
+                            const newDate = e.target.value || null
+                            setDeliveryDate(newDate)
+                            if (!newDate) {
+                              setDeliveryTime(null)
+                            }
+                          }}
+                          className="flex-1 h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent"
+                        >
+                          <option value="">Select Date</option>
+                          {validDates.map((date) => (
+                            <option key={date.value} value={date.value}>
+                              {date.label}
+                            </option>
+                          ))}
+                        </select>
 
-                    {/* Time Slot Selector */}
-                    <select
-                      value={deliveryTime || ''}
-                      onChange={(e) => setDeliveryTime(e.target.value || null)}
-                      disabled={!deliveryDate}
-                      className="flex h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent disabled:bg-gray-50 disabled:text-gray-400"
-                    >
-                      <option value="">Preferred Time (Optional)</option>
-                      {getAvailableTimeSlots(deliveryDate || '').map((slot) => (
-                        <option key={slot.id} value={slot.id} disabled={slot.disabled}>
-                          {slot.label}
-                        </option>
-                      ))}
-                    </select>
+                        {/* Time Slot Selector */}
+                        <select
+                          value={deliveryTime || ''}
+                          onChange={(e) => setDeliveryTime(e.target.value || null)}
+                          disabled={!deliveryDate}
+                          className="flex-1 h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent disabled:bg-gray-100 disabled:text-gray-400"
+                        >
+                          <option value="">Select Time</option>
+                          {getAvailableTimeSlots(deliveryDate || '').map((slot) => (
+                            <option key={slot.id} value={slot.id} disabled={slot.disabled}>
+                              {slot.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
 
                     {/* Address and Map URL */}
-                    <Textarea
-                      placeholder="Building, Unit, Soi, Road..."
-                      value={deliveryDetails.address}
-                      onChange={(e) =>
-                        setDeliveryDetails({ ...deliveryDetails, address: e.target.value })
-                      }
-                      className="text-sm resize-none"
-                      rows={3}
-                    />
-                    <Input
-                      placeholder="Paste Google Maps Link (Optional)"
-                      value={deliveryDetails.mapsUrl}
-                      onChange={(e) =>
-                        setDeliveryDetails({ ...deliveryDetails, mapsUrl: e.target.value })
-                      }
-                      className="text-sm"
-                    />
+                    <div className="flex flex-col gap-2">
+                      <Textarea
+                        placeholder="Building, Unit, Soi, Road..."
+                        value={deliveryDetails.address}
+                        onChange={(e) =>
+                          setDeliveryDetails({ ...deliveryDetails, address: e.target.value })
+                        }
+                        className="text-sm resize-none"
+                        rows={3}
+                      />
+                      <Input
+                        placeholder="Paste Google Maps Link (Optional)"
+                        value={deliveryDetails.mapsUrl}
+                        onChange={(e) =>
+                          setDeliveryDetails({ ...deliveryDetails, mapsUrl: e.target.value })
+                        }
+                        className="text-sm"
+                      />
+                    </div>
                     <button
                       onClick={() => setIsDeliveryExpanding(false)}
                       className="inline-flex w-fit items-center gap-1.5 text-[11px] text-gray-500 hover:text-gray-700 transition-colors"
