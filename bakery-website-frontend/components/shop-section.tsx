@@ -66,13 +66,13 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
   }, [activeCategory, searchQuery])
 
   return (
-    <section id="menu" className="overflow-hidden px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+    <section id="menu" className="overflow-hidden px-4 py-10 sm:px-6 lg:px-8 md:py-16">
       <div className="mx-auto max-w-7xl">
-        <div className="text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-serif text-3xl italic leading-tight text-[#111111] sm:text-4xl lg:text-5xl">
             Our Eggless Bakery Menu
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-600">
+          <p className="mt-4 text-base leading-7 text-gray-600">
             Browse signature eggless bakes, gifting favorites, and desserts made
             fresh for delivery-only pre-orders.
           </p>
@@ -92,16 +92,16 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
 
           <div className="relative">
             <div className="-mx-4 flex overflow-x-auto snap-x snap-mandatory px-4 pr-12 no-scrollbar scrollbar-none sm:mx-0 sm:px-0">
-              <div className="mx-auto flex w-max gap-3 sm:w-fit">
+              <div className="mx-auto flex w-max gap-3 pb-4 sm:w-fit">
                 {menuCategoryOptions.map((category) => (
                   <button
                     key={category}
                     type="button"
                     onClick={() => setActiveCategory(category)}
-                    className={`min-h-11 snap-start whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium shadow-[0_2px_10px_rgb(0,0,0,0.03)] transition-all duration-200 active:scale-[0.97] ${
+                    className={`min-h-11 snap-start whitespace-nowrap rounded-full border px-5 py-2 text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
                       activeCategory === category
-                        ? 'border-[#006241] bg-[#006241] text-white shadow-[0_8px_20px_rgb(0,98,65,0.16)]'
-                        : 'border-gray-200 bg-white text-gray-700 hover:border-[#006241]/50 hover:text-[#006241]'
+                        ? 'border-[#2a3c24] bg-[#2a3c24] text-white shadow-sm'
+                        : 'border-zinc-200 bg-zinc-50 text-zinc-600 hover:border-zinc-300 hover:bg-zinc-100'
                     }`}
                   >
                     {category}

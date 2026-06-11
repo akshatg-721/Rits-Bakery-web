@@ -30,8 +30,8 @@ export function MenuProductCard({
   }
 
   return (
-    <article className="group transition-transform duration-200 active:scale-[0.985]">
-      <div className="relative aspect-square overflow-hidden rounded-sm bg-gray-100 transition-transform duration-300 sm:group-hover:-translate-y-1">
+    <article className="group">
+      <div className="relative aspect-square overflow-hidden rounded-2xl bg-zinc-50 border border-zinc-100 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
         {product.isTopSeller && (
           <span className={`absolute left-2 z-10 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-widest text-black font-medium ${product.isHighProtein ? 'top-8' : 'top-3'}`}>
             Top Seller
@@ -60,8 +60,8 @@ export function MenuProductCard({
         <button
           type="button"
           aria-label={isAdded ? `${product.name} added to cart` : `Add ${product.name} to cart`}
-          className={`absolute bottom-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full shadow-sm backdrop-blur-sm sm:hidden ${
-            isAdded ? 'bg-[#2a3c24] text-white' : 'bg-white/90 text-black'
+          className={`absolute bottom-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full shadow-sm backdrop-blur-sm transition-colors sm:hidden ${
+            isAdded ? 'bg-zinc-900 text-white' : 'bg-white/90 text-black hover:bg-zinc-900 hover:text-white'
           }`}
           onClick={handleAddToCart}
         >

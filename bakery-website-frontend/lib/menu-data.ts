@@ -34,7 +34,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Authentic Thai Banana Loaf',
         price: '฿ 190',
         numericPrice: 190,
-        image: '/gallery/Banana_cake.JPG',
+        image: '/menu/authentic_banana_loaf_menu.png',
       },
       {
         id: 'fresh-orange-loaf',
@@ -394,10 +394,10 @@ const menuProductCategories: MenuCategory[] = [
       const signatureLoaves: MenuProduct[] = [
         {
           id: 'vegan-authentic-thai-banana-loaf',
-          name: 'Authentic Thai Banana Loaf',
+          name: 'Authentic Thai Banana Loaf (Vegan)',
           price: '฿ 240',
           numericPrice: 240,
-          image: '/gallery/Banana_cake.JPG',
+          image: '/menu/authentic_banana_loaf_menu.png',
           vegan: true,
         },
         {

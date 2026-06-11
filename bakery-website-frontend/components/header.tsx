@@ -33,16 +33,13 @@ export function Header() {
   const router = useRouter()
   const pathname = usePathname()
 
-  const handleSearch = (e: Parameters<NonNullable<React.ComponentProps<'form'>['onSubmit']>>[0], closeMobileNav = false) => {
-    e.preventDefault()
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
     if (searchQuery.trim()) {
-      router.push(`/menu?q=${encodeURIComponent(searchQuery.trim())}`)
-      setSearchQuery('')
-      if (closeMobileNav) {
-        setMobileNavOpen(false)
-      }
+      router.push(`/menu?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery('');
     }
-  }
+  };
 
   const handleSearchIconClick = () => {
     if (pathname !== '/menu') {
