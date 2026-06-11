@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -29,6 +30,11 @@ export interface Coupon {
   value: number
 }
 
+export interface DeliveryDetails {
+  address: string
+  mapsUrl: string
+}
+
 interface CartContextValue {
   cartItems: CartItem[]
   addItem: (product: CartProduct) => void
@@ -38,9 +44,15 @@ interface CartContextValue {
   totalItems: number
   totalPrice: number
   appliedCoupon: Coupon | null
-  applyCoupon: (coupon: Coupon) => void
+  applyCoupon: (coupon: Coupon) => { success: boolean; error?: string }
   removeCoupon: () => void
   discountAmount: number
+  deliveryDetails: DeliveryDetails
+  setDeliveryDetails: (details: DeliveryDetails) => void
+  deliveryDate: string | null
+  setDeliveryDate: (date: string | null) => void
+  deliveryTime: string | null
+  setDeliveryTime: (time: string | null) => void
   isCartOpen: boolean
   setCartOpen: (open: boolean) => void
 }
@@ -51,6 +63,54 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null)
   const [isCartOpen, setCartOpen] = useState(false)
+  const [deliveryDetails, setDeliveryDetails] = useState<DeliveryDetails>({
+    address: '',
+    mapsUrl: '',
+  })
+  const [deliveryDate, setDeliveryDate] = useState<string | null>(null)
+  const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
+
+  // Load delivery details from localStorage on mount (hydration safe)
+  useEffect(() => {
+    const stored = localStorage.getItem('rits-baker-delivery-details')
+    if (stored) {
+      try {
+        setDeliveryDetails(JSON.parse(stored))
+      } catch {
+        // ignore invalid JSON
+      }
+    }
+  }, [])
+
+  // Save delivery details to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('rits-baker-delivery-details', JSON.stringify(deliveryDetails))
+  }, [deliveryDetails])
+
+  const totalItems = useMemo(
+    () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
+    [cartItems],
+  )
+
+  const totalPrice = useMemo(
+    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [cartItems],
+  )
+
+  const discountAmount = useMemo(() => {
+    if (!appliedCoupon) return 0
+    if (appliedCoupon.type === 'percent') {
+      return Math.round(totalPrice * (appliedCoupon.value / 100))
+    }
+    return appliedCoupon.value
+  }, [appliedCoupon, totalPrice])
+
+  // Auto-remove coupon if subtotal drops below 300
+  useEffect(() => {
+    if (appliedCoupon && totalPrice < 300) {
+      setAppliedCoupon(null)
+    }
+  }, [totalPrice, appliedCoupon])
 
   const addItem = useCallback((product: CartProduct) => {
     setCartItems((items) => {
@@ -90,30 +150,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const applyCoupon = useCallback((coupon: Coupon) => {
+    if (totalPrice < 300) {
+      return { success: false, error: 'Minimum order of ฿300 required to use promo codes.' }
+    }
     setAppliedCoupon(coupon)
-  }, [])
+    return { success: true }
+  }, [totalPrice])
 
   const removeCoupon = useCallback(() => {
     setAppliedCoupon(null)
   }, [])
-
-  const totalItems = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
-    [cartItems],
-  )
-
-  const totalPrice = useMemo(
-    () => cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0),
-    [cartItems],
-  )
-
-  const discountAmount = useMemo(() => {
-    if (!appliedCoupon) return 0
-    if (appliedCoupon.type === 'percent') {
-      return Math.round(totalPrice * (appliedCoupon.value / 100))
-    }
-    return appliedCoupon.value
-  }, [appliedCoupon, totalPrice])
 
   const value = useMemo(
     () => ({
@@ -128,6 +174,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
       applyCoupon,
       removeCoupon,
       discountAmount,
+      deliveryDetails,
+      setDeliveryDetails,
+      deliveryDate,
+      setDeliveryDate,
+      deliveryTime,
+      setDeliveryTime,
       isCartOpen,
       setCartOpen,
     }),
@@ -139,6 +191,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
       applyCoupon,
       removeCoupon,
       discountAmount,
+      deliveryDetails,
+      setDeliveryDetails,
+      deliveryDate,
+      setDeliveryDate,
+      deliveryTime,
+      setDeliveryTime,
       isCartOpen,
       removeItem,
       totalItems,

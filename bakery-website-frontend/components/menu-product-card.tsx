@@ -33,9 +33,16 @@ export function MenuProductCard({
     <article className="group transition-transform duration-200 active:scale-[0.985]">
       <div className="relative aspect-square overflow-hidden rounded-sm bg-gray-100 transition-transform duration-300 sm:group-hover:-translate-y-1">
         {product.isTopSeller && (
-          <span className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-widest text-black font-medium">
+          <span className={`absolute left-2 z-10 bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[10px] uppercase tracking-widest text-black font-medium ${product.isHighProtein ? 'top-8' : 'top-3'}`}>
             Top Seller
           </span>
+        )}
+        {product.isHighProtein && (
+          <div className="absolute left-2 top-2 z-10">
+            <span className="rounded-sm bg-[#2a3c24] px-2 py-1 text-[9px] font-semibold uppercase tracking-widest text-white shadow-sm backdrop-blur-md">
+              High Protein
+            </span>
+          </div>
         )}
         {isVegan && (
           <div className="absolute right-2 top-2 z-10">
