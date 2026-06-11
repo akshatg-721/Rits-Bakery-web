@@ -7,7 +7,7 @@ export function Curations() {
     <section
       id="curations"
       aria-label="Handcrafted curations"
-      className="overflow-hidden bg-white px-4 py-12 sm:px-6 lg:px-8 lg:py-16"
+      className="overflow-hidden bg-white px-4 py-10 sm:px-6 lg:px-8 md:py-16"
     >
       <div className="mx-auto max-w-6xl">
         {/* Heading */}

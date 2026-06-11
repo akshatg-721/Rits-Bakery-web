@@ -49,7 +49,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
 
   return (
     <section id="menu" className="overflow-hidden bg-[#FAFAF8] px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl py-14 sm:py-24">
+      <div className="mx-auto max-w-7xl py-10 md:py-16">
 
         {/* ── Search results indicator (only when filtering via URL param) ── */}
         {normalizedQuery && (
@@ -63,7 +63,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
           <div
             key={category.slug}
             id={category.slug}
-            className={catIdx > 0 ? 'mt-16 sm:mt-28' : ''}
+            className={catIdx > 0 ? 'mt-10 sm:mt-16' : ''}
             style={{ scrollMarginTop: '6rem' }}
           >
             <div className="mb-8 sm:mb-14">
@@ -101,7 +101,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
           </div>
         )}
 
-        <p className="mx-auto mt-16 max-w-2xl text-center text-base leading-7 text-gray-500 sm:mt-20 sm:text-sm sm:leading-6">
+        <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-7 text-gray-500 sm:mt-16 sm:text-sm sm:leading-6">
           All items are 100% eggless. Vegan, fasting-friendly, and monk fruit
           sweetener options available upon request. Prices may vary.
           <br />

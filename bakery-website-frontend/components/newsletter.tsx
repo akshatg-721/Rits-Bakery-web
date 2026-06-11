@@ -88,7 +88,7 @@ export function Newsletter({ socialOnly = false }: NewsletterProps) {
   return (
     <section
       aria-label="Newsletter and social links"
-      className="overflow-hidden border-t border-gray-100 bg-white px-4 py-11 sm:px-6 lg:px-8 lg:py-14"
+      className="overflow-hidden border-t border-gray-100 bg-white px-4 py-10 sm:px-6 lg:px-8 md:py-14"
     >
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-9 sm:flex-row sm:items-center sm:justify-between">
         <div className="w-full sm:max-w-md">
