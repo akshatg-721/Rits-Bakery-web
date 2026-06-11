@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Gift,
   Loader2,
@@ -30,6 +30,7 @@ import {
 
 import { checkoutWithLine, checkoutWithWhatsApp } from '@/lib/checkout'
 import { useCart } from '@/lib/cart-context'
+import { getValidDeliveryDates, getAvailableTimeSlots, TIME_SLOTS } from '@/lib/delivery-utils'
 
 export function CartDrawer() {
   const {
@@ -46,6 +47,10 @@ export function CartDrawer() {
     discountAmount,
     deliveryDetails,
     setDeliveryDetails,
+    deliveryDate,
+    setDeliveryDate,
+    deliveryTime,
+    setDeliveryTime,
   } = useCart()
 
   const [couponCode, setCouponCode] = useState('')
@@ -53,6 +58,12 @@ export function CartDrawer() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [isDeliveryExpanding, setIsDeliveryExpanding] = useState(false)
+  const [validDates, setValidDates] = useState<ReturnType<typeof getValidDeliveryDates>>([])
+
+  // Hydration safe: initialize valid dates on client only
+  useEffect(() => {
+    setValidDates(getValidDeliveryDates())
+  }, [])
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return
@@ -345,6 +356,44 @@ export function CartDrawer() {
                   </button>
                 ) : (
                   <div className="flex flex-col gap-2">
+                    {/* Date Selector */}
+                    <select
+                      value={deliveryDate || ''}
+                      onChange={(e) => {
+                        const newDate = e.target.value || null
+                        setDeliveryDate(newDate)
+                        if (!newDate) {
+                          setDeliveryTime(null)
+                        } else {
+                            // Clear time if new date is selected (to avoid invalid slot mismatch
+                        }
+                      }}
+                      className="flex h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent"
+                    >
+                      <option value="">Preferred Date (Optional)</option>
+                      {validDates.map((date) => (
+                        <option key={date.value} value={date.value}>
+                          {date.label}
+                        </option>
+                      ))}
+                    </select>
+
+                    {/* Time Slot Selector */}
+                    <select
+                      value={deliveryTime || ''}
+                      onChange={(e) => setDeliveryTime(e.target.value || null)}
+                      disabled={!deliveryDate}
+                      className="flex h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent disabled:bg-gray-50 disabled:text-gray-400"
+                    >
+                      <option value="">Preferred Time (Optional)</option>
+                      {getAvailableTimeSlots(deliveryDate || '').map((slot) => (
+                        <option key={slot.id} value={slot.id} disabled={slot.disabled}>
+                          {slot.label}
+                        </option>
+                      ))}
+                    </select>
+
+                    {/* Address and Map URL */}
                     <Textarea
                       placeholder="Building, Unit, Soi, Road..."
                       value={deliveryDetails.address}
@@ -379,7 +428,7 @@ export function CartDrawer() {
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#06C755] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(6,199,85,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#05B54D] md:hover:shadow-[0_16px_36px_rgb(6,199,85,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithLine(cartItems, appliedCoupon, discountAmount, deliveryDetails)
+                    checkoutWithLine(cartItems, appliedCoupon, discountAmount, deliveryDetails, deliveryDate, deliveryTime)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />
@@ -390,7 +439,7 @@ export function CartDrawer() {
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#006241] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(0,98,65,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#004F35] md:hover:shadow-[0_16px_36px_rgb(0,98,65,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithWhatsApp(cartItems, appliedCoupon, discountAmount, deliveryDetails)
+                    checkoutWithWhatsApp(cartItems, appliedCoupon, discountAmount, deliveryDetails, deliveryDate, deliveryTime)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />

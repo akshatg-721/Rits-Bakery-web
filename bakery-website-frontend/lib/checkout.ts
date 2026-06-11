@@ -1,5 +1,6 @@
 import type { CartItem, Coupon, DeliveryDetails } from '@/lib/cart-context'
 import { siteConfig } from '@/lib/data'
+import { TIME_SLOTS } from '@/lib/delivery-utils'
 
 const MAX_WHATSAPP_MESSAGE_LENGTH = 1800
 export const LINE_ORDER_URL = 'https://line.me/R/ti/p/%40553mbcam'
@@ -14,11 +15,23 @@ export function getWhatsAppOrderUrl(message = 'Hello The Rits Baker! I would lik
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 }
 
+function formatDateForMessage(dateValue: string): string {
+  const date = new Date(dateValue)
+  return date.toLocaleDateString('en-US', {
+    timeZone: 'Asia/Bangkok',
+    weekday: 'short',
+    day: 'numeric',
+    month: 'long',
+  })
+}
+
 export function buildCheckoutOrderMessage(
   cartItems: CartItem[],
   appliedCoupon: Coupon | null = null,
   discountAmount: number = 0,
-  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' }
+  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' },
+  deliveryDate: string | null = null,
+  deliveryTime: string | null = null
 ) {
   let message = `Hello ${siteConfig.name}! I would like to place an order:\n\n`
   let subtotal = 0
@@ -38,6 +51,22 @@ export function buildCheckoutOrderMessage(
     message += `\n*Total: ฿${subtotal - discountAmount}*`
   } else {
     message += `\n*Total: ฿${subtotal}*`
+  }
+
+  // Add delivery date/time
+  if (deliveryDate || deliveryTime) {
+    message += `\n\n--- DELIVERY TIME ---`
+    if (deliveryDate && deliveryTime) {
+      const timeSlot = TIME_SLOTS.find(s => s.id === deliveryTime)
+      message += `\n*Est. Delivery: ${formatDateForMessage(deliveryDate)} | ${timeSlot?.label || deliveryTime}*`
+    } else if (deliveryDate) {
+      message += `\n*Est. Delivery Date: ${formatDateForMessage(deliveryDate)}*`
+    } else {
+      message += `\n*Est. Delivery: Will confirm in chat ⏰*`
+    }
+  } else {
+    message += `\n\n--- DELIVERY TIME ---`
+    message += `\n*Est. Delivery: Will confirm in chat ⏰*`
   }
 
   // Add delivery details
@@ -60,11 +89,13 @@ export function checkoutWithLine(
   cartItems: CartItem[],
   appliedCoupon: Coupon | null = null,
   discountAmount: number = 0,
-  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' }
+  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' },
+  deliveryDate: string | null = null,
+  deliveryTime: string | null = null
 ) {
   if (cartItems.length === 0) return
 
-  const orderString = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount, deliveryDetails)
+  const orderString = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount, deliveryDetails, deliveryDate, deliveryTime)
   const encodedMessage = encodeURIComponent(orderString)
 
   const checkoutWindow = window.open(
@@ -82,13 +113,15 @@ export function checkoutWithWhatsApp(
   cartItems: CartItem[],
   appliedCoupon: Coupon | null = null,
   discountAmount: number = 0,
-  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' }
+  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' },
+  deliveryDate: string | null = null,
+  deliveryTime: string | null = null
 ) {
   const phoneNumber = siteConfig.whatsappNumber.replace(/\D/g, '')
 
   if (!phoneNumber || cartItems.length === 0) return
 
-  let message = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount, deliveryDetails)
+  let message = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount, deliveryDetails, deliveryDate, deliveryTime)
 
   if (message.length > MAX_WHATSAPP_MESSAGE_LENGTH) {
     message = `Hello ${siteConfig.name}! I would like to place an order with ${cartItems.length} item types. Please confirm availability.`

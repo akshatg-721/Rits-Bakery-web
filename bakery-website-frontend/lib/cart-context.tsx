@@ -49,6 +49,10 @@ interface CartContextValue {
   discountAmount: number
   deliveryDetails: DeliveryDetails
   setDeliveryDetails: (details: DeliveryDetails) => void
+  deliveryDate: string | null
+  setDeliveryDate: (date: string | null) => void
+  deliveryTime: string | null
+  setDeliveryTime: (time: string | null) => void
   isCartOpen: boolean
   setCartOpen: (open: boolean) => void
 }
@@ -63,6 +67,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     address: '',
     mapsUrl: '',
   })
+  const [deliveryDate, setDeliveryDate] = useState<string | null>(null)
+  const [deliveryTime, setDeliveryTime] = useState<string | null>(null)
 
   // Load delivery details from localStorage on mount (hydration safe)
   useEffect(() => {
@@ -159,6 +165,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       discountAmount,
       deliveryDetails,
       setDeliveryDetails,
+      deliveryDate,
+      setDeliveryDate,
+      deliveryTime,
+      setDeliveryTime,
       isCartOpen,
       setCartOpen,
     }),
@@ -172,6 +182,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
       discountAmount,
       deliveryDetails,
       setDeliveryDetails,
+      deliveryDate,
+      setDeliveryDate,
+      deliveryTime,
+      setDeliveryTime,
       isCartOpen,
       removeItem,
       totalItems,
