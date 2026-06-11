@@ -4,6 +4,7 @@ import { useState } from 'react'
 import {
   Gift,
   Loader2,
+  MapPin,
   MessageCircle,
   Minus,
   Plus,
@@ -16,6 +17,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import {
   Sheet,
   SheetClose,
@@ -42,12 +44,15 @@ export function CartDrawer() {
     applyCoupon,
     removeCoupon,
     discountAmount,
+    deliveryDetails,
+    setDeliveryDetails,
   } = useCart()
 
   const [couponCode, setCouponCode] = useState('')
   const [isExpanding, setIsExpanding] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [isDeliveryExpanding, setIsDeliveryExpanding] = useState(false)
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) return
@@ -328,13 +333,53 @@ export function CartDrawer() {
                 )}
               </div>
 
+              {/* ── Delivery Details Section ── */}
+              <div className="flex flex-col gap-2">
+                {!isDeliveryExpanding ? (
+                  <button
+                    onClick={() => setIsDeliveryExpanding(true)}
+                    className="inline-flex w-fit items-center gap-1.5 text-xs font-medium text-[#006241] transition-colors hover:text-[#004F35]"
+                  >
+                    <MapPin className="size-3" />
+                    + Add Delivery Details (Optional)
+                  </button>
+                ) : (
+                  <div className="flex flex-col gap-2">
+                    <Textarea
+                      placeholder="Building, Unit, Soi, Road..."
+                      value={deliveryDetails.address}
+                      onChange={(e) =>
+                        setDeliveryDetails({ ...deliveryDetails, address: e.target.value })
+                      }
+                      className="text-sm resize-none"
+                      rows={3}
+                    />
+                    <Input
+                      placeholder="Paste Google Maps Link (Optional)"
+                      value={deliveryDetails.mapsUrl}
+                      onChange={(e) =>
+                        setDeliveryDetails({ ...deliveryDetails, mapsUrl: e.target.value })
+                      }
+                      className="text-sm"
+                    />
+                    <button
+                      onClick={() => setIsDeliveryExpanding(false)}
+                      className="inline-flex w-fit items-center gap-1.5 text-[11px] text-gray-500 hover:text-gray-700 transition-colors"
+                    >
+                      <X className="size-3" />
+                      Hide
+                    </button>
+                  </div>
+                )}
+              </div>
+
               <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
                 <Button
                   id="cart-checkout-line-button"
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#06C755] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(6,199,85,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#05B54D] md:hover:shadow-[0_16px_36px_rgb(6,199,85,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithLine(cartItems, appliedCoupon, discountAmount)
+                    checkoutWithLine(cartItems, appliedCoupon, discountAmount, deliveryDetails)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />
@@ -345,7 +390,7 @@ export function CartDrawer() {
                   className="min-h-12 w-full cursor-pointer touch-manipulation rounded-md bg-[#006241] text-base font-semibold leading-tight whitespace-normal text-white shadow-[0_12px_28px_rgb(0,98,65,0.18)] transition-all active:translate-y-0 active:scale-[0.98] md:hover:-translate-y-0.5 md:hover:bg-[#004F35] md:hover:shadow-[0_16px_36px_rgb(0,98,65,0.22)] [&_svg]:pointer-events-auto"
                   onClick={(event) => {
                     event.stopPropagation()
-                    checkoutWithWhatsApp(cartItems, appliedCoupon, discountAmount)
+                    checkoutWithWhatsApp(cartItems, appliedCoupon, discountAmount, deliveryDetails)
                   }}
                 >
                   <MessageCircle className="size-5 cursor-pointer" />

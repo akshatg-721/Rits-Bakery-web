@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -29,6 +30,11 @@ export interface Coupon {
   value: number
 }
 
+export interface DeliveryDetails {
+  address: string
+  mapsUrl: string
+}
+
 interface CartContextValue {
   cartItems: CartItem[]
   addItem: (product: CartProduct) => void
@@ -41,6 +47,8 @@ interface CartContextValue {
   applyCoupon: (coupon: Coupon) => void
   removeCoupon: () => void
   discountAmount: number
+  deliveryDetails: DeliveryDetails
+  setDeliveryDetails: (details: DeliveryDetails) => void
   isCartOpen: boolean
   setCartOpen: (open: boolean) => void
 }
@@ -51,6 +59,27 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [appliedCoupon, setAppliedCoupon] = useState<Coupon | null>(null)
   const [isCartOpen, setCartOpen] = useState(false)
+  const [deliveryDetails, setDeliveryDetails] = useState<DeliveryDetails>({
+    address: '',
+    mapsUrl: '',
+  })
+
+  // Load delivery details from localStorage on mount (hydration safe)
+  useEffect(() => {
+    const stored = localStorage.getItem('rits-baker-delivery-details')
+    if (stored) {
+      try {
+        setDeliveryDetails(JSON.parse(stored))
+      } catch {
+        // ignore invalid JSON
+      }
+    }
+  }, [])
+
+  // Save delivery details to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('rits-baker-delivery-details', JSON.stringify(deliveryDetails))
+  }, [deliveryDetails])
 
   const addItem = useCallback((product: CartProduct) => {
     setCartItems((items) => {
@@ -128,6 +157,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       applyCoupon,
       removeCoupon,
       discountAmount,
+      deliveryDetails,
+      setDeliveryDetails,
       isCartOpen,
       setCartOpen,
     }),
@@ -139,6 +170,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       applyCoupon,
       removeCoupon,
       discountAmount,
+      deliveryDetails,
+      setDeliveryDetails,
       isCartOpen,
       removeItem,
       totalItems,

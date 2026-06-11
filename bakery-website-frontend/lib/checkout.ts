@@ -1,4 +1,4 @@
-import type { CartItem, Coupon } from '@/lib/cart-context'
+import type { CartItem, Coupon, DeliveryDetails } from '@/lib/cart-context'
 import { siteConfig } from '@/lib/data'
 
 const MAX_WHATSAPP_MESSAGE_LENGTH = 1800
@@ -14,7 +14,12 @@ export function getWhatsAppOrderUrl(message = 'Hello The Rits Baker! I would lik
   return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
 }
 
-export function buildCheckoutOrderMessage(cartItems: CartItem[], appliedCoupon: Coupon | null = null, discountAmount: number = 0) {
+export function buildCheckoutOrderMessage(
+  cartItems: CartItem[],
+  appliedCoupon: Coupon | null = null,
+  discountAmount: number = 0,
+  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' }
+) {
   let message = `Hello ${siteConfig.name}! I would like to place an order:\n\n`
   let subtotal = 0
 
@@ -35,15 +40,31 @@ export function buildCheckoutOrderMessage(cartItems: CartItem[], appliedCoupon: 
     message += `\n*Total: ฿${subtotal}*`
   }
 
+  // Add delivery details
+  message += `\n\n--- DELIVERY DETAILS ---`
+  if (!deliveryDetails.address.trim()) {
+    message += `\nDelivery Details: Will provide in chat 📍`
+  } else {
+    message += `\nAddress: ${deliveryDetails.address}`
+    if (deliveryDetails.mapsUrl.trim()) {
+      message += `\nMap Pin: ${deliveryDetails.mapsUrl}`
+    }
+  }
+
   message += `\n\nPlease confirm my order.`
 
   return message
 }
 
-export function checkoutWithLine(cartItems: CartItem[], appliedCoupon: Coupon | null = null, discountAmount: number = 0) {
+export function checkoutWithLine(
+  cartItems: CartItem[],
+  appliedCoupon: Coupon | null = null,
+  discountAmount: number = 0,
+  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' }
+) {
   if (cartItems.length === 0) return
 
-  const orderString = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount)
+  const orderString = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount, deliveryDetails)
   const encodedMessage = encodeURIComponent(orderString)
 
   const checkoutWindow = window.open(
@@ -57,12 +78,17 @@ export function checkoutWithLine(cartItems: CartItem[], appliedCoupon: Coupon | 
   }
 }
 
-export function checkoutWithWhatsApp(cartItems: CartItem[], appliedCoupon: Coupon | null = null, discountAmount: number = 0) {
+export function checkoutWithWhatsApp(
+  cartItems: CartItem[],
+  appliedCoupon: Coupon | null = null,
+  discountAmount: number = 0,
+  deliveryDetails: DeliveryDetails = { address: '', mapsUrl: '' }
+) {
   const phoneNumber = siteConfig.whatsappNumber.replace(/\D/g, '')
 
   if (!phoneNumber || cartItems.length === 0) return
 
-  let message = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount)
+  let message = buildCheckoutOrderMessage(cartItems, appliedCoupon, discountAmount, deliveryDetails)
 
   if (message.length > MAX_WHATSAPP_MESSAGE_LENGTH) {
     message = `Hello ${siteConfig.name}! I would like to place an order with ${cartItems.length} item types. Please confirm availability.`
