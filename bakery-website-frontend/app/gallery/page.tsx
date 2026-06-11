@@ -92,16 +92,6 @@ export default function GalleryPage() {
                 loading="lazy"
                 className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-
-              {/* Gradient Scrim (Always Visible) */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              
-              {/* Caption (Always Visible) */}
-              <div className="absolute bottom-0 left-0 p-4 w-full">
-                <span className="text-white text-sm font-medium leading-tight">
-                  {image.caption}
-                </span>
-              </div>
             </button>
           ))}
         </div>

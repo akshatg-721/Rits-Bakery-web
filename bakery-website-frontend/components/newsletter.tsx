@@ -6,7 +6,7 @@ import { ArrowRight, Facebook, Instagram } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const INSTAGRAM_URL = 'https://www.instagram.com/theritsbaker/'
-const FACEBOOK_URL = 'https://www.facebook.com/theritsbaker'
+const FACEBOOK_URL = 'https://www.facebook.com/share/18rW9vZvKp/?mibextid=wwXIfr'
 
 interface SocialLinksProps {
   className?: string
