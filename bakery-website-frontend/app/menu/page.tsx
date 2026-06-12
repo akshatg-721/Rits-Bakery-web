@@ -4,13 +4,14 @@ import { ShopSection } from '@/components/shop-section'
 import { Newsletter } from '@/components/newsletter'
 
 interface MenuPageProps {
-  searchParams?: {
+  searchParams?: Promise<{
     q?: string
-  }
+  }>
 }
 
-export default function MenuPage({ searchParams }: MenuPageProps) {
-  const searchQuery = searchParams?.q ?? ''
+export default async function MenuPage({ searchParams }: MenuPageProps) {
+  const resolvedParams = await searchParams
+  const searchQuery = resolvedParams?.q ?? ''
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8]">

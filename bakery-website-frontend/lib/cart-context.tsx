@@ -28,6 +28,7 @@ export interface Coupon {
   code: string
   type: 'flat' | 'percent'
   value: number
+  minAmount?: number
 }
 
 export interface DeliveryDetails {
@@ -99,15 +100,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const discountAmount = useMemo(() => {
     if (!appliedCoupon) return 0
+    let discount: number
     if (appliedCoupon.type === 'percent') {
-      return Math.round(totalPrice * (appliedCoupon.value / 100))
+      // Math.floor — never round up a discount
+      discount = Math.floor((totalPrice * appliedCoupon.value) / 100)
+    } else {
+      discount = appliedCoupon.value
     }
-    return appliedCoupon.value
+    // Discount can never exceed what the customer actually owes
+    return Math.min(discount, totalPrice)
   }, [appliedCoupon, totalPrice])
 
-  // Auto-remove coupon if subtotal drops below 300
+  // Auto-remove coupon if subtotal drops below the coupon's required minimum.
+  // Sheet authority: if minAmount > 0, it overrides the global ฿300 floor.
   useEffect(() => {
-    if (appliedCoupon && totalPrice < 300) {
+    if (!appliedCoupon) return
+    const effectiveMin =
+      appliedCoupon.minAmount && appliedCoupon.minAmount > 0
+        ? appliedCoupon.minAmount
+        : 300
+    if (totalPrice < effectiveMin) {
       setAppliedCoupon(null)
     }
   }, [totalPrice, appliedCoupon])
@@ -150,10 +162,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const applyCoupon = useCallback((coupon: Coupon) => {
-    if (totalPrice < 300) {
-      return { success: false, error: 'Minimum order of ฿300 required to use promo codes.' }
+    // Sheet is the source of truth: if minAmount > 0 it is the threshold,
+    // otherwise fall back to the global ฿300 store minimum.
+    const effectiveMin =
+      coupon.minAmount && coupon.minAmount > 0 ? coupon.minAmount : 300
+    if (totalPrice < effectiveMin) {
+      return {
+        success: false,
+        error: `Minimum order of ฿${effectiveMin} required for this promo code.`,
+      }
     }
-    setAppliedCoupon(coupon)
+    // Store code in uppercase to match the sanitised API response.
+    setAppliedCoupon({ ...coupon, code: coupon.code.trim().toUpperCase() })
     return { success: true }
   }, [totalPrice])
 

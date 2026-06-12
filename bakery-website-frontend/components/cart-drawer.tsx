@@ -67,10 +67,10 @@ export function CartDrawer() {
     setValidDates(getValidDeliveryDates())
   }, [])
 
-  // Track when coupon is auto-removed
+  // Track when coupon is auto-removed and surface a user-facing message
   useEffect(() => {
     if (previousAppliedCoupon && !appliedCoupon) {
-      setError('Promo code removed: Minimum order of ฿300 required.')
+      setError('Promo code removed: cart subtotal dropped below the required minimum spend.')
     }
     setPreviousAppliedCoupon(appliedCoupon?.code || null)
   }, [appliedCoupon, previousAppliedCoupon])
@@ -91,6 +91,7 @@ export function CartDrawer() {
           code: data.code,
           type: data.type,
           value: data.value,
+          minAmount: typeof data.minAmount === 'number' ? data.minAmount : 0,
         })
         if (!result.success) {
           setError(result.error || '')
