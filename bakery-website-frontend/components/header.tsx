@@ -53,7 +53,10 @@ export function Header() {
   return (
     <>
       {/* ── Main Header ── */}
-      <header className="sticky top-0 left-0 right-0 z-50 w-full border-b border-zinc-200/50 bg-white/75 backdrop-blur-md">
+      <header 
+        className="fixed top-0 left-0 right-0 z-50 w-full bg-white/70 backdrop-blur-md border-b border-zinc-200/40 shadow-[0_2px_20px_-5px_rgba(0,0,0,0.03)]"
+        style={{ WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}
+      >
 
         {/* ════════════════════════════════════════
             MOBILE HEADER  (hidden on md+)
