@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Menu, Search, ShoppingBag } from 'lucide-react'
+import { Facebook, Instagram, Menu, Search, ShoppingBag } from 'lucide-react'
 
 import { CartDrawer } from '@/components/cart-drawer'
 import { Button } from '@/components/ui/button'
@@ -78,47 +78,118 @@ export function Header() {
               </Button>
             </SheetTrigger>
 
-            <SheetContent side="left" className="flex w-[min(88vw,22rem)] flex-col border-r border-white/80 bg-white/95 p-0 backdrop-blur-xl">
-              {/* Drawer header */}
-              <SheetHeader className="border-b border-gray-100/80 px-6 pb-6 pt-7">
-                <SheetTitle className="font-serif text-2xl italic text-[#111111]">
+            <SheetContent
+              side="left"
+              className="flex w-[min(90vw,24rem)] flex-col border-r border-white/30 bg-white/90 p-0 shadow-[4px_0_60px_-10px_rgba(0,0,0,0.12)] backdrop-blur-2xl"
+            >
+              {/* ── Branding Header ── */}
+              <SheetHeader className="relative overflow-hidden border-b border-[#006241]/8 px-7 pb-7 pt-8">
+                {/* Subtle green orb */}
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-8 -top-8 size-40 rounded-full bg-[#006241]/6 blur-3xl"
+                />
+                <SheetTitle className="font-serif text-[1.6rem] italic leading-tight tracking-tight text-[#111111]">
                   The Rits Baker
                 </SheetTitle>
-                <SheetDescription className="max-w-[15rem] text-base leading-6 text-gray-500">
-                  Freshly baked, handcrafted, made with love.
+                <SheetDescription className="mt-1 text-[13px] font-light leading-relaxed tracking-[0.12em] text-gray-400 uppercase">
+                  Freshly baked &middot; Handcrafted &middot; Made with love
                 </SheetDescription>
               </SheetHeader>
 
-              {/* Nav links */}
-              <nav className="flex flex-col px-4 py-3" aria-label="Mobile navigation">
-                {navLinks.map((link) => (
-                  <SheetClose asChild key={link.label}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setMobileNavOpen(false)}
-                      className="group flex min-h-14 items-center justify-between rounded-md border-b border-gray-100/80 px-2 text-lg font-medium text-[#111111] transition-all duration-200 hover:bg-[#006241]/5 hover:px-3 hover:text-[#006241] active:scale-[0.99]"
-                    >
-                      <span>{link.label}</span>
-                      <span className="h-px w-5 bg-[#006241]/0 transition-all duration-200 group-hover:bg-[#006241]/50" />
-                    </Link>
-                  </SheetClose>
-                ))}
+              {/* ── Navigation Links ── */}
+              <nav className="flex flex-col px-4 py-5" aria-label="Mobile navigation">
+                {navLinks.map((link, index) => {
+                  const isActive = pathname === link.href
+                  return (
+                    <SheetClose asChild key={link.label}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setMobileNavOpen(false)}
+                        style={{
+                          animationDelay: `${index * 55}ms`,
+                          animationFillMode: 'both',
+                        }}
+                        className={`
+                          group relative flex min-h-[52px] items-center gap-4 rounded-xl px-4
+                          text-[15px] font-medium transition-all duration-200
+                          [animation-name:navSlideUp]
+                          hover:bg-[#006241]/5
+                          active:scale-[0.98]
+                          ${
+                            isActive
+                              ? 'text-[#006241]'
+                              : 'text-[#2a2a2a] hover:text-[#006241]'
+                          }
+                        `}
+                      >
+                        {/* Active indicator — slim left accent bar */}
+                        <span
+                          className={`absolute left-0 top-[18%] h-[64%] w-[3px] rounded-full transition-all duration-300 ${
+                            isActive
+                              ? 'bg-[#006241] opacity-100'
+                              : 'bg-[#006241]/0 opacity-0 group-hover:bg-[#006241]/40 group-hover:opacity-100'
+                          }`}
+                        />
+                        <span className="flex-1">{link.label}</span>
+                        {isActive && (
+                          <span className="size-1.5 rounded-full bg-[#006241]" />
+                        )}
+                      </Link>
+                    </SheetClose>
+                  )
+                })}
               </nav>
 
-              {/* Order CTA at bottom of drawer */}
-              <div className="mt-auto border-t border-gray-100/80 p-5">
+              {/* ── Bottom CTA + Footer ── */}
+              <div className="mt-auto border-t border-gray-100/70 px-6 pb-8 pt-5">
+                {/* Pill CTA */}
                 <SheetClose asChild>
                   <Link
                     href="/menu"
                     onClick={() => setMobileNavOpen(false)}
-                    className="flex min-h-12 w-full items-center justify-center rounded-md bg-[#006241] px-5 py-3.5 text-base font-semibold text-white shadow-[0_10px_24px_rgb(0,98,65,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#004F35] active:translate-y-0 active:scale-[0.98]"
+                    className="flex min-h-[52px] w-full items-center justify-center rounded-full bg-[#006241] px-6 text-[15px] font-semibold tracking-wide text-white shadow-[0_12px_32px_-4px_rgb(0,98,65,0.30)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#004F35] hover:shadow-[0_16px_40px_-4px_rgb(0,98,65,0.36)] active:translate-y-0 active:scale-[0.98]"
                   >
                     View Menu
                   </Link>
                 </SheetClose>
-                <p className="mt-3 text-center text-xs leading-5 text-gray-400">
-                  Pre-order via WhatsApp · Delivery only
-                </p>
+
+                {/* ── Social footer ── */}
+                <div className="mt-7 flex flex-col items-center gap-4">
+                  <div className="flex items-center gap-8">
+                    {/* Instagram */}
+                    <a
+                      href="https://www.instagram.com/theritsbaker/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      className="group text-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:text-[#006241]"
+                    >
+                      <Instagram
+                        className="size-6"
+                        strokeWidth={1.5}
+                      />
+                    </a>
+
+                    {/* Facebook */}
+                    <a
+                      href="https://www.facebook.com/theritsbaker"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Facebook"
+                      className="group text-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:text-[#006241]"
+                    >
+                      <Facebook
+                        className="size-6"
+                        strokeWidth={1.5}
+                      />
+                    </a>
+                  </div>
+
+                  <p className="text-[11px] tracking-[0.08em] text-zinc-400">
+                    &copy; {new Date().getFullYear()} The Rits Baker
+                  </p>
+                </div>
               </div>
             </SheetContent>
           </Sheet>

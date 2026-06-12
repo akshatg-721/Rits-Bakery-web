@@ -147,6 +147,18 @@
   }
 }
 
+/* ── Mobile nav drawer: staggered slide-up entrance ── */
+@keyframes navSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
