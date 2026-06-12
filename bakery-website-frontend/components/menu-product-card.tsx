@@ -84,11 +84,11 @@ export function MenuProductCard({
 
       <div className="mt-3 flex flex-col items-center px-1.5 text-center md:mt-4 md:px-1">
         {showEgglessLabel && (
-          <span className="mb-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+          <span className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
             Eggless
           </span>
         )}
-        <Heading className="text-base font-medium leading-snug text-gray-900">
+        <Heading className="mb-1 text-base font-medium leading-snug text-gray-900">
           {product.name}
         </Heading>
         {product.description && (

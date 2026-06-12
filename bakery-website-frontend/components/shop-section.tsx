@@ -66,16 +66,16 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
   }, [activeCategory, searchQuery])
 
   return (
-    <section id="menu" className="overflow-hidden px-4 pt-4 pb-10 sm:px-6 lg:px-8 md:pt-8 md:pb-16">
+    <section id="menu" className="overflow-hidden px-4 pb-10 sm:px-6 lg:px-8 md:pb-16">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="mb-6 font-serif text-3xl italic leading-tight text-[#111111] sm:text-4xl lg:text-5xl md:mb-8">
+        <div className="mx-auto flex min-h-[calc(96px-0px)] max-w-2xl items-center justify-center text-center">
+          <h2 className="font-serif text-3xl italic leading-tight text-[#111111] sm:text-4xl lg:text-5xl">
             Our Eggless Bakery Menu
           </h2>
         </div>
 
-        <div className="sticky top-24 z-30 mt-6 space-y-5 bg-[#F9F9F9]/95 py-4 backdrop-blur-xl md:mt-8">
-          <div className="relative mx-auto mb-6 max-w-2xl">
+        <div className="sticky top-24 z-30 bg-[#F9F9F9]/95 py-3 backdrop-blur-xl">
+          <div className="relative mx-auto mb-4 max-w-2xl">
             <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-400" />
             <Input
               ref={inputRef}
@@ -88,7 +88,7 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
 
           <div className="relative">
             <div className="-mx-4 flex overflow-x-auto snap-x snap-mandatory px-4 pr-12 no-scrollbar scrollbar-none sm:mx-0 sm:px-0">
-              <div className="mx-auto flex w-max gap-3 pb-6 sm:w-fit">
+              <div className="mx-auto flex w-max gap-3 pb-3 sm:w-fit">
                 {menuCategoryOptions.map((category) => (
                   <button
                     key={category}
@@ -112,7 +112,7 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-12 lg:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-10 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
           {filteredProducts.map((product) => (
             <MenuProductCard
               key={`${product.categorySlug}-${product.id}`}

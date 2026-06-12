@@ -24,13 +24,18 @@
   - Constrained search bar to `max-w-2xl` for better desktop viewing.
   - Premium category pill styling (zinc-50/emerald-800).
   - MenuProductCard upgraded to `rounded-2xl`, hover:-translate-y-1, hover:shadow-lg, smooth button hover states.
+- **Fixed Glassmorphic Header & Mobile Bottom Nav**: Added a fixed glassmorphic header and a dedicated mobile bottom navigation bar (`components/mobile-bottom-nav.tsx`) for a better mobile experience. Fixed spacing in `app/layout.tsx`.
+- **Checkout Payload Formatting**: Refined checkout payload formatting for WhatsApp/LINE to include all optional fields (address, maps link, delivery date/time, promo code details) in a clean Markdown structure.
+- **Vegan Pricing Updates**: Updated pricing for vegan menu items in `lib/menu-data.ts`.
+- **Menu Page Subtitle & Spacing**: Refined typography and spacing in the shop section.
 
 ## 3. Current / Upcoming Feature
-- Refining checkout payload formatting for WhatsApp/LINE to include all optional fields (address, maps link, delivery date/time, promo code details) in a clean Markdown structure.
 - Potential: Adding a "Featured Products" carousel on the homepage to highlight new arrivals.
 
 ## 4. Key Active Files
 - `components/cart-drawer.tsx` (Cart UI, delivery details, promo codes, time slots)
+- `components/header.tsx` (Fixed glassmorphic header)
+- `components/mobile-bottom-nav.tsx` (Mobile bottom navigation bar)
 - `components/shop-section.tsx` (Menu page with search and category filters)
 - `components/menu-product-card.tsx` (Product card with badges and hover states)
 - `lib/cart-context.tsx` (Cart state, coupon logic, delivery state)
@@ -39,6 +44,7 @@
 - `lib/checkout.ts` (WhatsApp/LINE message payload generator)
 - `app/gallery/page.tsx` (Premium masonry gallery)
 - `app/menu/page.tsx` (Menu page with Suspense-wrapped ShopSection)
+- `app/layout.tsx` (Root layout with updated spacing for fixed header)
 
 ## 5. Known Issues / Tech Debt
 - Verify the Google Sheets CSV URL is correctly set in `.env.local` (variable: `GOOGLE_SHEET_CSV_URL`).
