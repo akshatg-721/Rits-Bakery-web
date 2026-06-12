@@ -52,15 +52,8 @@ export function Header() {
 
   return (
     <>
-      {/* ── Announcement Bar ── */}
-      <div className="w-full overflow-hidden bg-[#006241] px-3 py-2 text-center shadow-[0_1px_0_rgb(255,255,255,0.12)_inset]">
-        <p className="whitespace-nowrap text-[10px] font-semibold uppercase leading-5 tracking-[0.16em] text-white/90 sm:text-xs">
-          EGG-LESS&nbsp;•&nbsp;Delivery only&nbsp;•&nbsp;Pre-order&nbsp;•&nbsp;Bangkok
-        </p>
-      </div>
-
       {/* ── Main Header ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-gray-200/50 bg-[#F9F9F9]/80 backdrop-blur-md">
+      <header className="sticky top-0 left-0 right-0 z-50 w-full border-b border-zinc-200/50 bg-white/75 backdrop-blur-md">
 
         {/* ════════════════════════════════════════
             MOBILE HEADER  (hidden on md+)

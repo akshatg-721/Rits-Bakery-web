@@ -68,7 +68,7 @@ export function HeroSlider() {
   }, [emblaApi])
 
   return (
-    <section aria-label="Hero image carousel" className="relative w-full overflow-hidden">
+    <section aria-label="Hero image carousel" className="relative mt-0 w-full overflow-hidden pt-0">
       {/* ── Embla viewport ── */}
       <div ref={emblaRef} className="overflow-hidden">
         <div className="flex">
