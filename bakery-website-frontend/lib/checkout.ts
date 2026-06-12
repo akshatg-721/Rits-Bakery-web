@@ -53,29 +53,32 @@ export function buildCheckoutOrderMessage(
     message += `\n*Total: ฿${subtotal}*`
   }
 
-  // Add delivery date/time
-  if (deliveryDate || deliveryTime) {
+  // Add delivery date/time (only if user provided)
+  const hasDeliveryDate = Boolean(deliveryDate)
+  const hasDeliveryTime = Boolean(deliveryTime)
+
+  if (hasDeliveryDate || hasDeliveryTime) {
     message += `\n\n--- DELIVERY TIME ---`
-    if (deliveryDate && deliveryTime) {
+    if (hasDeliveryDate && hasDeliveryTime) {
       const timeSlot = TIME_SLOTS.find(s => s.id === deliveryTime)
-      message += `\n*Est. Delivery: ${formatDateForMessage(deliveryDate)} | ${timeSlot?.label || deliveryTime}*`
-    } else if (deliveryDate) {
-      message += `\n*Est. Delivery Date: ${formatDateForMessage(deliveryDate)}*`
+      message += `\n*Est. Delivery: ${formatDateForMessage(deliveryDate!)} | ${timeSlot?.label || deliveryTime}*`
+    } else if (hasDeliveryDate) {
+      message += `\n*Est. Delivery Date: ${formatDateForMessage(deliveryDate!)}*`
     } else {
-      message += `\n*Est. Delivery: Will confirm in chat ⏰*`
+      message += `\n*Est. Delivery Time: ${deliveryTime}*`
     }
-  } else {
-    message += `\n\n--- DELIVERY TIME ---`
-    message += `\n*Est. Delivery: Will confirm in chat ⏰*`
   }
 
-  // Add delivery details
-  message += `\n\n--- DELIVERY DETAILS ---`
-  if (!deliveryDetails.address.trim()) {
-    message += `\nDelivery Details: Will provide in chat 📍`
-  } else {
-    message += `\nAddress: ${deliveryDetails.address}`
-    if (deliveryDetails.mapsUrl.trim()) {
+  // Add delivery details (only if user provided)
+  const hasAddress = deliveryDetails.address.trim().length > 0
+  const hasMapsUrl = deliveryDetails.mapsUrl.trim().length > 0
+
+  if (hasAddress || hasMapsUrl) {
+    message += `\n\n--- DELIVERY DETAILS ---`
+    if (hasAddress) {
+      message += `\nAddress: ${deliveryDetails.address}`
+    }
+    if (hasMapsUrl) {
       message += `\nMap Pin: ${deliveryDetails.mapsUrl}`
     }
   }
