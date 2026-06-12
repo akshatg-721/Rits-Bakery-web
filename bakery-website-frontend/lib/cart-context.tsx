@@ -112,11 +112,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [appliedCoupon, totalPrice])
 
   // Auto-remove coupon if subtotal drops below the coupon's required minimum.
-  // Sheet authority: if minAmount > 0, it overrides the global ฿300 floor.
+  // Sheet authority: if minAmount is explicitly set (even to 0), respect it.
+  // Only fall back to the global ฿300 floor when minAmount is undefined.
   useEffect(() => {
     if (!appliedCoupon) return
     const effectiveMin =
-      appliedCoupon.minAmount && appliedCoupon.minAmount > 0
+      typeof appliedCoupon.minAmount === 'number'
         ? appliedCoupon.minAmount
         : 300
     if (totalPrice < effectiveMin) {
@@ -162,11 +163,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const applyCoupon = useCallback((coupon: Coupon) => {
-    // Sheet is the source of truth: if minAmount > 0 it is the threshold,
-    // otherwise fall back to the global ฿300 store minimum.
+    // Sheet is the source of truth. minAmount is explicitly set in the CSV:
+    //   - number (including 0) → honour it exactly (0 means no minimum)
+    //   - undefined            → fall back to global ฿300 store floor
     const effectiveMin =
-      coupon.minAmount && coupon.minAmount > 0 ? coupon.minAmount : 300
-    if (totalPrice < effectiveMin) {
+      typeof coupon.minAmount === 'number' ? coupon.minAmount : 300
+    if (effectiveMin > 0 && totalPrice < effectiveMin) {
       return {
         success: false,
         error: `Minimum order of ฿${effectiveMin} required for this promo code.`,
