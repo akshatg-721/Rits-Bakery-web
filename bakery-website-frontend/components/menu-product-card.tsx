@@ -96,18 +96,25 @@ export function MenuProductCard({
             {product.description}
           </p>
         )}
-        {product.tags && product.tags.length > 0 && (
-          <div className="mt-2 flex flex-wrap justify-center gap-1.5">
-            {product.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-block rounded-full bg-white px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-[#111111] shadow-[0_2px_8px_rgb(0,0,0,0.04)] ring-1 ring-black/5 sm:text-[10px]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {product.tags && product.tags.length > 0 && (() => {
+          // Tags already shown as image overlays — exclude them from the pill list.
+          const overlayTags = new Set<string>()
+          if (product.isHighProtein) overlayTags.add('High Protein')
+          if (isVegan) overlayTags.add('Vegan')
+          const pillTags = product.tags.filter((t) => !overlayTags.has(t))
+          return pillTags.length > 0 ? (
+            <div className="mt-2 flex flex-wrap justify-center gap-1.5">
+              {pillTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-block rounded-full bg-white px-2.5 py-1 text-[9px] font-semibold uppercase tracking-wider text-[#111111] shadow-[0_2px_8px_rgb(0,0,0,0.04)] ring-1 ring-black/5 sm:text-[10px]"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          ) : null
+        })()}
         <p className="mt-2 text-base font-medium text-gray-600">
           {product.price}
         </p>
