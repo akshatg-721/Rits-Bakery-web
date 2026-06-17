@@ -19,7 +19,6 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
       name: product.name,
       price: product.numericPrice,
       displayPrice: product.price,
-      description: product.description,
       image: product.image,
       vegan: product.vegan,
     })
@@ -34,7 +33,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
       .map((category) => ({
         ...category,
         products: category.products.filter((product) =>
-          [product.name, product.description, ...(product.tags ?? [])]
+          [product.name, ...(product.tags ?? [])]
             .filter((v): v is string => Boolean(v))
             .some((v) => v.toLowerCase().includes(normalizedQuery)),
         ),
