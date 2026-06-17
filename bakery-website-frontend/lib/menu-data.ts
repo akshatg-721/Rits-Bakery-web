@@ -48,7 +48,7 @@ const menuProductCategories: MenuCategory[] = [
         name: 'Classical Carrot Cake',
         price: '฿ 220',
         numericPrice: 220,
-        image: '/menu/classical_carrot_cake.jpg',
+        image: '/menu/classical_carrot_cake_menu.jpg',
       },
       {
         id: 'vanilla-butter-loaf-cake',
@@ -188,7 +188,6 @@ const menuProductCategories: MenuCategory[] = [
         price: '฿ 690 / lb',
         numericPrice: 690,
         image: '/menu/biscoff_cheese_cake_menu.jpeg',
-        isTopSeller: true,
       },
       {
         id: 'premium-blueberry-cheese-cake',
@@ -227,6 +226,7 @@ const menuProductCategories: MenuCategory[] = [
         image: '/menu/Date_Walnut_Cake_menu.jpg',
         tags: ['No Sugar', 'Contains Nuts'],
         isHighProtein: true,
+        isTopSeller: true,
       },
       {
         id: 'rose-n-pistachio-cake',
@@ -235,6 +235,7 @@ const menuProductCategories: MenuCategory[] = [
         numericPrice: 590,
         image: '/menu/Rose_pistacho_cake_menu.jpg',
         tags: ['Contains Nuts'],
+        isTopSeller: true,
       },
       {
         id: 'gluten-free-nuts-cake-ekadashi',
@@ -244,6 +245,7 @@ const menuProductCategories: MenuCategory[] = [
         image: '/menu/Ekadashi_Nuts_Cake.jpeg',
         tags: ['Gluten Free', 'Ekadashi Special'],
         isHighProtein: true,
+        isTopSeller: true,
       },
     ],
   },
@@ -413,7 +415,7 @@ const menuProductCategories: MenuCategory[] = [
           name: 'Classical Carrot Cake',
           price: '฿ 270',
           numericPrice: 270,
-          image: '/menu/classical_carrot_cake.jpg',
+          image: '/menu/classical_carrot_cake_menu.jpg',
           vegan: true,
         },
         {
@@ -523,9 +525,22 @@ export const menuProducts = menuProductCategories.flatMap((category) =>
   category.products.map((product) => withCategory(category, product)),
 )
 
-export const topSellerProducts = menuProducts.filter(
-  (product) => product.isTopSeller,
-)
+const TOP_SELLER_ORDER = [
+  'kunafa-dates-pack-of-6',
+  'rose-n-pistachio-cake',
+  'gluten-free-nuts-cake-ekadashi',
+  'date-and-walnut-cake-no-sugar',
+]
+
+export const topSellerProducts = menuProducts
+  .filter((product) => product.isTopSeller)
+  .sort((a, b) => {
+    const ai = TOP_SELLER_ORDER.indexOf(a.id)
+    const bi = TOP_SELLER_ORDER.indexOf(b.id)
+    const aRank = ai === -1 ? TOP_SELLER_ORDER.length : ai
+    const bRank = bi === -1 ? TOP_SELLER_ORDER.length : bi
+    return aRank - bRank
+  })
 
 export const menuCategories: MenuCategory[] = [
   {
