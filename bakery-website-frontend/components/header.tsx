@@ -173,7 +173,7 @@ export function Header() {
 
                     {/* Facebook */}
                     <a
-                      href="https://www.facebook.com/theritsbaker"
+                      href="https://www.facebook.com/share/18rW9vZvKp/?mibextid=wwXIfr"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Facebook"

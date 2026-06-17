@@ -9,7 +9,7 @@ const reviews = [
   {
     id: 2,
     stars: '⭐⭐⭐⭐⭐',
-    body: 'My go-to for gifting. The packaging is beautiful and the Date & Walnut cake feels so homemade and comforting.',
+    body: 'My go-to for gifting. The packaging is beautiful and the Date & Walnut cake feels so artisan and comforting.',
     author: 'Priya M.',
     initials: 'PM',
   },

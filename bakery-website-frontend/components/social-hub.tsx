@@ -8,7 +8,7 @@ const instagramImages = [
 ]
 
 const INSTAGRAM_URL = 'https://www.instagram.com/theritsbaker/'
-const FACEBOOK_PAGE_URL = 'https://www.facebook.com/theritsbaker'
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/share/18rW9vZvKp/?mibextid=wwXIfr'
 
 export function SocialHub() {
   return (

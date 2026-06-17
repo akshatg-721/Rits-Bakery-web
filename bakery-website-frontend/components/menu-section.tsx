@@ -100,13 +100,6 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
             No menu items found for &ldquo;{initialSearchQuery.trim()}&rdquo;. Try another search term.
           </div>
         )}
-
-        <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-7 text-gray-500 sm:mt-16 sm:text-sm sm:leading-6">
-          All items are 100% eggless. Vegan, fasting-friendly, and monk fruit
-          sweetener options available upon request. Prices may vary.
-          <br />
-          Open Every Day · Delivery Only · Pre-order 24hrs before.
-        </p>
       </div>
     </section>
   )

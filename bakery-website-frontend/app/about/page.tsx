@@ -35,7 +35,7 @@ export default function AboutPage() {
           <p>
             What started as a passion for baking has grown into a warm artisanal
             kitchen in Bangkok, where we create premium handcrafted desserts made
-            with care and a homemade touch.
+            with care and crafted with precision.
           </p>
 
           <p>
