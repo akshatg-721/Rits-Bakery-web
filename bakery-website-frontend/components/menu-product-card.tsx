@@ -5,6 +5,16 @@ import { ShoppingBag } from 'lucide-react'
 
 import type { MenuProduct } from '@/lib/menu-data'
 
+/** Splits "Blueberry Muffins (Pack of 2)" → ["Blueberry Muffins", "(Pack of 2)"] */
+function splitProductName(name: string): { base: string; qualifier: string | null } {
+  const idx = name.indexOf('(')
+  if (idx === -1) return { base: name, qualifier: null }
+  return {
+    base: name.slice(0, idx).trim(),
+    qualifier: name.slice(idx).trim(),
+  }
+}
+
 interface MenuProductCardProps {
   product: MenuProduct
   headingLevel?: 'h3' | 'h4'
@@ -106,7 +116,17 @@ export function MenuProductCard({
           </span>
         )}
         <Heading className="mb-1 text-base font-medium leading-snug text-gray-900">
-          {product.name}
+          {(() => {
+            const { base, qualifier } = splitProductName(product.name)
+            return qualifier ? (
+              <>
+                {base}
+                <span className="block whitespace-nowrap">{qualifier}</span>
+              </>
+            ) : (
+              base
+            )
+          })()}
         </Heading>
         {product.tags && product.tags.length > 0 && (() => {
           // Tags already shown as image overlays — exclude them from the pill list.
