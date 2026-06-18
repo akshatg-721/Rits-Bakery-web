@@ -164,7 +164,7 @@ export function CartDrawer() {
                     {/* Product image thumbnail */}
                     <div className="flex size-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-gray-100 bg-gray-50 shadow-[0_4px_16px_rgb(0,0,0,0.04)]">
                       <img
-                        src={item.image ?? '/menu/curation_teatime.png'}
+                        src={item.image ?? '/menu/curation_teatime.webp'}
                         alt=""
                         className="size-full object-cover"
                       />

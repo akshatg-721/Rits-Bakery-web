@@ -20,7 +20,7 @@ export default function AboutPage() {
 
         <div className="mb-12 overflow-hidden rounded-md bg-gray-100 shadow-[0_12px_34px_rgb(0,0,0,0.08)] ring-1 ring-black/5 sm:mb-16">
           <img
-            src="/gallery/IMG_8022.JPG"
+            src="/gallery/IMG_8022.webp"
             alt="Freshly baked desserts from The Rits Baker kitchen"
             className="aspect-[4/3] w-full object-cover sm:aspect-[16/9]"
           />

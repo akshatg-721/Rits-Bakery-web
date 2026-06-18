@@ -1,10 +1,10 @@
 import { ExternalLink, MessageCircle } from 'lucide-react'
 
 const instagramImages = [
-  '/gallery/Fuzzy_Brownie.JPG',
-  '/gallery/Banana_cake.JPG',
-  '/gallery/Kunafa_Dates.JPG',
-  '/gallery/Pizza_Spanish_muffins.JPG',
+  '/gallery/Fuzzy_Brownie.webp',
+  '/gallery/Banana_cake.webp',
+  '/gallery/Kunafa_Dates.webp',
+  '/gallery/Pizza_Spanish_muffins.webp',
 ]
 
 const INSTAGRAM_URL = 'https://www.instagram.com/theritsbaker/'
