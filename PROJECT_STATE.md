@@ -8,6 +8,11 @@
 - **Package Manager**: pnpm
 
 ## 2. Recently Completed Features
+- **Homepage Hero Slider UX & Visual Redesign** (`components/hero-slider.tsx`):
+  - Removed operational/delivery subtitle text from hero slides to keep the section editorial and product-led.
+  - Refined eyebrow, heading, description, and CTA spacing for a cleaner premium bakery presentation.
+  - Reworked hero CTAs into a single warm ivory pill button per slide with subtle hover lift/shadow and content-width sizing.
+  - Preserved existing hero imagery, slide order, core slider behavior, and primary routing targets.
 - **Google Sheets CSV Promo Code System**: Backend validation at `app/api/check-coupon/route.ts`. Supports `flat` and `percent` discounts, case-insensitive code matching, and expiry date checks.
 - **Coupon Math Logic Fix**: Enforced strict percent vs flat calculation in `lib/cart-context.tsx`. Percentage = Math.floor((subtotal × value) / 100), Flat = value directly. Discount is capped at subtotal — can never exceed what the customer owes.
 - **Minimum Order Threshold (฿300)**: Coupons cannot be applied or auto-clear when cart subtotal drops below ฿300. Clear error message in cart UI.
@@ -38,6 +43,7 @@
 - Potential: Adding a "Featured Products" carousel on the homepage to highlight new arrivals.
 
 ## 4. Key Active Files
+- `components/hero-slider.tsx` (Homepage Embla hero slider with premium single-CTA treatment and refined spacing)
 - `app/api/check-coupon/route.ts` (Bulletproof promo code validation — no-store, Bangkok TZ, strict types)
 - `components/cart-drawer.tsx` (Cart UI, delivery details, promo codes, time slots)
 - `components/header.tsx` (Fixed glassmorphic header)
