@@ -71,6 +71,11 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
                   {category.title}
                 </h3>
               </div>
+              {category.subtitle && (
+                <p className="mt-2 text-sm leading-relaxed text-gray-500 sm:text-base">
+                  {category.subtitle}
+                </p>
+              )}
               <div className="mt-3 h-px w-16 bg-[#006241]/30" />
             </div>
 
