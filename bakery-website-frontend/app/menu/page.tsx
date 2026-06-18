@@ -6,17 +6,22 @@ import { Newsletter } from '@/components/newsletter'
 interface MenuPageProps {
   searchParams?: Promise<{
     q?: string
+    category?: string
   }>
 }
 
 export default async function MenuPage({ searchParams }: MenuPageProps) {
   const resolvedParams = await searchParams
   const searchQuery = resolvedParams?.q ?? ''
+  const initialCategorySlug = resolvedParams?.category ?? ''
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#FAFAF8]">
       <Suspense fallback={null}>
-        <ShopSection initialSearchQuery={searchQuery} />
+        <ShopSection
+          initialSearchQuery={searchQuery}
+          initialCategorySlug={initialCategorySlug}
+        />
       </Suspense>
       <Newsletter />
     </main>

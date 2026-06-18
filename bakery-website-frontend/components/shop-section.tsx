@@ -9,31 +9,58 @@ import { Input } from '@/components/ui/input'
 import { useCart } from '@/lib/cart-context'
 import {
   getMenuProductsForCategory,
+  menuCategories,
   menuCategoryOptions,
   type MenuProduct,
   type MenuProductWithCategory,
 } from '@/lib/menu-data'
 
-interface ShopSectionProps {
-  initialSearchQuery?: string
+/** Resolve a category slug (e.g. "artisanal-brownies") to its full title. */
+function resolveCategorySlug(slug: string): string {
+  if (!slug) return 'All'
+  const matched = menuCategories.find((c) => c.slug === slug)
+  return matched ? matched.title : 'All'
 }
 
-export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
+interface ShopSectionProps {
+  initialSearchQuery?: string
+  /** Category slug from the URL, e.g. "artisanal-brownies" */
+  initialCategorySlug?: string
+}
+
+export function ShopSection({
+  initialSearchQuery = '',
+  initialCategorySlug = '',
+}: ShopSectionProps) {
   const { addItem } = useCart()
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery)
-  const [activeCategory, setActiveCategory] = useState('All')
+  const [activeCategory, setActiveCategory] = useState(() =>
+    resolveCategorySlug(initialCategorySlug),
+  )
   const inputRef = useRef<HTMLInputElement>(null)
+  const productGridRef = useRef<HTMLDivElement>(null)
   const searchParams = useSearchParams()
 
+  // Keep search query in sync with URL param changes
   useEffect(() => {
     setSearchQuery(initialSearchQuery)
   }, [initialSearchQuery])
 
+  // Focus search bar when ?searchFocus=true
   useEffect(() => {
     if (searchParams.get('searchFocus') === 'true' && inputRef.current) {
       inputRef.current.focus()
     }
   }, [searchParams])
+
+  // When a category is pre-selected via URL, scroll the product grid into view
+  useEffect(() => {
+    if (!initialCategorySlug) return
+    const id = requestAnimationFrame(() => {
+      productGridRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+    return () => cancelAnimationFrame(id)
+  }, [initialCategorySlug])
 
   const handleAddToCart = (product: MenuProduct) => {
     addItem({
@@ -112,7 +139,12 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-10 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12">
+        {/* Product grid — scroll target when a category is pre-selected via URL */}
+        <div
+          ref={productGridRef}
+          className="mt-6 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-5 sm:gap-y-10 md:grid-cols-3 md:gap-x-6 md:gap-y-10 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-12"
+          style={{ scrollMarginTop: '7rem' }}
+        >
           {filteredProducts.map((product) => (
             <MenuProductCard
               key={`${product.categorySlug}-${product.id}`}
@@ -129,11 +161,6 @@ export function ShopSection({ initialSearchQuery = '' }: ShopSectionProps) {
           </div>
         )}
 
-        <p className="mx-auto mt-12 max-w-4xl text-center text-base leading-7 text-gray-500 sm:text-sm">
-          * Vegan, fasting-friendly, and monk fruit sweetener options available.
-          Prices may vary. Open Every Day | Delivery Only (Pre-order 24hrs
-          before).
-        </p>
       </div>
     </section>
   )

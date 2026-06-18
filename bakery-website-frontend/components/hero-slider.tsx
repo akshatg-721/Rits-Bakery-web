@@ -5,7 +5,6 @@ import useEmblaCarousel from 'embla-carousel-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 
-import { WHATSAPP_ORDER_URL } from '@/lib/checkout'
 
 const slides = [
   {
@@ -14,7 +13,7 @@ const slides = [
     tagline: 'Handcrafted · Eggless · Bangkok',
     headline: 'Dessert That Feels Like Home.',
     sub: 'Premium handcrafted eggless bakes delivered fresh across Bangkok.',
-    cta: { label: 'Order Now', href: WHATSAPP_ORDER_URL },
+    cta: { label: 'Order Now', href: '/menu' },
   },
   {
     src: '/menu/curation_brownies.png',
@@ -22,15 +21,15 @@ const slides = [
     tagline: 'Baked Fresh Daily',
     headline: 'Fudge Brownies Worth Every Bite.',
     sub: 'Rich, gooey, and 100% eggless — our bestselling box of 8.',
-    cta: { label: 'View Brownies', href: WHATSAPP_ORDER_URL },
+    cta: { label: 'View Brownies', href: '/menu?category=artisanal-brownies' },
   },
   {
     src: '/menu/curation_middleeastern.png',
     alt: 'Golden baklava and kunafa by The Rits Baker',
     tagline: 'Premium Ingredients, Every Bite',
     headline: 'Middle Eastern Magic.',
-    sub: 'Baklava, Kunafa Dates, and Dubai Chocolates — made with love.',
-    cta: { label: 'Explore Menu', href: WHATSAPP_ORDER_URL },
+    sub: 'Baklava, Kunafa Dates, and Dubai Chocolates crafted with premium ingredients.',
+    cta: { label: 'Explore Menu', href: '/menu?category=middle-eastern' },
   },
   {
     src: '/menu/curation_teatime.png',
@@ -38,7 +37,7 @@ const slides = [
     tagline: 'Delivered Across Bangkok',
     headline: 'The Perfect Tea-Time.',
     sub: 'Date & Walnut, Traditional Mawa Cake, and more comforting classics.',
-    cta: { label: 'See All Cakes', href: WHATSAPP_ORDER_URL },
+    cta: { label: 'See All Cakes', href: '/menu?category=premium-cakes' },
   },
 ]
 
@@ -100,8 +99,6 @@ export function HeroSlider() {
                   </p>
                   <Link
                     href={slide.cta.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="mt-7 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-7 py-3 text-sm font-semibold text-[#006241] shadow-[0_12px_32px_rgb(0,0,0,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#F9F9F9] hover:shadow-[0_18px_42px_rgb(0,0,0,0.18)] active:translate-y-0 active:scale-[0.98]"
                   >
                     {slide.cta.label}
