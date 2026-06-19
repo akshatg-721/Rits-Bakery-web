@@ -3,7 +3,15 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Facebook, Instagram, Menu, Search, ShoppingBag } from 'lucide-react'
+import {
+  Facebook,
+  Instagram,
+  Menu,
+  MessageCircle,
+  MessageSquare,
+  Search,
+  ShoppingBag,
+} from 'lucide-react'
 
 import { CartDrawer } from '@/components/cart-drawer'
 import { Button } from '@/components/ui/button'
@@ -17,6 +25,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { useCart } from '@/lib/cart-context'
+import { LINE_ORDER_URL, WHATSAPP_ORDER_URL } from '@/lib/checkout'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -26,6 +35,29 @@ const navLinks = [
   { label: 'Contact', href: '/contact' },
 ]
 
+const mobileDrawerSocialLinks = [
+  {
+    label: 'WhatsApp',
+    href: WHATSAPP_ORDER_URL,
+    Icon: MessageCircle,
+  },
+  {
+    label: 'LINE',
+    href: LINE_ORDER_URL,
+    Icon: MessageSquare,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/theritsbaker/',
+    Icon: Instagram,
+  },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/share/18rW9vZvKp/?mibextid=wwXIfr',
+    Icon: Facebook,
+  },
+]
+
 export function Header() {
   const { totalItems, setCartOpen } = useCart()
   const [searchQuery, setSearchQuery] = useState('')
@@ -33,7 +65,9 @@ export function Header() {
   const router = useRouter()
   const pathname = usePathname()
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (
+    e: Parameters<NonNullable<React.ComponentProps<'form'>['onSubmit']>>[0],
+  ) => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(`/menu?q=${encodeURIComponent(searchQuery.trim())}`);
@@ -156,34 +190,19 @@ export function Header() {
 
                 {/* ── Social footer ── */}
                 <div className="mt-7 flex flex-col items-center gap-4">
-                  <div className="flex items-center gap-8">
-                    {/* Instagram */}
-                    <a
-                      href="https://www.instagram.com/theritsbaker/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Instagram"
-                      className="group text-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:text-[#006241]"
-                    >
-                      <Instagram
-                        className="size-6"
-                        strokeWidth={1.5}
-                      />
-                    </a>
-
-                    {/* Facebook */}
-                    <a
-                      href="https://www.facebook.com/share/18rW9vZvKp/?mibextid=wwXIfr"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="Facebook"
-                      className="group text-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:text-[#006241]"
-                    >
-                      <Facebook
-                        className="size-6"
-                        strokeWidth={1.5}
-                      />
-                    </a>
+                  <div className="flex items-center justify-center gap-8 whitespace-nowrap">
+                    {mobileDrawerSocialLinks.map(({ label, href, Icon }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={label}
+                        className="group shrink-0 text-zinc-800 transition-all duration-300 hover:-translate-y-1 hover:text-[#006241]"
+                      >
+                        <Icon className="size-6" strokeWidth={1.5} />
+                      </a>
+                    ))}
                   </div>
 
                   <p className="text-[11px] tracking-[0.08em] text-zinc-400">
