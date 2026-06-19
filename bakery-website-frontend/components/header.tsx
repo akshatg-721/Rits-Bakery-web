@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 
 import { CartDrawer } from '@/components/cart-drawer'
+import { MenuSearchBar } from '@/components/menu-search-bar'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -60,29 +61,10 @@ const mobileDrawerSocialLinks = [
 
 export function Header() {
   const { totalItems, setCartOpen } = useCart()
-  const [searchQuery, setSearchQuery] = useState('')
+  const [headerSearchQuery, setHeaderSearchQuery] = useState('')
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
-
-  const handleSearch = (
-    e: Parameters<NonNullable<React.ComponentProps<'form'>['onSubmit']>>[0],
-  ) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/menu?q=${encodeURIComponent(searchQuery.trim())}`);
-      setSearchQuery('');
-    }
-  };
-
-  const handleSearchIconClick = () => {
-    if (pathname !== '/menu') {
-      router.push('/menu?searchFocus=true')
-      return
-    }
-
-    router.push('/menu?searchFocus=true')
-  }
 
   return (
     <>
@@ -232,7 +214,7 @@ export function Header() {
               size="icon"
               variant="ghost"
               className="rounded-full text-[#111111] hover:bg-[#006241]/10 hover:text-[#006241]"
-              onClick={handleSearchIconClick}
+              onClick={() => router.push('/menu?searchFocus=true')}
             >
               <Search className="size-5" />
             </Button>
@@ -281,18 +263,15 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Search Bar */}
-            <form onSubmit={handleSearch} className="relative">
-              <Search className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
-              <input
-                id="desktop-search-input"
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search treats..."
-                className="h-11 w-48 rounded-full border border-gray-200/80 bg-gray-50 pl-9 pr-4 text-sm text-[#111111] placeholder:text-gray-400 shadow-[0_1px_0_rgb(0,0,0,0.02)] transition-all duration-200 focus:w-64 focus:border-[#006241]/40 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#006241]/10"
-              />
-            </form>
+            {/* Premium search bar — global mode (navigates to /menu?q=…) */}
+            <MenuSearchBar
+              inputId="header-search-input"
+              value={headerSearchQuery}
+              onChange={setHeaderSearchQuery}
+              mode="global"
+              size="compact"
+              placeholder="Search treats..."
+            />
 
             {/* Cart Icon */}
             <Button

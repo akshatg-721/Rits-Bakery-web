@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ShoppingBag } from 'lucide-react'
 
 import type { MenuProduct } from '@/lib/menu-data'
+import { highlightText } from '@/lib/search-engine'
 
 /** Splits "Blueberry Muffins (Pack of 2)" → ["Blueberry Muffins", "(Pack of 2)"] */
 function splitProductName(name: string): { base: string; qualifier: string | null } {
@@ -19,13 +20,41 @@ interface MenuProductCardProps {
   product: MenuProduct
   headingLevel?: 'h3' | 'h4'
   showEgglessLabel?: boolean
+  /** When provided the product name is rendered with highlighted matching segments */
+  searchQuery?: string
   onAddToCart: (product: MenuProduct) => void
+}
+
+function HighlightedProductName({ name, query }: { name: string; query: string }) {
+  const segments = highlightText(name, query)
+  return (
+    <>
+      {segments.map((seg, i) =>
+        seg.highlight ? (
+          <mark
+            key={i}
+            style={{
+              background: 'none',
+              color: '#006241',
+              fontWeight: 700,
+              padding: 0,
+            }}
+          >
+            {seg.text}
+          </mark>
+        ) : (
+          <span key={i}>{seg.text}</span>
+        ),
+      )}
+    </>
+  )
 }
 
 export function MenuProductCard({
   product,
   headingLevel = 'h3',
   showEgglessLabel = true,
+  searchQuery,
   onAddToCart,
 }: MenuProductCardProps) {
   const [isAdded, setIsAdded] = useState(false)
@@ -118,6 +147,18 @@ export function MenuProductCard({
         <Heading className="mb-1 text-base font-medium leading-snug text-gray-900">
           {(() => {
             const { base, qualifier } = splitProductName(product.name)
+            if (searchQuery) {
+              return qualifier ? (
+                <>
+                  <HighlightedProductName name={base} query={searchQuery} />
+                  <span className="block whitespace-nowrap">
+                    <HighlightedProductName name={qualifier} query={searchQuery} />
+                  </span>
+                </>
+              ) : (
+                <HighlightedProductName name={base} query={searchQuery} />
+              )
+            }
             return qualifier ? (
               <>
                 {base}
