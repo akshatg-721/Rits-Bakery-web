@@ -3,14 +3,15 @@ import { Mail, MapPin, MessageCircle, Instagram, Facebook } from 'lucide-react'
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const quickLinks = [
-  { label: 'Home',               href: '/'        },
-  { label: 'Menu',               href: '/#menu'   },
-  { label: 'Gallery',            href: '/gallery' },
-  { label: 'Our Story',          href: '/about'   },
-  { label: 'Contact',            href: '/contact' },
-  { label: 'FAQ',                href: '/faq'     },
-  { label: 'Terms & Conditions', href: '/terms'   },
-  { label: 'Privacy Policy',     href: '/privacy' },
+  { label: 'Home',               href: '/',         enabled: true  },
+  { label: 'Menu',               href: '/#menu',    enabled: true  },
+  { label: 'Gallery',            href: '/gallery',  enabled: true  },
+  { label: 'Our Story',          href: '/about',    enabled: true  },
+  { label: 'Contact',            href: '/contact',  enabled: true  },
+  // Enable links when the corresponding pages are implemented
+  { label: 'FAQ',                href: '/faq',      enabled: false },
+  { label: 'Terms & Conditions', href: '/terms',    enabled: false },
+  { label: 'Privacy Policy',     href: '/privacy',  enabled: false },
 ]
 
 const socialLinks = [
@@ -81,14 +82,23 @@ export function Footer() {
               Quick Links
             </p>
             <ul className="mt-3 grid grid-cols-2 gap-x-8 gap-y-1.5 text-center">
-              {quickLinks.map(({ label, href }) => (
+              {quickLinks.map(({ label, href, enabled }) => (
                 <li key={label}>
-                  <Link
-                    href={href}
-                    className="inline-flex items-center py-1 text-[12.5px] text-stone-400 transition-colors hover:text-white"
-                  >
-                    {label}
-                  </Link>
+                  {enabled ? (
+                    <Link
+                      href={href}
+                      className="inline-flex items-center py-1 text-[12.5px] text-stone-400 transition-colors hover:text-white"
+                    >
+                      {label}
+                    </Link>
+                  ) : (
+                    <span
+                      aria-disabled="true"
+                      className="inline-flex cursor-default items-center py-1 text-[12.5px] text-stone-400/60"
+                    >
+                      {label}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -188,17 +198,26 @@ export function Footer() {
                 Quick Links
               </h2>
               <ul className="mt-5 flex flex-col gap-2.5">
-                {quickLinks.map(({ label, href }) => (
+                {quickLinks.map(({ label, href, enabled }) => (
                   <li key={label}>
-                    <Link
-                      href={href}
-                      className="group inline-flex items-center text-[13.5px] text-stone-400 transition-colors duration-150 hover:text-white"
-                    >
-                      <span className="relative">
+                    {enabled ? (
+                      <Link
+                        href={href}
+                        className="group inline-flex items-center text-[13.5px] text-stone-400 transition-colors duration-150 hover:text-white"
+                      >
+                        <span className="relative">
+                          {label}
+                          <span className="absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-white/40 transition-transform duration-200 group-hover:scale-x-100" />
+                        </span>
+                      </Link>
+                    ) : (
+                      <span
+                        aria-disabled="true"
+                        className="inline-flex cursor-default items-center text-[13.5px] text-stone-400/60"
+                      >
                         {label}
-                        <span className="absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-white/40 transition-transform duration-200 group-hover:scale-x-100" />
                       </span>
-                    </Link>
+                    )}
                   </li>
                 ))}
               </ul>
