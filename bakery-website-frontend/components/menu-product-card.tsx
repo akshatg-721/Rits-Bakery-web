@@ -3,18 +3,18 @@
 import { useState } from 'react'
 import { ChevronRight, ShoppingBag } from 'lucide-react'
 
-import type { MenuProductWithCategory } from '@/lib/menu-data'
+import type { MenuProduct } from '@/lib/menu-data'
 import { highlightText } from '@/lib/search-engine'
 
 const HINT_KEY = 'rits:dietary-hint-seen'
 
 interface MenuProductCardProps {
-  product: MenuProductWithCategory
+  product: MenuProduct
   headingLevel?: 'h3' | 'h4'
   showEgglessLabel?: boolean
   /** When provided the product name is rendered with highlighted matching segments */
   searchQuery?: string
-  onAddToCart: (product: MenuProductWithCategory) => void
+  onAddToCart: (product: MenuProduct) => void
 }
 
 function HighlightedProductName({ name, query }: { name: string; query: string }) {
@@ -38,7 +38,7 @@ function HighlightedProductName({ name, query }: { name: string; query: string }
 }
 
 /** Builds a deduplicated dietary/allergen list for the expandable section. */
-function buildDietaryRows(product: MenuProductWithCategory, isVegan: boolean): string[] {
+function buildDietaryRows(product: MenuProduct, isVegan: boolean): string[] {
   const seen = new Set<string>()
   const rows: string[] = []
   const add = (label: string) => {

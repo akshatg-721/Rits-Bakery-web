@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 
 import { MenuProductCard } from '@/components/menu-product-card'
 import { useCart } from '@/lib/cart-context'
-import { menuCategories, type MenuProduct, type MenuProductWithCategory } from '@/lib/menu-data'
+import { menuCategories, type MenuProduct } from '@/lib/menu-data'
 
 interface MenuSectionProps {
   initialSearchQuery?: string
@@ -13,7 +13,7 @@ interface MenuSectionProps {
 export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
   const { addItem } = useCart()
 
-  const handleAddToCart = (product: MenuProductWithCategory) => {
+  const handleAddToCart = (product: MenuProduct) => {
     addItem({
       id: product.id,
       name: product.name,
@@ -48,7 +48,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
 
   return (
     <section id="menu" className="overflow-hidden bg-[#FAFAF8] px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl py-10 md:py-16">
+      <div className="mx-auto max-w-7xl pt-6 pb-10 md:pt-8 md:pb-16">
 
         {/* ── Search results indicator (only when filtering via URL param) ── */}
         {normalizedQuery && (
@@ -62,10 +62,10 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
           <div
             key={category.slug}
             id={category.slug}
-            className={catIdx > 0 ? 'mt-10 sm:mt-16' : ''}
+            className={catIdx > 0 ? 'mt-20 sm:mt-[88px]' : ''}
             style={{ scrollMarginTop: '6rem' }}
           >
-            <div className="mb-8 sm:mb-14">
+            <div className="mb-7">
               <div className="flex items-center gap-3">
                 <h3 className="font-serif text-3xl leading-tight text-[#1a1a1a] sm:text-4xl lg:text-5xl">
                   {category.title}
@@ -76,7 +76,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
                   {category.subtitle}
                 </p>
               )}
-              <div className="mt-3 h-px w-16 bg-[#006241]/30" />
+              <div className="mt-2 h-px w-16 bg-[#006241]/30" />
             </div>
 
             {category.products.length > 0 ? (
@@ -84,7 +84,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
                 {category.products.map((product) => (
                   <MenuProductCard
                     key={product.id}
-                    product={{ ...product, category: category.title, categorySlug: category.slug }}
+                    product={product}
                     headingLevel="h4"
                     onAddToCart={handleAddToCart}
                   />

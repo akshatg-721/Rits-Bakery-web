@@ -13,7 +13,6 @@ import {
   menuCategories,
   menuCategoryOptions,
   type MenuProduct,
-  type MenuProductWithCategory,
 } from '@/lib/menu-data'
 import { searchProducts, highlightText } from '@/lib/search-engine'
 
@@ -118,7 +117,7 @@ export function ShopSection({
     return () => cancelAnimationFrame(id)
   }, [initialCategorySlug])
 
-  const handleAddToCart = (product: MenuProductWithCategory) => {
+  const handleAddToCart = (product: MenuProduct) => {
     addItem({
       id: product.id,
       name: product.name,
