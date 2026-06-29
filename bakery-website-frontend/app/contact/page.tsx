@@ -191,7 +191,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Name"
-                  className="w-full rounded-none border border-black/30 bg-transparent p-3 text-sm focus:border-black focus:outline-none"
+                  className="w-full rounded-none border border-black/30 bg-transparent p-3 text-base focus:border-black focus:outline-none"
                 />
                 <input
                   id="contact-email"
@@ -201,7 +201,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email *"
-                  className="w-full rounded-none border border-black/30 bg-transparent p-3 text-sm focus:border-black focus:outline-none"
+                  className="w-full rounded-none border border-black/30 bg-transparent p-3 text-base focus:border-black focus:outline-none"
                 />
               </div>
 
@@ -212,7 +212,7 @@ export default function ContactPage() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="Phone number"
-                className="w-full rounded-none border border-black/30 bg-transparent p-3 text-sm focus:border-black focus:outline-none"
+                className="w-full rounded-none border border-black/30 bg-transparent p-3 text-base focus:border-black focus:outline-none"
               />
 
               <textarea
@@ -222,7 +222,7 @@ export default function ContactPage() {
                 value={formData.comment}
                 onChange={handleChange}
                 placeholder="Comment"
-                className="w-full rounded-none border border-black/30 bg-transparent p-3 text-sm focus:border-black focus:outline-none"
+                className="w-full rounded-none border border-black/30 bg-transparent p-3 text-base focus:border-black focus:outline-none"
               />
 
               <button

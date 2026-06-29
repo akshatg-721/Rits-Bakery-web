@@ -9,6 +9,10 @@ export interface MenuProduct {
   isTopSeller?: boolean
   isHighProtein?: boolean
   vegan?: boolean
+  /** Package quantity label, e.g. "Pack of 2", "Box of 6", "Set of 6".
+   *  Rendered on a second line below the product name.
+   *  Only use for pack/box/set units — not for weight or size. */
+  packageLabel?: string
   ingredients?: string[]
   allergens?: string[]
   storage?: string
@@ -232,7 +236,8 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'cinnamon-rolls-set-of-6',
-        name: 'Cinnamon Rolls (Set of 6)',
+        name: 'Cinnamon Rolls',
+        packageLabel: 'Set of 6',
         description: 'Soft, pillowy rolls swirled with warm cinnamon sugar. Baked fresh to order and best enjoyed slightly warm.',
         price: '฿ 190',
         numericPrice: 190,
@@ -243,7 +248,8 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'blueberry-muffins',
-        name: 'Blueberry Muffins (Pack of 2)',
+        name: 'Blueberry Muffins',
+        packageLabel: 'Pack of 2',
         description: 'Soft, fluffy muffins bursting with juicy blueberries.',
         price: '฿ 110',
         numericPrice: 110,
@@ -254,7 +260,8 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'chocolate-muffins',
-        name: 'Chocolate Muffins (Pack of 2)',
+        name: 'Chocolate Muffins',
+        packageLabel: 'Pack of 2',
         description: 'Rich chocolate muffins with a soft and moist crumb.',
         price: '฿ 110',
         numericPrice: 110,
@@ -387,7 +394,8 @@ const menuProductCategories: MenuCategory[] = [
     products: [
       {
         id: 'pizza-muffins-box-of-6',
-        name: 'Pizza Muffins (Box of 6)',
+        name: 'Pizza Muffins',
+        packageLabel: 'Box of 6',
         description: 'Cheesy, herb-flecked, and golden-baked. Mini muffins inspired by classic pizza flavours — a perfect savoury snack.',
         price: '฿ 195',
         numericPrice: 195,
@@ -399,7 +407,8 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'spinach-muffins-box-of-6',
-        name: 'Spinach Muffins (Box of 6)',
+        name: 'Spinach Muffins',
+        packageLabel: 'Box of 6',
         description: 'Wholesome spinach and feta baked into soft, fragrant muffins. Light, flavourful, and satisfying.',
         price: '฿ 195',
         numericPrice: 195,
@@ -433,7 +442,8 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'cheese-straws',
-        name: 'Cheese Straws (Pack of 12)',
+        name: 'Cheese Straws',
+        packageLabel: 'Pack of 12',
         description: 'Buttery, flaky, and rich with aged cheddar. An elegant savoury snack that pairs beautifully with tea or drinks.',
         price: '฿ 210',
         numericPrice: 210,
@@ -451,7 +461,8 @@ const menuProductCategories: MenuCategory[] = [
     products: [
       {
         id: 'kunafa-dates-pack-of-6',
-        name: 'Kunafa Dates (Pack of 6)',
+        name: 'Kunafa Dates',
+        packageLabel: 'Pack of 6',
         description: 'Crispy kataifi pastry filled with creamy cheese and sweet Medjool dates, finished with rose and orange blossom syrup.',
         price: '฿ 300',
         numericPrice: 300,
@@ -516,6 +527,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'biscoff-creamcheese-crumble-tub',
         name: 'Biscoff Creamcheese',
+        packageLabel: 'Pack of 2',
         description: 'Cookie crumble, velvety cream cheese mousse, and a caramelised Biscoff drizzle — layered to perfection.',
         price: '฿ 250',
         numericPrice: 250,
@@ -527,6 +539,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'blueberry-creamcheese-crumble-tub',
         name: 'Blueberry Creamcheese',
+        packageLabel: 'Pack of 2',
         description: 'Buttery biscuit crumble, light cream cheese mousse, and a vibrant blueberry compote. Fresh and indulgent.',
         price: '฿ 195',
         numericPrice: 195,
@@ -538,6 +551,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'mango-crumble-tub',
         name: 'Mango',
+        packageLabel: 'Pack of 2',
         description: 'Cream cheese mousse layered with fresh mango pulp and golden biscuit crumble. Tropical perfection in a tub.',
         price: '฿ 180',
         numericPrice: 180,
@@ -549,6 +563,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'tiramisu-crumble-tub',
         name: 'Tiramisu',
+        packageLabel: 'Pack of 2',
         description: 'Coffee-soaked savoiardi, rich mascarpone cream, and a fine cocoa dusting. A classic reinvented in a tub.',
         price: '฿ 350',
         numericPrice: 350,
@@ -560,6 +575,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'chocolate-crumble-tub',
         name: 'Chocolate',
+        packageLabel: 'Pack of 2',
         description: 'Dark chocolate cream cheese, Oreo crumble, and a cocoa finish. Deeply indulgent and simply divine.',
         price: '฿ 180',
         numericPrice: 180,
@@ -571,6 +587,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'strawberry-crumble-tub',
         name: 'Strawberry',
+        packageLabel: 'Pack of 2',
         description: 'Fresh strawberry compote, cream cheese mousse, and a buttery biscuit base. Fruity, fresh, and divine.',
         price: '฿ 195',
         numericPrice: 195,

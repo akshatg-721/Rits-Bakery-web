@@ -256,7 +256,7 @@ export function CartDrawer() {
                           placeholder="Enter code"
                           value={couponCode}
                           onChange={(e) => setCouponCode(e.target.value)}
-                          className="h-9 text-sm"
+                          className="h-9"
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') handleApplyCoupon()
                           }}
@@ -388,7 +388,7 @@ export function CartDrawer() {
                               setDeliveryTime(null)
                             }
                           }}
-                          className="flex-1 h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent"
+                          className="flex-1 h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent"
                         >
                           <option value="">Select Date</option>
                           {validDates.map((date) => (
@@ -403,7 +403,7 @@ export function CartDrawer() {
                           value={deliveryTime || ''}
                           onChange={(e) => setDeliveryTime(e.target.value || null)}
                           disabled={!deliveryDate}
-                          className="flex-1 h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent disabled:bg-gray-100 disabled:text-gray-400"
+                          className="flex-1 h-9 w-full rounded-md border border-gray-200 bg-white px-3 text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#006241] focus:border-transparent disabled:bg-gray-100 disabled:text-gray-400"
                         >
                           <option value="">Select Time</option>
                           {getAvailableTimeSlots(deliveryDate || '').map((slot) => (
@@ -423,7 +423,7 @@ export function CartDrawer() {
                         onChange={(e) =>
                           setDeliveryDetails({ ...deliveryDetails, address: e.target.value })
                         }
-                        className="text-sm resize-none"
+                        className="resize-none"
                         rows={3}
                       />
                       <Input
@@ -432,7 +432,6 @@ export function CartDrawer() {
                         onChange={(e) =>
                           setDeliveryDetails({ ...deliveryDetails, mapsUrl: e.target.value })
                         }
-                        className="text-sm"
                       />
                     </div>
                     <button

@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import { ArrowRight, ChefHat, Leaf, Star, Zap } from 'lucide-react'
 
 import { MenuProductCard } from '@/components/menu-product-card'
+import { DietaryHint } from '@/components/dietary-hint'
 import { MenuSearchBar } from '@/components/menu-search-bar'
 import { useCart } from '@/lib/cart-context'
 import {
@@ -200,6 +201,9 @@ export function ShopSection({
             />
           </div>
         </div>
+
+        {/* ── Onboarding hint — shown once until user first expands a card ── */}
+        <DietaryHint />
 
         {/* ── Product grid ── */}
         <div

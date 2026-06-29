@@ -127,6 +127,13 @@
     @apply overflow-x-hidden bg-background text-foreground;
     text-rendering: geometricPrecision;
   }
+  /* Prevent iOS Safari and Android Chrome from auto-zooming into form fields.
+     Browsers zoom when font-size < 16px; this sets the safe minimum globally. */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
   ::selection {
     @apply bg-[#006241] text-white;
   }

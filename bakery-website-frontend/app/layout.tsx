@@ -74,6 +74,12 @@ export const metadata: Metadata = {
   },
 }
 
+// Correct viewport — no maximum-scale or user-scalable=no (those harm accessibility)
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
