@@ -40,6 +40,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'authentic-thai-banana-loaf',
         name: 'Authentic Thai Banana Loaf',
+        packageLabel: 'Pack of 10',
         description: 'Moist, fragrant, and warmly spiced with cinnamon. Made with ripe Thai bananas for a naturally sweet, comforting crumb.',
         price: '฿ 190',
         numericPrice: 190,
@@ -51,6 +52,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'fresh-orange-loaf',
         name: 'Fresh Orange Loaf',
+        packageLabel: 'Pack of 10',
         description: 'Bright citrus notes in every slice. Made with freshly squeezed juice and real zest for a vibrant, uplifting flavour.',
         price: '฿ 220',
         numericPrice: 220,
@@ -62,6 +64,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'classical-carrot-cake',
         name: 'Classical Carrot Cake',
+        packageLabel: 'Pack of 10',
         description: 'A timeless recipe — fresh carrots, warm spice, and a perfectly tender crumb. Lightly sweetened and deeply satisfying.',
         price: '฿ 220',
         numericPrice: 220,
@@ -73,6 +76,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'vanilla-butter-loaf-cake',
         name: 'Vanilla Butter Loaf Cake',
+        packageLabel: 'Pack of 10',
         description: 'Rich, golden, and buttery with a pure vanilla heart. Simple, elegant, and utterly comforting in every slice.',
         price: '฿ 250',
         numericPrice: 250,
@@ -84,6 +88,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'rich-chocolate-loaf',
         name: 'Rich Chocolate Loaf',
+        packageLabel: 'Pack of 10',
         description: 'Intensely chocolatey with layers of dark cocoa and melted chocolate. Dense, moist, and unapologetically indulgent.',
         price: '฿ 290',
         numericPrice: 290,
@@ -102,6 +107,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'fudge-brownies',
         name: 'Fudge Brownies',
+        packageLabel: 'Pack of 9',
         description: 'Crinkle-topped, fudge-centred, and intensely chocolate. Each bite is rich, dense, and irresistibly gooey.',
         price: '฿ 270',
         numericPrice: 270,
@@ -114,6 +120,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'mocha-brownies',
         name: 'Mocha Brownies',
+        packageLabel: 'Pack of 9',
         description: 'The depth of espresso meets bittersweet dark chocolate. Bold, aromatic, and perfectly balanced for coffee lovers.',
         price: '฿ 295',
         numericPrice: 295,
@@ -125,6 +132,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'nuts-biscoff-brownies',
         name: 'Nuts & Biscoff Brownies',
+        packageLabel: 'Pack of 9',
         description: 'Chocolate fudge brownies layered with Biscoff caramel spread and crunchy mixed nuts. Indulgent in every square.',
         price: '฿ 395',
         numericPrice: 395,
@@ -137,6 +145,7 @@ const menuProductCategories: MenuCategory[] = [
       {
         id: 'nutella-oreo-brownies',
         name: 'Nutella Oreo Brownies',
+        packageLabel: 'Pack of 9',
         description: 'Chewy chocolate brownies swirled with Nutella and studded with Oreo crumble. A playful, decadent treat.',
         price: '฿ 325',
         numericPrice: 325,
@@ -225,7 +234,8 @@ const menuProductCategories: MenuCategory[] = [
       },
       {
         id: 'assorted-biscoff-truffles-pack-of-12',
-        name: 'Assorted Biscoff Truffles (12 pcs)',
+        name: 'Assorted Biscoff Truffles',
+        packageLabel: 'Pack of 12',
         description: 'Hand-rolled truffles in dark and white chocolate, each with a luscious Biscoff cream centre. Twelve little luxuries.',
         price: '฿ 400',
         numericPrice: 400,

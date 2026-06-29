@@ -37,6 +37,7 @@ export function FeaturedCarousel() {
       description: product.description,
       image: product.image,
       vegan: product.vegan,
+      packageLabel: product.packageLabel,
     })
   }
 

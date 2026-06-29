@@ -173,9 +173,16 @@ export function CartDrawer() {
                     {/* Product info + quantity */}
                     <div className="flex flex-1 flex-col gap-2">
                       <div className="flex items-start justify-between gap-2">
-                        <p className="text-base font-medium leading-snug text-[#111111] sm:text-sm">
-                          {item.name}
-                        </p>
+                        <div>
+                          <p className="text-base font-medium leading-snug text-[#111111] sm:text-sm">
+                            {item.name}
+                          </p>
+                          {item.packageLabel && (
+                            <span className="mt-1 block text-[10px] font-medium leading-none tracking-[0.12em] text-neutral-400">
+                              {item.packageLabel}
+                            </span>
+                          )}
+                        </div>
                         <button
                           type="button"
                           aria-label={`Remove ${item.name} from cart`}

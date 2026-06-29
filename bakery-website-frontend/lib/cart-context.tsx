@@ -18,6 +18,7 @@ export interface CartProduct {
   description?: string
   image?: string
   vegan?: boolean
+  packageLabel?: string
 }
 
 export interface CartItem extends CartProduct {
