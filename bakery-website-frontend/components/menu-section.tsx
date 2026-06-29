@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 
 import { MenuProductCard } from '@/components/menu-product-card'
 import { useCart } from '@/lib/cart-context'
-import { menuCategories, type MenuProduct } from '@/lib/menu-data'
+import { menuCategories, type MenuProduct, type MenuProductWithCategory } from '@/lib/menu-data'
 
 interface MenuSectionProps {
   initialSearchQuery?: string
@@ -13,7 +13,7 @@ interface MenuSectionProps {
 export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
   const { addItem } = useCart()
 
-  const handleAddToCart = (product: MenuProduct) => {
+  const handleAddToCart = (product: MenuProductWithCategory) => {
     addItem({
       id: product.id,
       name: product.name,
@@ -84,7 +84,7 @@ export function MenuSection({ initialSearchQuery = '' }: MenuSectionProps) {
                 {category.products.map((product) => (
                   <MenuProductCard
                     key={product.id}
-                    product={product}
+                    product={{ ...product, category: category.title, categorySlug: category.slug }}
                     headingLevel="h4"
                     onAddToCart={handleAddToCart}
                   />

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { ShoppingBag } from 'lucide-react'
 
-import type { MenuProduct } from '@/lib/menu-data'
+import type { MenuProduct, MenuProductWithCategory } from '@/lib/menu-data'
 import { highlightText } from '@/lib/search-engine'
 
 /** Splits "Blueberry Muffins (Pack of 2)" → ["Blueberry Muffins", "(Pack of 2)"] */
@@ -17,12 +17,12 @@ function splitProductName(name: string): { base: string; qualifier: string | nul
 }
 
 interface MenuProductCardProps {
-  product: MenuProduct
+  product: MenuProductWithCategory
   headingLevel?: 'h3' | 'h4'
   showEgglessLabel?: boolean
   /** When provided the product name is rendered with highlighted matching segments */
   searchQuery?: string
-  onAddToCart: (product: MenuProduct) => void
+  onAddToCart: (product: MenuProductWithCategory) => void
 }
 
 function HighlightedProductName({ name, query }: { name: string; query: string }) {
@@ -169,6 +169,11 @@ export function MenuProductCard({
             )
           })()}
         </Heading>
+        {product.categorySlug === 'crumble-tubs' && (
+          <span className="mt-1 mb-0.5 block text-[10px] font-medium leading-none tracking-[0.12em] text-stone-400">
+            Pack of 2
+          </span>
+        )}
         {product.tags && product.tags.length > 0 && (() => {
           // Tags already shown as image overlays — exclude them from the pill list.
           const overlayTags = new Set<string>()

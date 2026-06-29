@@ -117,7 +117,7 @@ export function ShopSection({
     return () => cancelAnimationFrame(id)
   }, [initialCategorySlug])
 
-  const handleAddToCart = (product: MenuProduct) => {
+  const handleAddToCart = (product: MenuProductWithCategory) => {
     addItem({
       id: product.id,
       name: product.name,
